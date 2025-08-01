@@ -1,7 +1,6 @@
 {
     "name": "bubble",
     "compatibility_date": "2025-08-01",
-	"compatibility_flags": ["assets_navigation_prefers_asset_serving"],
     "main": "src/index.ts",
     "assets": {
         "directory": "./public/",
