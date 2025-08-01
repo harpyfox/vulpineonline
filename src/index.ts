@@ -1,4 +1,6 @@
-import index from "./public/index.html";
+interface Env {
+  ASSETS: Fetcher;
+}
 
 export default {
   async fetch(request, env) {
@@ -12,7 +14,8 @@ export default {
     // const location = `https://bsky.app/profile/harpyfox.net/post/3lrppfou7z22r`;
     // return a redirect yipee yipee
     // return Response.redirect(location, 302);
-    
+	return env.ASSETS.fetch(request);
+      
     return new Response(index, {
       headers: {
         "Content-Type": "text/html",
