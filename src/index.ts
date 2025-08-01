@@ -1,27 +1,16 @@
 interface Env {
-  ASSETS: Fetcher;
+    ASSETS: Fetcher;
 }
 
 export default {
-  async fetch(request, env) {
+    async fetch(request, env: Env): Promise<Request> {
+        const url = new URL(request.url);
 
-    const url = new URL(request.url);
-		console.log(`Hello ${navigator.userAgent}!\n`
-    + `Welcome to ${url.hostname} specifically ${url.pathname}!\n` 
-    + `Your ${url.protocol} ${request.method} request is very nice\n`
-    + ``);
+        console.log(`Hello ${navigator.userAgent}!\n`
+            + `Welcome to ${url.hostname} specifically ${url.pathname}!\n` 
+            + `Your ${url.protocol} ${request.method} request is very nice\n`
+            + ``);
 
-    // const location = `https://bsky.app/profile/harpyfox.net/post/3lrppfou7z22r`;
-    // return a redirect yipee yipee
-    // return Response.redirect(location, 302);
-	return env.ASSETS.fetch(request);
-      
-    return new Response(index, {
-      headers: {
-        "Content-Type": "text/html",
-      },
-    });
-
-
-  }
+        return env.ASSETS.fetch(request);
+    }
 };
