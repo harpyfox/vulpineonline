@@ -1,11 +1,13 @@
 {
     "name": "bubble",
     "compatibility_date": "2025-08-01",
+	"compatibility_flags": ["assets_navigation_prefers_asset_serving"],
     "main": "src/index.ts",
     "assets": {
         "directory": "./public/",
         "not_found_handling": "404-page",
         "html_handling": "auto-trailing-slash",
         "binding": "ASSETS",
+        "run-worker-first": false,
     },
 }
