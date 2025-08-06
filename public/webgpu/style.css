@@ -1,0 +1,65 @@
+html {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    height: 100%;
+    margin: 0;
+    place-content: center center;
+}
+
+/**/
+
+nav {
+    flex: 1 0 auto;
+    max-width: 300px;
+    height: 100%;
+    background-color: gray;
+}
+
+main {
+    flex: 1;
+    height: 100%;
+}
+
+iframe {
+    height: 100%;
+    width: 100%;
+}
+
+/**/
+
+canvas {
+    border: 1px solid black;
+    width: 600px;
+    height: 600px;
+    max-width: 100%;
+    display: block;
+}
+
+canvas#render {
+    
+}
+
+canvas#overlay {
+    border: none;
+    display: block;
+    position: absolute;
+}
+
+/**/
+
+[tooltip]::after {
+    content: attr(tooltip);
+    display: block;
+    position: absolute;
+    background-color: white;
+    padding: 0.5em;
+    opacity: 0;
+    pointer-events: none;
+}
+
+[tooltip]:hover::after {
+    opacity: 1;
+}
