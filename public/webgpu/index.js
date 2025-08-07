@@ -2,6 +2,7 @@ const demos = [
     "canvas",
     "triangle",
     "triangle - Copy (1)", // yeah not that dynamic
+    "lab",
 ];
 
 let baseTitle = document.head.querySelector("title").textContent;

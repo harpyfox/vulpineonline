@@ -5,6 +5,13 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "type": "firefox",
+            "request": "launch",
+            "reAttach": true,
+            "name": "Launch lab",
+            "file": "${workspaceFolder}/public/webgpu/demos/lab/index.html"
+        },
+        {
             "name": "Launch webgpu",
             "type": "firefox",
             "request": "launch",
