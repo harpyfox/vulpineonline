@@ -1,0 +1,31 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    height: 100%;
+    background-color: black;
+}
+
+body {
+    height: 100%;
+    margin: 0;
+    place-content: center center;
+}
+
+canvas {
+    width: 600px;
+    height: 600px;
+    max-width: 100%;
+    display: block;
+}
+
+canvas#render {
+    margin: auto;
+}
+
+canvas#overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+}

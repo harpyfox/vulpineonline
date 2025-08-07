@@ -1,13 +1,19 @@
+* {
+    box-sizing: border-box;
+}
+
 html {
     height: 100%;
+    background-color: black;
 }
 
 body {
     display: flex;
     height: 100%;
     margin: 0;
-    place-content: center center;
 }
+
+
 
 /**/
 
@@ -24,31 +30,40 @@ main {
 }
 
 iframe {
+    display: block;
     height: 100%;
     width: 100%;
-}
-
-/**/
-
-canvas {
-    border: 1px solid black;
-    width: 600px;
-    height: 600px;
-    max-width: 100%;
-    display: block;
-}
-
-canvas#render {
-    
-}
-
-canvas#overlay {
     border: none;
-    display: block;
-    position: absolute;
+}
+
+@media only screen and (max-width: 768px) {
+    body {
+        flex-direction: column-reverse;
+        height: initial;
+    }
+
+    nav {
+        max-width: initial;
+        height: initial;
+    }
+
+    main {
+        flex: 0 1 auto;
+        min-height: 600px;
+    }
+
+    iframe {
+        height: 600px;
+    }
+
 }
 
 /**/
+
+h1 {
+    margin-block: 0.67em;
+    font-size: 2em;
+}
 
 [tooltip]::after {
     content: attr(tooltip);

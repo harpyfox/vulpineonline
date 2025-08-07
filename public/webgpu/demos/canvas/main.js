@@ -3,7 +3,7 @@ import { add_message } from "../../util.js";
 const canvas = document.querySelector('canvas')
 const ctx = canvas.getContext("2d");
 
-function render() {
+function main() {
     ctx.fillStyle = "gray";
 
     ctx.fillStyle = "gray";
@@ -33,8 +33,8 @@ function render() {
     ctx.font = "bold 48px serif";
     ctx.strokeText("bada bing bada boom", 50, 100);
 
-    add_message(ctx, "1. canvas 2D");
+    add_message(ctx, "canvas 2D");
 }
 
 
-document.addEventListener("DOMContentLoaded", render);
+document.addEventListener("DOMContentLoaded", main);
