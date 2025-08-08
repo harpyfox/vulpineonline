@@ -2,74 +2,70 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <link href="../../canvas.css" rel="stylesheet">
+        <link href="style.css" rel="stylesheet">
         <script src="main.js" type="module"></script>
     </head>
     <body>
         <div class="wrapper">
 
-            <div class="viewport-container">
-                <h3>viewport</h3>
-                <div class="viewport">
-                    <canvas width="600" height="600"></canvas>
-                </div>
-            </div>
-
-            <div class="editor-container">
-                <h3>editor</h3>
-                <div class="editor">
-                    <textarea id="code" placeholder="write a shdader........"></textarea>
-                </div>
-                <div id="log">
-
-                </div>
-
-                <div class="controls-container">
-                    <h3>controls</h3>
-                    <div class="controls">
-                        <button id="button-example">example</button>
-                        <button id="button-compile">compile</button>
-                        <button id="button-render">RENDER</button>
+            <div class="block1">
+                <div id="player">
+                    <canvas id="player-canvas" width="960" height="540"></canvas>
+                    <div id="player-controls">
+                        <button id="button-restart" title="Restart playback from t = 0.">⏮️</button>
+                        <button id="button-play" title="Pause or resume playback.">▶️</button>
+                        <div id="player-time">0.00</div>
+                        <div id="player-resolution">000 x 000</div>
                     </div>
                 </div>
             </div>
 
+            <div class="block2">
+                <div id="editor">
+                    <textarea id="editor-code" placeholder="write a shdader........" autocorrect="off"></textarea>
+
+                    <div id="editor-controls">
+                        <button id="button-compile" title="Compile & Render">✅</button>
+                        <button id="button-render" title="Render">🎦</button>
+                        <div id="editor-log">
+                        
+                            </div>
+                    </div>
+
+                    
+
+                    <div id="editor-inputs">
+                        <h3>shader inputs</h3>
+
+
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td>vec4f</td>
+                                    <td>position</td>
+                                    <td>// info about parameter</td>
+                                </tr>
+                                <tr>
+                                    <td>vec4f</td>
+                                    <td>color</td>
+                                    <td>// info about parameter</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+
+                
+                </div>
+                
+            </div>
+
         </div>
         
-        <style>
-            h3 {
-                color: white;
-            }
-            .wrapper {
-                display: grid;
-            }
-            .editor-container {
-                position: relative;
-                width: 100%;
-            }
-            #log {
-                color: white;
-                position: absolute;
-                bottom: 0;
-                right: 0;
-                font-size: 4em;
-                pointer-events: none;
-            }
-            .controls-container {
-                position: absolute;
-                top: 0;
-                right: 0;
-                
-            }
-            button {
-                font-size: 2em;
-            }
-            #code {
-	width: 100%;
-	height: 250px;
-	background-color: dimgray;
-	color: white;
-}
-        </style>
+        <div>
+            <button id="button-example"
+                title="Populate shader editor with an example. Replaces current shader, so be careful!">example</button>
+        
+        </div>
     </body>
 </html>

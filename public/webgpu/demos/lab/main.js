@@ -1,6 +1,7 @@
 let currentAdapter;
 let currentDevice;
 
+const canvas = e("player-canvas");
 let currentContext;
 let currentCanvasFormat;
 
@@ -12,11 +13,11 @@ let currentVertexBuffer;
 
 let currentPipeline;
 
-const editorTextArea = document.getElementById("code");
-const editorLog = document.getElementById("log");
+const editorTextArea = e("editor-code");
+const editorLog = e("editor-log");
 const editorColor = editorTextArea.style.backgroundColor;
 
-const buttonRender = document.getElementById("button-render");
+const buttonRender = e("button-render");
 
 const exampleVertexData = new Float32Array([
     0.0, 0.6, 0, 1, 1, 0, 0, 1, 
@@ -60,6 +61,10 @@ function example() {
     currentVertexData = exampleVertexData;
 }
 
+function e(id) {
+    return document.getElementById(id);
+}
+
 function editor_error(msg) {
     editorTextArea.style.backgroundColor = "red";
     const p = document.createElement('p');
@@ -88,7 +93,6 @@ async function init() {
 
     // configure canvas
     currentCanvasFormat = navigator.gpu.getPreferredCanvasFormat();
-    const canvas = document.querySelector("canvas");
     currentContext = canvas.getContext("webgpu");
     currentContext.configure(
         {
@@ -98,8 +102,8 @@ async function init() {
         }
     );
 
-    document.getElementById("button-example").addEventListener("click", example);
-    document.getElementById("button-compile").addEventListener("click", compile);
+    e("button-example").addEventListener("click", example);
+    e("button-compile").addEventListener("click", compile);
     buttonRender.addEventListener("click", render);
 
 }
@@ -236,6 +240,7 @@ async function vertex_changed(vertexData) {
     else {
         buttonRender.toggleAttribute("disabled", false);
         editor_ok();
+        render();
     }
 }
 
@@ -274,6 +279,17 @@ function render() {
 }
 
 document.addEventListener("DOMContentLoaded", init);
+
+// set the canvas rendering resolution to the element's size on the page
+function updateCanvasResolution() {
+    const width = canvas.offsetWidth;
+    const height = canvas.offsetHeight;
+    canvas.width = width;
+    canvas.height = height;
+    e("player-resolution").innerText = `${width} x ${height}`;
+}
+updateCanvasResolution();
+new ResizeObserver(updateCanvasResolution).observe(canvas);
 
 editorTextArea.addEventListener('input', editor_clear);
 buttonRender.toggleAttribute("disabled", true);
