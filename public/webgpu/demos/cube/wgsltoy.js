@@ -1,6 +1,5 @@
 let device;
-export let canvas;
-let context;
+export let context;
 let targetFormat;
 export let currentShaderWGSL;
 let currentShader;
@@ -10,16 +9,17 @@ let currentPipeline;
 function e(id) {
     return document.getElementById(id);
 }
-export async function init(canvas) {
-    const adapter = await navigator.gpu?.requestAdapter();
-    device = await adapter?.requestDevice();
+export async function init(targetCanvas) {
+    const adapter = await navigator.gpu.requestAdapter();
+    if (adapter) {
+        device = await adapter?.requestDevice();
+    }
     if (!device) {
         return { success: false, message: "webgpu is not supported on this browser." };
     }
-    canvas = canvas;
-    context = canvas.getContext("webgpu");
+    context = targetCanvas.getContext("webgpu");
     targetFormat = navigator.gpu.getPreferredCanvasFormat();
-    context.configure({
+    context?.configure({
         device: device,
         format: targetFormat,
         alphaMode: "premultiplied",
@@ -27,6 +27,7 @@ export async function init(canvas) {
     return { success: true, message: "initialised" };
 }
 export async function setShader(shaderWGSL) {
+    // compile shader
     if (shaderWGSL == '') {
         return { success: false, message: "no shader help" };
     }
@@ -37,77 +38,74 @@ export async function setShader(shaderWGSL) {
     });
     const shaderCompilationInfo = await currentShader.getCompilationInfo();
     if (shaderCompilationInfo.messages.length > 0) {
-        return { success: false, message: shaderCompilationInfo.messages[0] };
+        return { success: false, message: shaderCompilationInfo.messages[0]?.message };
     }
     // vertex buffers
-    if (!currentVertexData)
-        currentVertexData = exampleVertexData;
-    currentVertexData = vertexData;
+    currentVertexData = new Float32Array([
+        0.0, 0.6, 0, 1, 1, 0, 0, 1,
+        -0.5, -0.6, 0, 1, 0, 1, 0, 1,
+        0.5, -0.6, 0, 1, 0, 0, 1, 1,
+    ]);
     currentVertexBuffer = device.createBuffer({
         label: "vertexBuffer",
         size: currentVertexData.byteLength,
         usage: GPUBufferUsage.VERTEX | GPUBufferUsage.COPY_DST
     });
     device.queue.writeBuffer(currentVertexBuffer, 0, currentVertexData);
-    // vertex layout
-    // mirrors vertex shader input parameters!
-    const vertexBuffers = [
-        {
-            arrayStride: 32, // 32 bytes per vertex
-            stepMode: "vertex", // default
-            attributes: [
-                {
-                    shaderLocation: 0, // location(0) position
-                    offset: 0, // first 16 bytes for position
-                    format: "float32x4",
-                },
-                {
-                    shaderLocation: 1, // location(1) color
-                    offset: 16, // second 16 bytes for color
-                    format: "float32x4",
-                },
-            ],
-        },
-    ];
-    // render pipeline
-    const vertexDesc = {
-        module: currentShader,
-        entryPoint: "vert", // defaults to function with @vertex attribute
-        buffers: vertexBuffers,
-        constants: {},
-    };
-    const fragmentDesc = {
-        module: currentShader,
-        entryPoint: "frag", // defaults to function with @fragment attribute
-        targets: [
+    // vertex buffer
+    // mirrors vertex shader input parameters
+    const vertexBufferLayout = {
+        arrayStride: 32, // 32 bytes per vertex
+        stepMode: "vertex", // default
+        attributes: [
             {
-                format: targetFormat,
-                blend: {
-                    color: {
-                        srcFactor: "one", // all default
-                        dstFactor: "zero",
-                        operation: "add",
-                    },
-                    alpha: {
-                        srcFactor: "one",
-                        dstFactor: "zero",
-                        operation: "add",
-                    },
-                }
+                shaderLocation: 0, // location(0) position
+                offset: 0, // first 16 bytes
+                format: "float32x4",
+            },
+            {
+                shaderLocation: 1, // location(1) color
+                offset: 16, // second 16 bytes
+                format: "float32x4",
             },
         ],
-        constants: {},
     };
-    const primitiveDesc = {
-        topology: "triangle-list", // default
-        cullMode: "none", // default for some reason
+    // fragment target
+    const fragmentTarget = {
+        format: targetFormat,
+        blend: {
+            color: {
+                srcFactor: "one",
+                dstFactor: "zero",
+                operation: "add",
+            },
+            alpha: {
+                srcFactor: "one",
+                dstFactor: "zero",
+                operation: "add",
+            },
+        }
     };
+    // hit it
     currentPipeline = device.createRenderPipeline({
         label: "pipeline",
         layout: "auto",
-        vertex: vertexDesc,
-        fragment: fragmentDesc,
-        primitive: primitiveDesc,
+        vertex: {
+            module: currentShader,
+            entryPoint: "vert", // defaults to function with @vertex attribute
+            buffers: [vertexBufferLayout],
+            constants: {},
+        },
+        fragment: {
+            module: currentShader,
+            entryPoint: "frag", // defaults to function with @fragment attribute
+            targets: [fragmentTarget],
+            constants: {},
+        },
+        primitive: {
+            topology: "triangle-list", // default
+            cullMode: "back",
+        },
     });
     if (!currentPipeline) {
         return { success: false, message: "pipeline error" };
@@ -117,26 +115,28 @@ export async function setShader(shaderWGSL) {
     }
 }
 export function frame() {
+    if (!context) {
+        return { success: false, message: "fuck" };
+    }
     const commandEncoder = device.createCommandEncoder();
-    const textureView = context.getCurrentTexture().createView();
     // render pass
-    const passDesc = {
+    const pass = {
         colorAttachments: [
             {
-                view: textureView,
+                view: context.getCurrentTexture().createView(),
                 clearValue: [0, 0, 0, 0],
                 loadOp: "clear",
                 storeOp: "store",
             },
         ],
     };
-    const passEncoder = commandEncoder.beginRenderPass(passDesc);
     // draw!
+    // @ts-ignore
+    pass.colorAttachments[0].view = context.getCurrentTexture().createView();
+    const passEncoder = commandEncoder.beginRenderPass(pass);
     passEncoder.setPipeline(currentPipeline);
     passEncoder.setVertexBuffer(0, currentVertexBuffer);
-    passEncoder.draw(3); // 3 vertices
+    passEncoder.draw(3);
     passEncoder.end();
-    // send to gpu
-    const commandBuffer = commandEncoder.finish();
-    device.queue.submit([commandBuffer]);
+    device.queue.submit([commandEncoder.finish()]);
 }

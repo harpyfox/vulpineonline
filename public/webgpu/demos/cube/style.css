@@ -40,10 +40,28 @@ body {
     background-color: black;
 }
 
+@keyframes pulse {
+    0% { transform:rotate(-15deg) scale(1,1);background-color: red;}
+    33% { transform:rotate(-19deg) scale(0.7,0.7);background-color: limegreen;}
+    66% { transform:rotate(-13deg) scale(1,1);background-color: magenta;}
+
+    100% {transform:rotate(-17deg) scale(0.7,0.7);background-color:yellow;}
+}
 #player-ui {
     position: fixed;
-    width: 200px;
-    background-color: white;
+    /* width: 200px; */
+    width: 400px;
+    color: white;
+    animation: pulse 0.1s ease-in 0s infinite alternate;
+    animation-fill-mode: backwards;
+}
+@media (prefers-reduced-motion: reduce) {
+    #player-ui {
+        background-color: white;
+        color: black;
+        transform: rotate(-15deg);
+        animation: initial;
+    }
 }
 
 #player-controls {
