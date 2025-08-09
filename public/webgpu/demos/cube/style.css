@@ -1,0 +1,105 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    margin: 0;
+    background-color: rgb(55, 55, 55);
+}
+
+.wrapper {
+    display: grid;
+    grid-template-columns: 50% auto;
+    gap: 8px;
+    padding: 8px;
+}
+
+@media  (max-width: 768px) {
+    .wrapper {
+        grid-template-columns: auto;
+    }
+}
+
+
+#player {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 8px;
+    background-color: gray;
+}
+
+#player-canvas {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background-color: black;
+}
+
+#player-ui {
+    position: fixed;
+    width: 200px;
+    background-color: white;
+}
+
+#player-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+#player-time {
+    display: inline-block;
+}
+
+#editor {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 8px;
+    background-color: gray;
+}
+
+#editor-code {
+    width: 100%;
+    height: 350px;
+    background-color: white;
+    color: black;
+    overflow: scroll;
+    resize: vertical;
+    overscroll-behavior: none;
+    font: 12px / 1 monospace;
+}
+
+#editor-controls {
+    display: flex;
+        align-items: center;
+        gap: 8px;
+
+}
+
+#editor-log {
+    width: 100%;
+    height: 64px;
+    color:white;
+    background-color: black;
+    overflow: scroll;
+}
+
+#editor-inputs {
+    display: flex;
+    flex-direction: column;
+}
+
+#editor-inputs > table {
+    font: 12px / 1 monospace;
+}
+
+button {
+    font-size: 2em;
+}
+
