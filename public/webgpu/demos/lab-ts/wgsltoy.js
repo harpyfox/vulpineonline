@@ -6,9 +6,6 @@ let currentShader;
 let currentVertexData;
 let currentVertexBuffer;
 let currentPipeline;
-function e(id) {
-    return document.getElementById(id);
-}
 export async function init(targetCanvas) {
     const adapter = await navigator.gpu.requestAdapter();
     if (adapter) {
@@ -31,11 +28,14 @@ export async function setShader(shaderWGSL) {
     if (shaderWGSL == '') {
         return { success: false, message: "no shader help" };
     }
+    const compileStartTime = Date.now();
     currentShaderWGSL = shaderWGSL;
     currentShader = device.createShaderModule({
         label: "shader",
         code: currentShaderWGSL,
     });
+    const compileEndTime = Date.now();
+    const compileTime = compileEndTime - compileStartTime;
     const shaderCompilationInfo = await currentShader.getCompilationInfo();
     if (shaderCompilationInfo.messages.length > 0) {
         return { success: false, message: shaderCompilationInfo.messages[0]?.message };
@@ -111,7 +111,7 @@ export async function setShader(shaderWGSL) {
         return { success: false, message: "pipeline error" };
     }
     else {
-        return { success: true, message: "OK!" };
+        return { success: true, message: `compiled in ${compileTime}ms!` };
     }
 }
 export function frame() {
@@ -131,7 +131,7 @@ export function frame() {
         ],
     };
     // draw!
-    // @ts-ignore
+    // @ts-expect-error i dont CARE
     pass.colorAttachments[0].view = context.getCurrentTexture().createView();
     const passEncoder = commandEncoder.beginRenderPass(pass);
     passEncoder.setPipeline(currentPipeline);

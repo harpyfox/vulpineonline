@@ -4,16 +4,10 @@ let targetFormat: GPUTextureFormat;
 
 export let currentShaderWGSL: string;
 let currentShader: GPUShaderModule;
-
 let currentVertexData: GPUAllowSharedBufferSource;
 let currentVertexBuffer: GPUBuffer;
-
 let currentPipeline: GPURenderPipeline;
 
-function e(id: string) {
-    return document.getElementById(id);
-}
- 
 export async function init(targetCanvas: HTMLCanvasElement) {
     const adapter: GPUAdapter | null = await navigator.gpu.requestAdapter();
     if (adapter) {
@@ -43,11 +37,14 @@ export async function setShader(shaderWGSL: string) {
         return { success: false, message: "no shader help" };
     }
 
+    const compileStartTime: number = Date.now();
     currentShaderWGSL = shaderWGSL;
     currentShader = device.createShaderModule({
         label: "shader",
         code: currentShaderWGSL,
     });
+    const compileEndTime: number = Date.now();
+    const compileTime: number = compileEndTime - compileStartTime;
 
     const shaderCompilationInfo: GPUCompilationInfo = await currentShader.getCompilationInfo();
     if (shaderCompilationInfo.messages.length > 0) {
@@ -111,13 +108,13 @@ export async function setShader(shaderWGSL: string) {
         vertex: { // vertex shader entrypoint
             module: currentShader,
             entryPoint: "vert", // defaults to function with @vertex attribute
-            buffers: [ vertexBufferLayout ],
+            buffers: [vertexBufferLayout],
             constants: {},
         },
         fragment: { // fragment shader entrypoint
             module: currentShader,
             entryPoint: "frag", // defaults to function with @fragment attribute
-            targets: [ fragmentTarget ],
+            targets: [fragmentTarget],
             constants: {},
         },
         primitive: { // triangle format
@@ -128,9 +125,9 @@ export async function setShader(shaderWGSL: string) {
 
     if (!currentPipeline) {
         return { success: false, message: "pipeline error" };
-    } 
+    }
     else {
-        return { success: true, message: "OK!" };
+        return { success: true, message: `compiled in ${compileTime}ms!` };
     }
 }
 
@@ -154,7 +151,7 @@ export function frame() {
     };
 
     // draw!
-    // @ts-ignore
+    // @ts-expect-error i dont CARE
     pass.colorAttachments[0].view = context.getCurrentTexture().createView();
     const passEncoder: GPURenderPassEncoder = commandEncoder.beginRenderPass(pass);
     passEncoder.setPipeline(currentPipeline);

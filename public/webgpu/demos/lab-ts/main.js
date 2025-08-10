@@ -1,49 +1,5 @@
+import { e, fetchShader } from "../../util.js";
 import * as wgsltoy from "./wgsltoy.js";
-
-function e(id) {
-    return document.getElementById(id);
-}
-
-//#region Example
-
-
-
-
-const exampleWGSL = 
-`struct v2f {
-    @builtin(position) position: vec4f,
-    @location(0) color: vec4f
-}
-    
-@vertex
-fn vert(
-    @location(0) position: vec4f,
-    @location(1) color: vec4f
-) -> v2f
-{
-    var OUT: v2f;
-    OUT.position = position;
-    OUT.color = color;
-    return OUT;
-}
-    
-@fragment
-fn frag(
-    IN: v2f
-) -> @location(0) vec4f
-{
-    var OUT = vec4f(0.0, 0.0, 0.0, 1.0);
-    let baseColor = vec3f(IN.color.rgb);
-    OUT = vec4f(baseColor, IN.color.a);
-    return OUT;     
-}`;
-
-function example() {
-    e("editor-code").value = exampleWGSL;
-    editor_clear();
-}
-
-//#endregion
 
 //#region Editor Log
 
@@ -53,26 +9,28 @@ function editor_error(msg) {
     p.innerText = msg;
     e("editor-log").appendChild(p);
 }
-
 function editor_ok(msg) {
     e("editor-log").style.backgroundColor = "limegreen";
     const p = document.createElement('p');
     p.innerText = msg;
     e("editor-log").appendChild(p);
 }
-
 function editor_info(msg) {
     e("editor-log").style.backgroundColor = "black";
     const p = document.createElement('p');
     p.innerText = msg;
     e("editor-log").appendChild(p);
 }
-
 function editor_clear() {
     e("editor-log").style.backgroundColor = "black";
 }
 
 //#endregion
+
+async function example() {
+    e("editor-code").value = await fetchShader("red");
+    editor_clear();
+}
 
 async function init() {
     editor_info("initialising...");

@@ -28,6 +28,22 @@
                     <div tooltip="very cool very cool">Look at this sick tooltip</div>
                 </li>
                 <li>
+                    <button id="share">CLICK ME CLICK ME</button>
+                    <script>
+                        const button = document.getElementById("share");
+                        button.addEventListener("click", () => {
+                            if (!navigator.canShare) {
+                                button.innerText = "yay yay yay";
+                            } else {
+                                navigator.share({
+                                    title: "I WILL PUNCH YOU IN THE MOUTH",
+                                    text: "TELL YOUR FRIENDS",
+                                })
+                            }
+                        })
+                    </script>
+                </li>
+                <li>
                     AWESOME DYNAMIC LIST OF DEMOS:
                 </li>
             </ul>
