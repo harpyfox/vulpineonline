@@ -20,19 +20,33 @@ export default {
 
         const indexResponse = await buildIndex(env, "./");
 
+        let readdirResponse = "";
+        readdir("./", (error, files) => {
+            if (error) {
+                readdirResponse += "CALLED WITH ERROR";
+            } else {
+                readdirResponse += files.join(",");
+            }
+        });
+
         const html =
             `<!DOCTYPE html>
         <html>
             <body>
-                <h1>im a worker</h1>
+                <h1><a href="https://bsky.app/profile/harpyfox.net/post/3lrppfou7z22r">PORTFOLIO</a></h1>
+
+                <h1>harper is breaking shit</h1>
+                <h2>i just want to populate a list with files in a directory</h2>
+                <h3>why is this so hard</h3>
                 <p>env.ASSETS_MANIFEST=${env.ASSETS_MANIFEST}</p>
                 <p>navigator.userAgent=${navigator.userAgent}</p>
                 <p>env=${env}</p>
                 <p>ctx=${ctx}</p>
-                <p>buildIndex=${indexResponse.text}</p>
+                <p>buildIndex=${indexResponse.text()}</p>
+                <p>readdir=${readdirResponse}</p>
             </body>
         </html>`;
-        
+
         return new Response(html, {
             headers: {
                 "content-type": "text/html; charset=UTF-8",
