@@ -3,7 +3,7 @@ interface Env {
 }
 
 export default {
-    async fetch(request: Request, env: Env, ctx): Promise<Request> {
+    async fetch(request: Request, env: Env, ctx) {
         const url = new URL(request.url);
 
 
@@ -12,8 +12,10 @@ export default {
             + `Your ${url.protocol} ${request.method} request is very nice\n`
             + `env: ${env}\n`,
             + `ctx: ${ctx}`);
+        
+            console.log(env.ASSETS_MANIFEST);
 
-        await buildIndex(env, "./");
+        console.log(await buildIndex(env, "./"));
 
         return env.ASSETS.fetch(request);
     }
