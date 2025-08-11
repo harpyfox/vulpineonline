@@ -13,7 +13,7 @@ export type Env = {
 
 export default class<TEnv extends Env = Env> extends WorkerEntrypoint<TEnv> {
     async fetch(request: Request) {
-        console.log(`extending worker~! ${request} ${this.env.ASSETS} ${this.env.ASSETS_MANIFEST} ${this.env.__STATIC_ASSETS_CONTENT_MANIFEST}`);
+        console.log(`extending worker~! ${request} ${this.env.ASSETS} ${this.env.__STATIC_CONTENT} ${this.env.__STATIC_ASSETS_CONTENT_MANIFEST} ${this.env.__STATIC_CONTENT_MANIFEST}`);
         return this.env.ASSETS.fetch(request);
     }
 }
