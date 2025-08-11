@@ -1,3 +1,5 @@
+import { readdir } from "node:fs";
+
 interface Env {
     ASSETS: Fetcher;
 }
