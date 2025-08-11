@@ -8,11 +8,12 @@ import { WorkerEntrypoint } from "cloudflare:workers";
 export type Env = {
     ASSETS: Fetcher;
     ASSETS_MANIFEST: ArrayBuffer;
+    __STATIC_ASSETS_CONTENT_MANIFEST;
 };
 
 export default class<TEnv extends Env = Env> extends WorkerEntrypoint<TEnv> {
     async fetch(request: Request) {
-        console.log(`extending worker~! ${request} ${this.env.ASSETS} ${this.env.ASSETS_MANIFEST}`);
+        console.log(`extending worker~! ${request} ${this.env.ASSETS} ${this.env.ASSETS_MANIFEST} ${this.env.__STATIC_ASSETS_CONTENT_MANIFEST}`);
         return this.env.ASSETS.fetch(request);
     }
 }
