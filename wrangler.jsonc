@@ -6,7 +6,6 @@
         "directory": "./public/",
         "not_found_handling": "404-page",
         "html_handling": "auto-trailing-slash",
-        "binding": "ASSETS",
-        "run-worker-first": false,
-    },
+        "binding": "ASSETS"
+    }
 }

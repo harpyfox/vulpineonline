@@ -76,6 +76,24 @@ function getDemoLocation(demoKey) {
     
 }
 
+async function testFetch() {
+    const urlString = ""
+    console.info(`lets fetch ${urlString}`);
+    try {
+        const response = await fetch(urlString);
+        if (!response.ok) {
+            throw new Error(`BAD RESPONSE url ${urlString}: response ${response.status}`);
+        } else {
+            console.info(`SUCCESS url ${urlString}: response body ${response.text}`);
+        }
+
+        return await response.text();
+
+    } catch (error) {
+        console.error(`ERROR url ${urlString}: ${error.message}`);
+    }
+}
+
 function parseURL() {
     const url = new URL(location.toString());
     const demoKey = url.searchParams.get('demo') || '';
@@ -90,4 +108,6 @@ document.addEventListener("DOMContentLoaded", initNavLinks);
 document.addEventListener("DOMContentLoaded", () => {
     parseURL();
 });
+
+testFetch();
 
