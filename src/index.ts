@@ -1,22 +1,30 @@
 import { readdir } from "node:fs";
+import { WorkerEntrypoint } from "cloudflare:workers";
 
 interface Env {
     ASSETS: Fetcher;
 }
 
-export default {
-    async fetch(request: Request, env: Env, ctx) {
-        const url = new URL(request.url);
-
-        console.log(`I am ${navigator.userAgent}.\n`
-            + `Welcome to ${url}.\n` 
-            + `Your ${url.protocol} ${request.method}\n`
-            + `env: ${env}\n`,
-            + `ctx: ${ctx}`);
-
-        return env.ASSETS.fetch(request);
+export default class extends WorkerEntrypoint<Env> {
+    async fetch(request: Request) {
+        console.log(`extending worker~! ${request}`);
+        return this.env.ASSETS.fetch(request);
     }
-};
+}
+
+// export default {
+//     async fetch(request: Request, env: Env, ctx: ExecutionContext) {
+//         const url = new URL(request.url);
+
+//         console.log(`I am ${navigator.userAgent}.\n`
+//             + `Welcome to ${url}.\n` 
+//             + `Your ${url.protocol} ${request.method}\n`
+//             + `env: ${env}\n`,
+//             + `ctx: ${ctx}`);
+
+//         return env.ASSETS.fetch(request);
+//     }
+// };
 
 function buildIndex(env: Env, path: string): string {
 
