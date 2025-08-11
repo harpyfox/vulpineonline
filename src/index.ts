@@ -16,7 +16,6 @@ export default {
             + `env: ${env}\n`,
             + `ctx: ${ctx}`);
         
-            console.log();
 
         const indexResponse = await buildIndex(env, "./");
 
@@ -46,6 +45,7 @@ export default {
                 <p>readdir=${readdirResponse}</p>
             </body>
         </html>`;
+        console.log(html);
 
         return new Response(html, {
             headers: {
