@@ -1,13 +1,18 @@
 import { readdir } from "node:fs";
 import { WorkerEntrypoint } from "cloudflare:workers";
 
-interface Env {
-    ASSETS: Fetcher;
-}
+// interface Env {
+//     ASSETS: Fetcher;
+// }
 
-export default class extends WorkerEntrypoint<Env> {
+export type Env = {
+    ASSETS: Fetcher;
+    ASSETS_MANIFEST: ArrayBuffer;
+};
+
+export default class<TEnv extends Env = Env> extends WorkerEntrypoint<TEnv> {
     async fetch(request: Request) {
-        console.log(`extending worker~! ${request}`);
+        console.log(`extending worker~! ${request} ${this.env.ASSETS} ${this.env.ASSETS_MANIFEST}`);
         return this.env.ASSETS.fetch(request);
     }
 }
