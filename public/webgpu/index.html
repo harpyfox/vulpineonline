@@ -31,15 +31,11 @@
                     <button id="share">CLICK ME CLICK ME</button>
                     <script>
                         const button = document.getElementById("share");
-                        button.addEventListener("click", () => {
-                            if (!navigator.canShare) {
-                                button.innerText = "yay yay yay";
-                            } else {
-                                navigator.share({
-                                    title: "I WILL PUNCH YOU IN THE MOUTH",
-                                    text: "TELL YOUR FRIENDS",
-                                })
-                            }
+                        var origtext = button.innerText;
+                        button.addEventListener(`click`, () => {
+                            if (button.innerText == origtext) button.innerText = `yay`;
+                            else                             button.innerText += " yay";
+                            
                         })
                     </script>
                 </li>

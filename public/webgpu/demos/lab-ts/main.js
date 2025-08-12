@@ -1,4 +1,4 @@
-import { e, fetchShader } from "../../util.js";
+import { e, fetchShader } from "../../utils.js";
 import * as wgsltoy from "./wgsltoy.js";
 
 //#region Editor Log
@@ -27,9 +27,10 @@ function editor_clear() {
 
 //#endregion
 
-async function example() {
-    e("editor-code").value = await fetchShader("red");
+async function example(exampleKey) {
+    e("editor-code").value = await fetchShader(exampleKey);
     editor_clear();
+    await compile();
 }
 
 async function init() {
@@ -45,8 +46,15 @@ async function init() {
     }
 
     e("editor-code").addEventListener('input', editor_clear);
-    e("button-example").addEventListener("click", example);
     e("button-compile").addEventListener("click", compile);
+
+    let exampleButtons = document.querySelectorAll(".button-example");
+    for (const button of exampleButtons) {
+        const exampleKey = button.innerText;
+
+        button.title = `Replace content of the shader editor with '${exampleKey}.wgsl'.`;
+        button.addEventListener("click", () => example(exampleKey));
+    }
 
     // set the canvas rendering resolution to the element's size on the page
     function updateCanvasResolution() {

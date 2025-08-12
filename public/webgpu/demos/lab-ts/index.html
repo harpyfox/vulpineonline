@@ -8,12 +8,11 @@
     <body>
         <div class="wrapper">
 
-            <div class="block1">
-                <div id="player">
+            <div class="block">
+                <div id="player" class="sub-block">
                     <canvas id="player-canvas" width="960" height="540"></canvas>
-                    <div id="player-ui" style="font-size: 3em;">
+                    <div id="player-ui">
                         NOW IN TYPE SCRIPT!!!!!! !!!!!!
-                        
                     </div>
                     <div id="player-controls">
                         <button id="button-restart" title="Restart playback from t = 0.">⏮️</button>
@@ -22,11 +21,40 @@
                         <div id="player-resolution">000 x 000</div>
                     </div>
                 </div>
+
+                <div id="examples" class="sub-block">
+                    <h1>examples</h1>
+                    <div class="examples-list">
+                        <button class="button-example">triangle</button>
+                        <button class="button-example">triangle2</button>
+                    </div>
+                    
+                    
+                </div>
             </div>
 
-            <div class="block2">
-                <div id="editor">
+            <div class="block">
+                <div id="editor" class="sub-block">
                     <textarea id="editor-code" placeholder="write a shdader........" spellcheck="false"></textarea>
+
+                    <h3>better editor coming soon:</h3>
+                    <div id="monacotest" style="width: 100%; height: 250px"></div>
+                    <script type="text/javascript" src="https://unpkg.com/monaco-editor/min/vs/loader.js"></script>
+                    <script>
+                        // i dont know why it wants this fuck ass require solution
+                        // import require import() how about import my fist into your ass 
+                        require.config({
+                            paths: {
+                                vs: "https://unpkg.com/monaco-editor/min/vs",
+                            },
+                        });
+                        require(["vs/editor/editor.main"],  function() {
+                            monaco.editor.create(document.getElementById("monacotest"), {
+                                value: "hello world\nthis is monaco-editor used by visual studio code\ni dont know how to read text from it yet",
+                                language: "wgsl",
+                            });
+                        });
+                    </script>
 
                     <div id="editor-controls">
                         <button id="button-compile" title="Compile">✅</button>
@@ -34,41 +62,56 @@
                         
                         </div>
                     </div>
+                </div>
 
-                    
-
-                    <div id="editor-inputs">
-                        <h3>shader inputs</h3>
-
-
-                        <table>
-                            <tbody>
-                                <tr>
-                                    <td>vec4f</td>
-                                    <td>position</td>
-                                    <td>// info about parameter</td>
-                                </tr>
-                                <tr>
-                                    <td>vec4f</td>
-                                    <td>color</td>
-                                    <td>// info about parameter</td>
-                                </tr>
-                            </tbody>
-                        </table>
-
-                    </div>
-
+                <div id="inputs" class="sub-block">
+                    <h1>shader inputs</h1>
                 
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>vec4f</td>
+                                <td>position</td>
+                                <td>// info about parameter</td>
+                            </tr>
+                            <tr>
+                                <td>vec4f</td>
+                                <td>color</td>
+                                <td>// info about parameter</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                
+                </div>
+                
+                <div id="help" class="sub-block">
+                    <h1>shader HELP</h1>
+                    <p>shaders are writtn in <a href="https://google.github.io/tour-of-wgsl/">WGSL</a></p>
+                </div>
+                
+                <div id="snippets" class="sub-block">
+                    <h1>shader snippets (these get copied to your clipboard)</h1>
+                    <p>[TODO] hese dont actually work yet sorry</p>
+                    <p>[TODO] would be cute to drag and drop them into the editor</p>
+                    <div class="snippets-list">
+                        <h2>vertex arrays</h2>
+                        <button class="button-snippet" disabled="true">triangle</button>
+                        <button class="button-snippet" disabled="true">square</button>
+                        <button class="button-snippet" disabled="true">cube</button>
+                        <button class="button-snippet" disabled="true">sphere</button>
+                    </div>
+                    <div class="snippets-list">
+                        <h2>fragment shaders</h2>
+                        <button class="button-snippet" disabled="true">red</button>
+                        <button class="button-snippet" disabled="true">RGB</button>
+                        <button class="button-snippet" disabled="true">random</button>
+                    </div>
                 </div>
                 
             </div>
 
         </div>
         
-        <div>
-            <button id="button-example"
-                title="Populate shader editor with an example. Replaces current shader, so be careful!">example</button>
         
-        </div>
     </body>
 </html>

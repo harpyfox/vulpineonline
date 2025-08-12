@@ -1,7 +1,9 @@
 {
     "compilerOptions": {
-        "types": ["@webgpu/types"],
-        
+        "types": [ 
+            "@webgpu/types",
+
+        ],
         
         // compatability n stuff
         "esModuleInterop": true,

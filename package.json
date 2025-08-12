@@ -1,9 +1,12 @@
 {
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20250810.0",
+    "@types/node": "^24.2.1",
     "@webgpu/types": "^0.1.64",
     "globals": "^16.3.0",
-    "typescript": "^5.9.2"
+    "monaco-editor": "^0.52.2",
+    "typescript": "^5.9.2",
+    "wrangler": "^4.28.1"
   },
   "dependencies": {
     "jiti": "^2.5.1"
