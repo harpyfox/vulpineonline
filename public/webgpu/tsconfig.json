@@ -1,9 +1,11 @@
 {
+    "extends": "../../tsconfig.json",
     "compilerOptions": {
         "types": [ 
             "@webgpu/types",
-
         ],
+
+        
         
         // compatability n stuff
         "esModuleInterop": true,

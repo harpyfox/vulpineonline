@@ -116,6 +116,10 @@ export async function setShader(shaderWGSL: string) {
             targets: [fragmentTarget],
             constants: {},
         },
+        depthStencil: {
+            format: "depth24plus-stencil8",
+            depthCompare: "always",
+        },
         primitive: { // triangle format
             topology: "triangle-list", // default
             cullMode: "back",
@@ -139,7 +143,7 @@ export function frame() {
     const colorTexture: GPUTexture = context.getCurrentTexture();
 
     const color: GPURenderPassColorAttachment = {
-        view: colorTexture,
+        view: colorTexture.createView(),
         clearValue: [0, 0, 0, 0],
         loadOp: "clear",
         storeOp: "store",
@@ -153,7 +157,7 @@ export function frame() {
     });
 
     const depthStencil: GPURenderPassDepthStencilAttachment = {
-        view: depthStencilTexture,
+        view: depthStencilTexture.createView(),
         depthClearValue: 0,
         depthLoadOp: "load",
         depthStoreOp: "store",

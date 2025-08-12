@@ -19,6 +19,7 @@ export async function init(targetCanvas) {
     context?.configure({
         device: device,
         format: targetFormat,
+        usage: GPUTextureUsage.RENDER_ATTACHMENT | GPUTextureUsage.COPY_SRC,
         alphaMode: "premultiplied",
     });
     return { success: true, message: "initialised" };
@@ -31,7 +32,7 @@ export async function setShader(shaderWGSL) {
     const compileStartTime = Date.now();
     currentShaderWGSL = shaderWGSL;
     currentShader = device.createShaderModule({
-        label: "shader",
+        label: `wgsltoy-shader`,
         code: currentShaderWGSL,
     });
     const compileEndTime = Date.now();
@@ -47,7 +48,7 @@ export async function setShader(shaderWGSL) {
         0.5, -0.6, 0, 1, 0, 0, 1, 1,
     ]);
     currentVertexBuffer = device.createBuffer({
-        label: "vertexBuffer",
+        label: `wgsltoy-vertexbuffer`,
         size: currentVertexData.byteLength,
         usage: GPUBufferUsage.VERTEX | GPUBufferUsage.COPY_DST
     });
@@ -88,19 +89,21 @@ export async function setShader(shaderWGSL) {
     };
     // hit it
     currentPipeline = device.createRenderPipeline({
-        label: "pipeline",
+        label: `wgsltoy-pipeline`,
         layout: "auto",
         vertex: {
             module: currentShader,
-            entryPoint: "vert", // defaults to function with @vertex attribute
             buffers: [vertexBufferLayout],
             constants: {},
         },
         fragment: {
             module: currentShader,
-            entryPoint: "frag", // defaults to function with @fragment attribute
             targets: [fragmentTarget],
             constants: {},
+        },
+        depthStencil: {
+            format: "depth24plus-stencil8",
+            depthCompare: "always",
         },
         primitive: {
             topology: "triangle-list", // default
@@ -118,25 +121,42 @@ export function frame() {
     if (!context) {
         return { success: false, message: "fuck" };
     }
-    const commandEncoder = device.createCommandEncoder();
+    // RENDER TARGET: COLOR
+    const colorTexture = context.getCurrentTexture();
+    const color = {
+        view: colorTexture.createView(),
+        clearValue: [0, 0, 0, 0],
+        loadOp: "clear",
+        storeOp: "store",
+    };
+    // RENDER TARGET: DEPTH
+    const depthStencilTexture = device.createTexture({
+        size: [context.canvas.width, context.canvas.height, 1],
+        format: "depth24plus-stencil8",
+        usage: GPUTextureUsage.RENDER_ATTACHMENT | GPUTextureUsage.COPY_SRC,
+    });
+    const depthStencil = {
+        view: depthStencilTexture.createView(),
+        depthClearValue: 0,
+        depthLoadOp: "load",
+        depthStoreOp: "store",
+        stencilClearValue: 1,
+        stencilLoadOp: "load",
+        stencilStoreOp: "store",
+    };
     // render pass
-    const pass = {
-        colorAttachments: [
-            {
-                view: context.getCurrentTexture().createView(),
-                clearValue: [0, 0, 0, 0],
-                loadOp: "clear",
-                storeOp: "store",
-            },
-        ],
+    const passDesc = {
+        label: `wgsltoy-pass`,
+        colorAttachments: [color,],
+        depthStencilAttachment: depthStencil,
     };
     // draw!
-    // @ts-expect-error i dont CARE
-    pass.colorAttachments[0].view = context.getCurrentTexture().createView();
-    const passEncoder = commandEncoder.beginRenderPass(pass);
-    passEncoder.setPipeline(currentPipeline);
-    passEncoder.setVertexBuffer(0, currentVertexBuffer);
-    passEncoder.draw(3);
-    passEncoder.end();
-    device.queue.submit([commandEncoder.finish()]);
+    const encoder = device.createCommandEncoder({ label: `wgsltoy-encoder` });
+    const pass = encoder.beginRenderPass(passDesc);
+    pass.setPipeline(currentPipeline);
+    pass.setVertexBuffer(0, currentVertexBuffer);
+    pass.draw(3);
+    pass.end();
+    device.queue.submit([encoder.finish()]);
 }
+//# sourceMappingURL=wgsltoy.js.map
