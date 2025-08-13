@@ -1,7 +1,6 @@
-// import * as monaco from 'monaco-editor';
+import * as monaco from 'monaco-editor';
 // import * as monaco from '../../../../node_modules/monaco-editor/esm/vs/editor/editor.api';
 // import * as monaco from '../../../../node_modules/monaco-editor/esm/vs/editor/';
-const monaco = require("https://unpkg.com/monaco-editor/min/vs/loader.js");
 //#region Variables
 
 let currentEditor;

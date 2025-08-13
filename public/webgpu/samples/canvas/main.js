@@ -1,4 +1,4 @@
-import { add_message } from "../../util.js";
+import { add_message } from "../../utils.js";
 
 const canvas = document.querySelector('canvas')
 const ctx = canvas.getContext("2d");

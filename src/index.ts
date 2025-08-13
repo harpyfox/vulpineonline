@@ -1,4 +1,5 @@
 import { WorkerEntrypoint } from "cloudflare:workers";
+import * as monaco from "monaco-editor/esm/vs/editor/editor.main.js";
 
 export type Env = {
     ASSETS: Fetcher;

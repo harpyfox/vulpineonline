@@ -1,4 +1,4 @@
-import { add_message } from "../../util.js";
+import { add_message } from "../../utils.js";
 
 const shaderWGSL = `
 struct v2f {
