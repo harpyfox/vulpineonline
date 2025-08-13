@@ -3,6 +3,7 @@
     "compilerOptions": {
         "types": [ 
             "@webgpu/types",
+            "@types/node",
         ],
 
         

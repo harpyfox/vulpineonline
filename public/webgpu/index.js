@@ -1,19 +1,29 @@
+//#region Variables
+
+const dir = `./samples`;
+const searchParam = `sample`;
 const demos = [
     "canvas",
     "triangle",
-    "triangle - Copy (1)", // yeah not that dynamic
+    "triangle - Copy (1)",
     "lab",
     "lab-ts",
 ];
 
 let baseTitle = document.head.querySelector("title").textContent;
 
-// when go forward or back load the demo it thje hbgh
-window.addEventListener('popstate', (e) => {
-    console.log("POP STATE!!!!!!!!!!")
-    e.preventDefault();
-    parseURL();
-});
+//#endregion
+
+//#region Functions
+
+function getDemoLocation(demoKey) {
+    if (demoKey) {
+        return `${dir}/${demoKey}/index.html`;
+    } else {
+        return '';
+    }
+
+}
 
 function initNavLinks() {
     const navLinks = document.querySelector("nav > ul");
@@ -22,7 +32,7 @@ function initNavLinks() {
         function (demoKey) {
             const li = document.createElement("li");
             const a = document.createElement("a");
-            a.href = `./demos/${demoKey}/index.html`;
+            a.href = getDemoLocation(demoKey);
             a.textContent = demoKey;
             li.appendChild(a);
             navLinks.appendChild(li);
@@ -37,7 +47,7 @@ function addNavClicker(a) {
         const demoKey = a.textContent;
 
         const url = new URL(location.toString());
-        url.searchParams.set('demo', demoKey);
+        url.searchParams.set(searchParam, demoKey);
         setURL(url);
 
         setDemo(demoKey);
@@ -50,10 +60,6 @@ function setURL(url) {
 
 function setDemo(demoKey) {
     console.log(`SETTING DEMO ${demoKey}`);
-    // if (url.searchParams.get('demo') === demoKey && !force) {
-    //     console.log(`ALREADY AT ${demoKey} YOU ARE FUCK`);
-    //     return;
-    // }
     const demoContainer = document.querySelector("main");
     demoContainer.innerHTML = ``;
     demoContainer.innerHTML = `<iframe src="${getDemoLocation(demoKey)}"></iframe>`;
@@ -67,39 +73,23 @@ function setDemo(demoKey) {
     }
 }
 
-function getDemoLocation(demoKey) {
-    if (demoKey) {
-        return `./demos/${demoKey}/index.html`;
-    } else {
-        return '';
-    }
-    
-}
-
-async function testFetch() {
-    const urlString = ""
-    console.info(`lets fetch ${urlString}`);
-    try {
-        const response = await fetch(urlString);
-        if (!response.ok) {
-            throw new Error(`BAD RESPONSE url ${urlString}: response ${response.status}`);
-        } else {
-            console.info(`SUCCESS url ${urlString}: response body ${response.text}`);
-        }
-
-        return await response.text();
-
-    } catch (error) {
-        console.error(`ERROR url ${urlString}: ${error.message}`);
-    }
-}
-
 function parseURL() {
     const url = new URL(location.toString());
     const demoKey = url.searchParams.get('demo') || '';
     console.log(`parseURL ${demoKey}`);
     setDemo(demoKey);
 }
+
+//#endregion
+
+//#region Sideeffects
+
+// when go forward or back load the demo it thje hbgh
+window.addEventListener('popstate', (e) => {
+    console.log("POP STATE!!!!!!!!!!")
+    e.preventDefault();
+    parseURL();
+});
 
 // initialise nav links
 document.addEventListener("DOMContentLoaded", initNavLinks);
@@ -109,5 +99,4 @@ document.addEventListener("DOMContentLoaded", () => {
     parseURL();
 });
 
-testFetch();
-
+//#endregion
