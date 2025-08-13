@@ -14,6 +14,15 @@
     ],
     "observability": {
         "enabled": true
-    }
+    },
+    "rules": [
+        { 
+            "type": "Text", 
+            "globs": [
+                "**/*.ttf"
+            ], 
+            "fallthrough": true
+        }
+    ]
 
 }
