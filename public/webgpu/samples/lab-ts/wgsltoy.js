@@ -10,11 +10,15 @@ let currentPipeline;
 //#endregion
 //#region Functions
 async function create(domCanvasElement) {
+    console.group("wgsltoy.create()");
+    console.time("wgsltoy.create()");
     const adapter = await navigator.gpu.requestAdapter();
     if (adapter) {
         device = await adapter?.requestDevice();
     }
     if (!device) {
+        console.timeEnd("wgsltoy.create()");
+        console.groupEnd();
         return { success: false, message: "webgpu is not supported on this browser." };
     }
     context = domCanvasElement.getContext("webgpu");
@@ -25,6 +29,8 @@ async function create(domCanvasElement) {
         usage: GPUTextureUsage.RENDER_ATTACHMENT | GPUTextureUsage.COPY_SRC,
         alphaMode: "premultiplied",
     });
+    console.timeEnd("wgsltoy.create()");
+    console.groupEnd();
     return { success: true, message: "initialised" };
 }
 async function setShader(shaderWGSL) {

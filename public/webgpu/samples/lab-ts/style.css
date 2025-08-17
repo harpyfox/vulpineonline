@@ -36,6 +36,10 @@ body {
     background-color: var(--background-sub);
 }
 
+summary > h1 {
+    display: inline;
+}
+
 
 #player {
     display: flex;

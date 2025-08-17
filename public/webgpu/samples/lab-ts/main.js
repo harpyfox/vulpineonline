@@ -1,5 +1,5 @@
 import { e, fetchShader } from "../../utils.js";
-import * as wgsltoy from "./wgsltoy.js";
+import * as renderer from "./wgsltoy.js";
 import * as editor from "./editor.js";
 
 async function example(exampleKey) {
@@ -10,35 +10,32 @@ async function example(exampleKey) {
 }
 
 async function init() {
+    console.group("init()");
+    console.time("init()");
 
-    // init editor
-    editor.create(e("monacotest"), e("editor-log"));
-    editor.log.info("initialised editor");
+    
+    console.info("init editor...");
+    await editor.create(e("editor-code"), e("editor-log"));
+    editor.log.info("editor OK!");
 
 
-    // init renderer
-    const result = await wgsltoy.create(e("player-canvas"));
-    if (result.success) {
-        editor.log.ok(result.message);
-    } 
-    else {
-        editor.log.error(result.message);
-        return;
-    }
+    console.info("init renderer...");
+    await renderer.create(e("player-canvas"));
 
     function updateCanvasResolution() {
-        const width = wgsltoy.context.canvas.offsetWidth;
-        const height = wgsltoy.context.canvas.offsetHeight;
-        wgsltoy.context.canvas.width = width;
-        wgsltoy.context.canvas.height = height;
+        const width = renderer.context.canvas.offsetWidth;
+        const height = renderer.context.canvas.offsetHeight;
+        renderer.context.canvas.width = width;
+        renderer.context.canvas.height = height;
         e("player-resolution").innerText = `${width} x ${height}`;
     }
     updateCanvasResolution();
-    new ResizeObserver(updateCanvasResolution).observe(wgsltoy.context.canvas);
+    new ResizeObserver(updateCanvasResolution).observe(renderer.context.canvas);
+    console.info("renderer OK!");
 
 
-    // init events
-    e("editor-code").addEventListener('input', editor_clear);
+    console.info("init sideeffects...")
+    e("editor-code").addEventListener('input', editor.log.clear);
     e("button-compile").addEventListener("click", compile);
 
     let exampleButtons = document.querySelectorAll(".button-example");
@@ -47,18 +44,24 @@ async function init() {
 
         button.title = `Replace content of the shader editor with '${exampleKey}.wgsl'.`;
         button.addEventListener("click", () => example(exampleKey));
-    }   
+    }
+    console.info("sideeffects OK!");
+
+
+    console.timeEnd("init()");
+    console.groupEnd();
+    console.info("yippee!!!!!!!!!!!");
 }
 
 async function compile() {
-    if (!wgsltoy.context) return;
+    if (!renderer.context) return;
 
     e("button-compile").toggleAttribute("disabled", true);
     e("editor-code").toggleAttribute("readonly", true);
     editor.log.clear();
 
     const editorContent = editor.getContent();
-    const result = await wgsltoy.setShader(editorContent);
+    const result = await renderer.setShader(editorContent);
     if (result.success) {
         editor.log.ok(result.message);
         render();
@@ -72,7 +75,7 @@ async function compile() {
 }
 
 function render() {
-    requestAnimationFrame(wgsltoy.frame);
+    requestAnimationFrame(renderer.frame);
 }
 
 document.addEventListener("DOMContentLoaded", init);

@@ -8,6 +8,8 @@ const demos = [
     "triangle - Copy (1)",
     "lab",
     "lab-ts",
+    "worker",
+    "webfun",
 ];
 
 let baseTitle = document.head.querySelector("title").textContent;

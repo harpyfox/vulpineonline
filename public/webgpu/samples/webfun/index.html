@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <script src="main.js" type="module"></script>
+    </head>
+    <body>
+        <style>
+            html {
+                background-color: white;
+            }
+        </style>
+
+        <div>
+            <style>
+                [tooltip]::after {
+                    content: attr(tooltip);
+                    display: block;
+                    position: absolute;
+                    background-color: white;
+                    padding: 0.5em;
+                    opacity: 0;
+                    pointer-events: none;
+                }
+            
+                [tooltip]:hover::after {
+                    opacity: 1;
+                }
+            </style>
+            <div tooltip="very cool very cool">Look at this sick tooltip</div>
+        </div>
+        
+        <div>
+            <apple>
+                this is an &lt;apple&gt; element
+            </apple>
+        </div>
+        
+
+        <div>
+            <button id="share">CLICK ME CLICK ME</button>
+            <script>
+                const button = document.getElementById("share");
+                var origtext = button.innerText;
+                button.addEventListener(`click`, () => {
+                    if (button.innerText == origtext) button.innerText = `yay`;
+                    else button.innerText += " yay";
+                })
+            </script>
+        </div>
+        
+
+        <div>
+            <h3>Semantic</h3>
+            <ul>
+                <li><kbd>&lt;kbd&gt;</kbd></li>
+                <li><code>&lt;code&gt;</code></li>
+                <li><samp>&lt;samp&gt;</samp></li>
+                <li><var>&lt;var&gt;</var></li>
+                <li><q>&lt;q&gt;</q></li>
+                <li><blockquote><p>&lt;blockquote&gt;</p></blockquote></li>
+                <li><aside><p>&lt;aside&gt;</p></aside></li>
+                <li><article>
+                    <h3>&lt;article&gt;</h3>
+                    <p>&lt;time&gt; <time datetime="20:00">20:00</time></p>
+                    <p><address>&lt;address&gt;</address></p>
+                </article></li>
+                <li><dfn id="definition-dfn">&lt;dfn&gt;</dfn> - linkable via &lt;a&gt;</li>
+                <li><abbr title="abbreviation">&lt;abbr&gt;</abbr></li>
+                <li>&lt;hr&gt;<hr></li>
+                <li><ins>&lt;ins&gt;</ins>, <del>&lt;del&gt;</del></li>
+                <li><mark>&lt;mark&gt;</mark></li>
+            </ul>
+            <h3>Style</h3>
+            <ul>
+                <li><small>&lt;small&gt;</small></li>
+                <li><strong>&lt;strong&gt;</strong></li>
+                <li><em>&lt;em&gt;</em></li>
+                <li><i>&lt;i&gt;</i></li>
+                <li><u>&lt;u&gt;</u></li>
+                <li><b>&lt;b&gt;</b></li>
+                <li><s>&lt;s&gt;</s></li>
+                <li><span>&lt;span&gt;</span></li>
+                <li><pre>&lt;pre&gt;</pre></li>
+
+            </ul>
+            
+            <hgroup>
+                <h1>Heading in a hgroup</h1>
+                <p>Paragraph in a hgroup</p>
+            </hgroup>
+            <p>Paragraph outside the hgroup</p>
+
+            <p>Press <kbd>Alt</kbd>+<kbd>F4</kbd> for a free taste test</p>
+
+            <select id="select">
+                <optgroup label="Type A">
+                    <option>A1</option>
+                    <option>A2</option>
+                    <option>A3</option>
+                </optgroup>
+                <optgroup label="Type B">
+                    <option>B1</option>
+                    <option>B2</option>
+                    <option>B3</option>
+                </optgroup>
+            </select>
+
+            <dl>
+                <dt>Key</dt>
+                <dd>Value</dd>
+                <dt>Key</dt>
+                <dd>Value</dd>
+            </dl>
+        </div>
+        
+    </body>
+</html>

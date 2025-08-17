@@ -14,11 +14,15 @@ let currentPipeline: GPURenderPipeline;
 //#region Functions
 
 async function create(domCanvasElement: HTMLCanvasElement) {
+    console.group("wgsltoy.create()");
+    console.time("wgsltoy.create()")
     const adapter = await navigator.gpu.requestAdapter();
     if (adapter) {
         device = await adapter?.requestDevice();
     }
     if (!device) {
+        console.timeEnd("wgsltoy.create()");
+        console.groupEnd();
         return { success: false, message: "webgpu is not supported on this browser." };
     }
 
@@ -32,7 +36,9 @@ async function create(domCanvasElement: HTMLCanvasElement) {
             alphaMode: "premultiplied",
         }
     );
-
+    
+    console.timeEnd("wgsltoy.create()");
+    console.groupEnd();
     return { success: true, message: "initialised" };
 }
 

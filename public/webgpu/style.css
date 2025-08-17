@@ -65,16 +65,3 @@ h1 {
     font-size: 2em;
 }
 
-[tooltip]::after {
-    content: attr(tooltip);
-    display: block;
-    position: absolute;
-    background-color: white;
-    padding: 0.5em;
-    opacity: 0;
-    pointer-events: none;
-}
-
-[tooltip]:hover::after {
-    opacity: 1;
-}

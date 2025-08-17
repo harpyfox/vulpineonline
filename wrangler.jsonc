@@ -1,7 +1,7 @@
 {
     "name": "bubble",
     "compatibility_date": "2025-08-01",
-    "main": "src/index.py",
+    "main": "src/index.ts",
     "assets": {
         "directory": "./public/",
         //"not_found_handling": "404-page",

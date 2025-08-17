@@ -3,7 +3,8 @@ struct v2f {
     @location(0) color: vec4f
 }
 
-@binding(0) @group(0) var<uniform> frame: u32;
+// UNIFORMS SOON
+// @binding(0) @group(0) var<uniform> frame: u32;
 
 @vertex
 fn vert(
@@ -31,6 +32,6 @@ fn vert(
 @fragment
 fn frag(
     IN: v2f
-) -> @location(0) vec4f { // corresponds to fragment target array
+) -> @location(0) vec4f {
     return IN.color;
 }

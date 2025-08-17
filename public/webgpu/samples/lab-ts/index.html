@@ -35,25 +35,8 @@
 
             <div class="block">
                 <div id="editor" class="sub-block">
-                    <textarea id="editor-code" placeholder="write a shdader........" spellcheck="false"></textarea>
-
-                    <h3>better editor coming soon:</h3>
-                    <div id="monacotest" style="width: 100%; height: 250px"></div>
-                    <!-- <script type="text/javascript" src="https://unpkg.com/monaco-editor/min/vs/loader.js"></script>
-                    <script>
-                        require.config({
-                            paths: {
-                                vs: "https://unpkg.com/monaco-editor/min/vs",
-                            },
-                        });
-                        require(["vs/editor/editor.main"],  function() {
-                            monaco.editor.create(document.getElementById("monacotest"), {
-                                value: "hello world\nthis is monaco-editor used by visual studio code\ni dont know how to read text from it yet",
-                                language: "wgsl",
-                            });
-                        });
-                    </script> -->
-
+                    <div id="editor-code"></div>
+                    
                     <div id="editor-controls">
                         <button id="button-compile" title="Compile">✅</button>
                         <div id="editor-log">
@@ -63,28 +46,31 @@
                 </div>
 
                 <div id="inputs" class="sub-block">
-                    <h1>shader inputs</h1>
-                
-                    <table>
-                        <tbody>
-                            <tr>
-                                <td>vec4f</td>
-                                <td>position</td>
-                                <td>// info about parameter</td>
-                            </tr>
-                            <tr>
-                                <td>vec4f</td>
-                                <td>color</td>
-                                <td>// info about parameter</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                
+                    <details>
+                        <summary><h1>shader inputs</h1></summary>
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td>vec4f</td>
+                                    <td>position</td>
+                                    <td>// info about parameter</td>
+                                </tr>
+                                <tr>
+                                    <td>vec4f</td>
+                                    <td>color</td>
+                                    <td>// info about parameter</td>
+                                </tr>
+                            </tbody>
+                            </table>
+                    </details>
+
                 </div>
                 
                 <div id="help" class="sub-block">
-                    <h1>shader HELP</h1>
-                    <p>shaders are writtn in <a href="https://google.github.io/tour-of-wgsl/">WGSL</a></p>
+                    <details>
+                        <summary><h1>shader HELP</h1></summary>
+                        <p>shaders are writtn in <a href="https://google.github.io/tour-of-wgsl/">WGSL</a></p>
+                    </details>
                 </div>
                 
                 <div id="snippets" class="sub-block">
@@ -106,15 +92,18 @@
                     </div>
                 </div>
 
-                <div id="changelog">
-                    <p>0.2.5 de[pth And stencil buffer i think</p>
-                    <p>0.2.4 monaco editor testing</p>
-
-                    <p>0.2.3 put utils in module</p>
-                    <p>0.2.2 resfactoring</p>
-                    <p>0.2.1 fetch shaders from local files</p>
-                    <p>0.2.0 convert to typescipt</p>
-                    <p>0.1.0 initeal rlease</p>
+                <div id="changelog" class="sub-block">
+                    <details>
+                        <summary><h1>changelog</h1></summary>
+                        <p>0.2.5 de[pth And stencil buffer i think</p>
+                        <p>0.2.4 monaco editor testing</p>
+                        <p>0.2.3 put utils in module</p>
+                        <p>0.2.2 resfactoring</p>
+                        <p>0.2.1 fetch shaders from local files</p>
+                        <p>0.2.0 convert to typescipt</p>
+                        <p>0.1.0 initeal rlease</p>
+                    </details>
+                    
                 </div>
                 
             </div>
