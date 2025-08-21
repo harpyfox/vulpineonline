@@ -49,48 +49,55 @@ interface BskyThreadViewPost {
 
 //#region Functions
 
-const blueskyClassName = "bluesky";
 
-async function scan(node?: ParentNode) {
+async function parse(className: string) {
 
     const profileUri = `did:plc:ee5pxx436s7areoj4epw3voj`; // bsky.app/profile/harpyfox.net
+    const maxDepth = 4;
 
-    if (node === void 0) { node = document; }
-    const embeds = node.querySelectorAll(`.${blueskyClassName}`);
-    for (const embed of embeds) {
-        const postUri = embed.innerHTML;
+    const elements = document.getElementsByClassName(className);
+    for (const element of elements) {
+        const postUri = element.innerHTML;
         if (!postUri) {
             continue;
         }
 
-        const postThread = await getPostThread(profileUri, postUri);
+        const postThread = await getPostThread(profileUri, postUri, maxDepth);
         if (!postThread) {
             continue;
         }
 
-        embed.innerHTML = ``;
-        const headElement = await createElement(embed, postThread.thread.post);
-
-
-        for (const reply of postThread.thread.replies) {
-            const element = await createElement(embed, reply.post)
-        }
-
-        await m3u8Loader.scan();
-
+        element.innerHTML = ``;
+        createReplyElements(element, postThread.thread, 0, maxDepth);
 
         
+
     }
 
-    // [TODO] probably put this in a worker or something..........
-    //await m3u8Loader.scan();
+
 }
 
-async function getPostThread(profileUri: string, postUri: string)  {
+function createReplyElements(parent: Element, postThread: BskyThreadViewPost, currentDepth: number, maxDepth: number) {
+    if (currentDepth > maxDepth) return;
+
+    // always render top level posts, otherwise only render posts with embeds
+    if (currentDepth == 0 || postThread.post.record.embed != null) {
+        const element = createElement(parent, postThread.post);
+    }
+
+    if (postThread.replies) {
+        for (const reply of postThread.replies) {
+            createReplyElements(parent, reply, currentDepth + 1, maxDepth);
+        }
+    }
+}
+
+async function getPostThread(profileUri: string, postUri: string, depth: number)  {
 
     const atUri = `at://${profileUri}/app.bsky.feed.post/${postUri}`;
     const searchParams = new URLSearchParams();
     searchParams.set(`uri`, atUri);
+    searchParams.set(`depth`, `${depth}`);
 
     const response = await api(`/xrpc/app.bsky.feed.getPostThread`, searchParams);
     if (!response) return null;
@@ -121,10 +128,11 @@ async function api(endpoint: string, searchParams: URLSearchParams) {
 }
 
 
-async function createElement(parent: Element, post: BskyPostView): Promise<HTMLDivElement> {
+function createElement(parent: Element, post: BskyPostView) {
     const div = parent.appendChild(document.createElement('div'));
 
-    div.className = "bluesky-post";
+    div.classList.add(`bluesky`, `portfolio-entry`);
+    
     let html = `<dl>`;
     html += `<dt>uri=</dt><dd>${post.uri}</dd>`;
     html += `<dt>record.$type=</dt><dd>${post.record.$type}</dd>`;
@@ -132,14 +140,16 @@ async function createElement(parent: Element, post: BskyPostView): Promise<HTMLD
     html += `<dt>record.text=</dt><dd>${post.record.text}</dd>`;
     html += `<dt>record.embed=</dt><dd>${post.record.embed ? post.record.embed.$type : "(none)"}</dd>`;
     html += `</dl>`;
-
-    div.innerHTML = html;
+    const details = document.createElement('details');
+    div.appendChild(details);
+    details.innerHTML = html;
 
     if (post.record.embed) {
         const embed = post.record.embed;        
 
         switch (embed.$type) {
             case "app.bsky.embed.video":
+                div.classList.add(`portfolio-video`);
                 const blob = embed.video;
                 const thumbnailSrc = `https://video.cdn.bsky.app/hls/${post.author.did}/${blob.ref.$link}/thumbnail.jpg`;
 
@@ -160,9 +170,12 @@ async function createElement(parent: Element, post: BskyPostView): Promise<HTMLD
                 video.src = `https://video.bsky.app/watch/${post.author.did}/${blob.ref.$link}/playlist.m3u8`;
 
                 div.appendChild(video);
+                m3u8Loader.loadAndAttach(video);
 
                 break;
             case "app.bsky.embed.images":
+                div.classList.add(`portfolio-image`);
+
                 for (const image of embed.images) {
                     const thumbnailSrc = `https://cdn.bsky.app/img/feed_thumbnail/plain/${post.author.did}/${image.image.ref.$link}@jpeg`;
                     const fullSrc = `https://cdn.bsky.app/img/feed_fullsize/plain/${post.author.did}/${image.image.ref.$link}@jpeg`;
@@ -182,20 +195,13 @@ async function createElement(parent: Element, post: BskyPostView): Promise<HTMLD
                 break;
         }
 
-    } 
+    } else {
+        div.classList.add(`portfolio-text`);
+    }
 
     return div;
 }
 
 //#endregion
 
-//#region Side effects
-
-if (['interactive', 'complete'].indexOf(document.readyState) !== -1) {
-    scan();
-}
-else {
-    document.addEventListener('DOMContentLoaded', () => scan());
-}
-
-//#endregion
+export { parse };

@@ -55,11 +55,15 @@
     <!-- preconnects -->
     <link rel="preconnect" href="https://public.api.bsky.app">
 
+    <!-- scripts -->
+    <script src="main.js" type="module"></script>
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@1" type="module"></script>
+
 </head>
 
 <body>
     <noscript>
-        javascript is disabled. honestly i don't blame you. some parts of the site might not work.
+        javascript is disabled. honestly i don't blame you. the site won't work though.
     </noscript>
     <header>
         <p>[TODO]</p>
@@ -68,15 +72,17 @@
     </header>
 
     <div>
-        <div class="bluesky">3lrppfoulq22r</div>
-        <div class="bluesky">3lrpsjzybek2r</div>
-        <div class="bluesky">3lrpx7vaeac25</div>
-        <div class="bluesky">3lrputp3p422r</div>
+        <div class="portfolio-category source-bluesky">3lrppfoulq22r</div>
+        <div class="portfolio-category source-bluesky">3lrpsjzybek2r</div>
+        <div class="portfolio-category source-bluesky">3lrpx7vaeac25</div>
+        <div class="portfolio-category source-bluesky">3lrputp3p422r</div>
+
+        <div class="portfolio-category source-local">this entry is from a local source!</div>
 
     </div>
     
 
-    <script async="true" type="module" src="bluesky-embed.js"></script>
+    
 </body>
 
 </html>

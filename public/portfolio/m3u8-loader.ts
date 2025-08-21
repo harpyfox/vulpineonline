@@ -1,6 +1,18 @@
 // https://github.com/video-dev/hls.js/blob/master/src/loader/m3u8-parser.ts
 // https://developer.mozilla.org/en-US/docs/Web/Media/Guides/Audio_and_video_delivery/Setting_up_adaptive_streaming_media_sources
 
+function loadAndAttach(video: HTMLVideoElement) {
+    if (video.canPlayType('application/vnd.apple.mpegurl')) {
+        console.info(`m3u8-loader.js: your browser supports m3u8 natively! i won't do anything then.`);
+        return;
+    }
+
+    //@ts-ignore
+    const hls = new Hls();
+    hls.loadSource(video.src);
+    hls.attachMedia(video);
+}
+
 async function scan() {
     console.log(`scan()`);
     
@@ -19,6 +31,8 @@ async function scan() {
         if (src.endsWith(".m3u8")) {
             console.log(`scan() found .m3u8 video.src ${src}`);
 
+            // [TODO] i wish this worked oh well
+
             video.removeAttribute('src');
 
             const sourcem3u8 = document.createElement(`source`);
@@ -36,6 +50,7 @@ async function scan() {
             sourcemp4.type = "video/mp4";
             console.log(`scan() created source type=${sourcemp4.type} src=${sourcemp4.src}`);
             video.appendChild(sourcemp4);
+            video.load();
         }
     }
 }
@@ -124,7 +139,7 @@ function parseLevelPlaylist(playlist: string, baseUrl: string) {
     return parsed;
 }
 
-async function downloadParts(blobPartUrls: { url: URL }[]): Promise<ArrayBuffer[]> {
+async function downloadParts(blobPartUrls: { url: URL }[]) {
     const blobParts = [];
     for (let i = 0; i < blobPartUrls.length; i++) {
         const url = blobPartUrls[i];
@@ -139,5 +154,5 @@ async function downloadParts(blobPartUrls: { url: URL }[]): Promise<ArrayBuffer[
 
 
 
-export { scan };
+export { loadAndAttach };
 

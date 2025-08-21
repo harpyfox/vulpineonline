@@ -1,5 +1,15 @@
 // https://github.com/video-dev/hls.js/blob/master/src/loader/m3u8-parser.ts
 // https://developer.mozilla.org/en-US/docs/Web/Media/Guides/Audio_and_video_delivery/Setting_up_adaptive_streaming_media_sources
+function loadAndAttach(video) {
+    if (video.canPlayType('application/vnd.apple.mpegurl')) {
+        console.info(`m3u8-loader.js: your browser supports m3u8 natively! i won't do anything then.`);
+        return;
+    }
+    //@ts-ignore
+    const hls = new Hls();
+    hls.loadSource(video.src);
+    hls.attachMedia(video);
+}
 async function scan() {
     console.log(`scan()`);
     let videoElements = document.getElementsByTagName('video');
@@ -12,6 +22,7 @@ async function scan() {
         const src = video.src;
         if (src.endsWith(".m3u8")) {
             console.log(`scan() found .m3u8 video.src ${src}`);
+            // [TODO] i wish this worked oh well
             video.removeAttribute('src');
             const sourcem3u8 = document.createElement(`source`);
             sourcem3u8.src = src;
@@ -27,6 +38,7 @@ async function scan() {
             sourcemp4.type = "video/mp4";
             console.log(`scan() created source type=${sourcemp4.type} src=${sourcemp4.src}`);
             video.appendChild(sourcemp4);
+            video.load();
         }
     }
 }
@@ -113,4 +125,4 @@ async function downloadParts(blobPartUrls) {
     }
     return blobParts;
 }
-export { scan };
+export { loadAndAttach };
