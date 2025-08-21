@@ -5,7 +5,6 @@
 // https://microsoft.github.io/monaco-editor/playground.html
 // const monacoCore = "https://cdn.jsdelivr.net/npm/monaco-editor@0.52.2/dev/vs"
 /* THIS IS THE POWER OF THE */ const monacoCore = "https://cdn.jsdelivr.net/npm/monaco-editor@0.52.2/dev/vs";
-//let monaco: any; // ????????????
 let currentEditor;
 let log;
 //#endregion
@@ -47,8 +46,8 @@ function setLanguage(language) {
     log.info(`setLanguage() not implemented yet. ${language}`);
 }
 function setTheme(theme) {
-    if (monaco) {
-        monaco.editor.setTheme(theme);
+    if (window.monaco) {
+        window.monaco.editor.setTheme(theme);
     }
 }
 function getContent() {
@@ -65,8 +64,8 @@ function setContent(code) {
     }
 }
 function colorizeElement(domElement) {
-    if (monaco) {
-        monaco.editor.colorizeElement(domElement);
+    if (window.monaco) {
+        window.monaco.editor.colorizeElement(domElement);
     }
 }
 //#endregion

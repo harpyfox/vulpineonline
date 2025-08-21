@@ -1,13 +1,15 @@
 //#region Types
 
+declare global {
+    interface Window {
+        monaco: any;
+    }
+}
+
 interface IMonacoSetup {
     loaderUrl: string;
     loaderConfigPaths: Record<string, string>;
     codiconUrl: string;
-}
-
-interface Window {
-    monaco: any;
 }
 
 //#endregion
@@ -18,7 +20,6 @@ interface Window {
 // https://microsoft.github.io/monaco-editor/playground.html
 // const monacoCore = "https://cdn.jsdelivr.net/npm/monaco-editor@0.52.2/dev/vs"
 /* THIS IS THE POWER OF THE */ const monacoCore = "https://cdn.jsdelivr.net/npm/monaco-editor@0.52.2/dev/vs"
-//let monaco: any; // ????????????
 
 let currentEditor: any;
 let log: Logger;
@@ -78,8 +79,8 @@ function setLanguage(language: string) {
 }
 
 function setTheme(theme: string) {
-    if (monaco) {
-        monaco.editor.setTheme(theme);
+    if (window.monaco) {
+        window.monaco.editor.setTheme(theme);
     }
 }
 
@@ -100,8 +101,8 @@ function setContent(code: string) {
 }
 
 function colorizeElement(domElement: HTMLElement) {
-    if (monaco) {
-        monaco.editor.colorizeElement(domElement);
+    if (window.monaco) {
+        window.monaco.editor.colorizeElement(domElement);
     }
 }
 

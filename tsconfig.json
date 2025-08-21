@@ -3,14 +3,40 @@
         "types": [ 
             "@cloudflare/workers-types", 
             "@types/node",
+            "@webgpu/types",
         ],
-        "module": "ESNext",
+        
+        // compatability n stuff
+        "esModuleInterop": true,
+        "downlevelIteration": false,
+        // target and version and shit
+        "target": "esnext",
+        "lib": [
+            "esnext",
+            "dom",
+            "dom.iterable"
+        ],
+        "module": "preserve",
+        "moduleDetection": "force",
         "moduleResolution": "Bundler",
-        "target": "ES2022",
-        //"jsx": "react-jsx",
+        "isolatedModules": true,
+        "resolveJsonModule": true,
+        // strictness
+        "strict": true,
         "strictNullChecks": true,
         "strictFunctionTypes": true,
-        //"sourceMap": true,
+        "noUncheckedIndexedAccess": true,
+        "noImplicitOverride": true,
+        "forceConsistentCasingInFileNames": true,
+        "allowSyntheticDefaultImports": false,
+        "useDefineForClassFields": true,
+        "erasableSyntaxOnly": true,
+        "verbatimModuleSyntax": true,
+        // nice thing
+        "listEmittedFiles": true,
+        "noErrorTruncation": true,
+        "skipLibCheck": true,
+
     },
     "exclude": [
         "node_modules",

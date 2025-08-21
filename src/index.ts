@@ -5,7 +5,7 @@ export type Env = {
 };
 
 export default class<TEnv extends Env = Env> extends WorkerEntrypoint<TEnv> {
-    async fetch(request: Request) {
+    override async fetch(request: Request) {
         return this.env.ASSETS.fetch(request);
     }
 }
