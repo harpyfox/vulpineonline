@@ -1,6 +1,11 @@
-async function parse(className: string) {
-    // [TODO]
-    const entries = [];
+import type * as portfolio from "./portfolio.js";
+
+async function parse(className: string): Promise<portfolio.ParsedEntry[]>  {
+    const name = `source-local.parse()`;
+    console.time(name);
+
+    const parsedEntries: portfolio.ParsedEntry[] = [];
+    
     const elements = document.getElementsByClassName(className);
     for (const element of elements) {
         const content = element.innerHTML;
@@ -8,18 +13,16 @@ async function parse(className: string) {
             continue;
         }
 
-        
-        const entry = {
-            type: "text",
+        const entry: portfolio.Entry = {
             text: content,
+            embed: null,
         };
 
-        entries.push(entry);
-
-
+        parsedEntries.push({ sourceElement: element, entry: entry });
     }
 
-    return entries;
+    console.timeEnd(name);
+    return parsedEntries;
 }
 
 export { parse };

@@ -14,11 +14,13 @@
         "lib": [
             "esnext",
             "dom",
-            "dom.iterable"
+            "dom.iterable",
         ],
-        "module": "preserve",
+        // https://www.typescriptlang.org/docs/handbook/modules/guides/choosing-compiler-options.html#im-writing-es-modules-for-the-browser-with-no-bundler-or-module-compiler
+        "module": "nodenext",
         "moduleDetection": "force",
-        "moduleResolution": "Bundler",
+        "moduleResolution": "nodenext",
+        "verbatimModuleSyntax": true,
         "isolatedModules": true,
         "resolveJsonModule": true,
         // strictness
@@ -31,7 +33,6 @@
         "allowSyntheticDefaultImports": false,
         "useDefineForClassFields": true,
         "erasableSyntaxOnly": true,
-        "verbatimModuleSyntax": true,
         // nice thing
         "listEmittedFiles": true,
         "noErrorTruncation": true,

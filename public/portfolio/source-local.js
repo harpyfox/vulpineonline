@@ -1,6 +1,7 @@
 async function parse(className) {
-    // [TODO]
-    const entries = [];
+    const name = `source-local.parse()`;
+    console.time(name);
+    const parsedEntries = [];
     const elements = document.getElementsByClassName(className);
     for (const element of elements) {
         const content = element.innerHTML;
@@ -8,11 +9,12 @@ async function parse(className) {
             continue;
         }
         const entry = {
-            type: "text",
             text: content,
+            embed: null,
         };
-        entries.push(entry);
+        parsedEntries.push({ sourceElement: element, entry: entry });
     }
-    return entries;
+    console.timeEnd(name);
+    return parsedEntries;
 }
 export { parse };

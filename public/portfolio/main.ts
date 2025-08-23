@@ -1,28 +1,7 @@
-import * as bluesky from "./source-bluesky.js";
-import * as local from "./source-local.js";
-
-
-function createTextEntry() {
-
-}
-
-function createVideoEntry() {
-
-}
-
-function createImageEntry() {
-
-}
+import * as portfolio from "./portfolio.js";
 
 async function main() {
-
-    const entries = [];
-    entries.push(await bluesky.parse(`source-bluesky`));
-    entries.push(await local.parse(`source-local`));
-    for (const entry of entries) {
-        // [TODO]
-    }
-
+    await portfolio.build();
 }
 
 if (['interactive', 'complete'].indexOf(document.readyState) !== -1) {

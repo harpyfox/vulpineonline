@@ -1,5 +1,20 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    height: 100%;
+    background-color: #202020;
+}
+
+body {
+    height: 100%;
+    margin: 0;
+}
+
 .portfolio-category {
-    border: 4px solid black;
+    background-color: #3a3a3a;
+    border: 4px solid #2c2c2c;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -9,11 +24,12 @@
 }
 
 .portfolio-entry {
-    border: 4px solid black;
+    background-color: #bebebe;
+    border: 4px solid #b0b0b0;
     width: 300px;
     flex: 0 0 auto;
 }
 
-.portfolio-image > img, .portfolio-video > video {
+.portfolio-entry > img, .portfolio-entry > video {
     height: 128px;
 }
