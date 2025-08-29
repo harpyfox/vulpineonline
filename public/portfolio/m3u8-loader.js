@@ -15,7 +15,7 @@ function loadAndAttach(video) {
         startFragPrefetch: true,
     };
     const hlsInstance = new Hls(config);
-    hlsInstance.on(Hls.Events.MEDIA_ATTACHED, onMediaAttached);
+    // hlsInstance.on(Hls.Events.MEDIA_ATTACHED, onMediaAttached);
     hlsInstance.autoLevelCapping = 0;
     hlsInstance.loadSource(video.src);
     hlsInstance.attachMedia(video);

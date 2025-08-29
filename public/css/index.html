@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title> Many flavours.</title>
+
+    <style>
+
+html {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+body > nav:nth-child(2) {
+  width: 100%;
+  background-color: #282a35;
+  height: 33px;
+  white-space: nowrap;
+  overflow: auto;
+  max-width: 2000px;
+}
+
+#nav-item-container {
+  margin: 0;
+  padding: 0;
+  display: initial;
+}
+
+.nav-item {
+  display: inline;
+  color: white;
+}
+
+.nav-item > a {
+  color: white;
+}
+
+.nav-item {
+  display: inline list-item;
+}
+
+body > nav > h2 {
+  display: inline;
+  margin: 0;
+}
+
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>New Document</h1>
+    </header>
+    <nav>
+        <h2>Navigation</h2>
+        <ol id="nav-item-container">
+            <li class="nav-item"><a href="#intro">Introduction</a></li>
+            <li class="nav-item"><a href="#intro">Introduction</a></li>
+            <li class="nav-item"><a href="#intro">Introduction</a></li>
+            <li class="nav-item"><a href="#intro">Introduction</a></li>
+            <li class="nav-item"><a href="#intro">Introduction</a></li>
+            <li class="nav-item"><a href="#intro">Introduction</a></li>
+        </ol>
+    </nav>
+    <main>
+
+        <h2 id="intro">Introduction</h2>
+        <p>Lorum ipsum</p>
+        <h3 id="intro-glossary">Glossary</h3>
+        <p>Examples in this specification are introduced with the words “for example”
+            or are set apart from the normative text with <code>class="example"</code>,
+            like this: </p>
+        <div class="example" id="w3c-example">
+            <a class="self-link" href="#w3c-example"></a>
+            <p>This is an example of an informative example.</p>
+        </div>
+
+        <p>Informative notes begin with the word “Note” and are set apart from the
+            normative text with <code>class="note"</code>, like this: </p>
+        <p class="note" role="note">Note, this is an informative note.</p>
+        <p>Advisements are normative sections styled to evoke special attention and are
+            set apart from other normative text with <code>&lt;strong class="advisement"&gt;</code>, like
+            this: <strong class="advisement"> UAs MUST provide an accessible alternative. </strong></p>
+        <h2 id="conformance">Conformance</h2>
+        <h3 id="conformance-stylesheet">Stylesheets</h3>
+        <p>A style sheet is conformant to this specification
+            if all of its statements that use syntax defined in this module are valid
+            according to the generic CSS grammar and the individual grammars of each
+            feature defined in thismodule. </p>
+        <h3 id="conformance-renderer">Renderers</h3>
+        <p>A renderer is conformant to this specification
+            if, in addition to interpreting the style sheet as defined by the
+            appropriate specifications, it supports all the features defined
+            by this specification by parsing them correctly
+            and rendering the document accordingly. However, the inability of a
+            UA to correctly render a document due to limitations of the device
+            does not make the UA non-conformant. (For example, a UA is not
+            required to render color on a monochrome monitor.)
+        </p>
+        <h3 id="conformance-authoringtool">Authoring tools</h3>
+        <p>An authoring tool is conformant to this specification
+            if it writes style sheets that are syntactically correct according to the
+            generic CSS grammar and the individual grammars of each feature in
+            this module, and meet all other conformance requirements of style sheets
+            as described in thismodule. </p>
+
+    </main>
+</body>
+
+</html>

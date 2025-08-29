@@ -1,59 +1,73 @@
 //#endregion
+// all my bluesky portfolio posts are under a single parent thread, so we can just fetch that
+// and search it for any child posts instead of performing a fetch for every post.
+const cacheSrc = `at://did:plc:ee5pxx436s7areoj4epw3voj/app.bsky.feed.post/3lrppfou7z22r`;
+let cache = new Map();
 //#region Functions
-async function parse(className) {
+async function parse(attribute) {
     const name = `source-bluesky.parse()`;
     console.time(name);
-    const parsedEntries = [];
-    const profileUri = `did:plc:ee5pxx436s7areoj4epw3voj`; // bsky.app/profile/harpyfox.net
-    const maxDepth = 4;
-    const elements = document.getElementsByClassName(className);
+    // build cache
+    console.log(`building cache`);
+    cache = new Map();
+    const depth = 6;
+    const thread = await getPostThread(cacheSrc, depth, true);
+    if (thread) {
+        walkThread(thread, 0, depth, (u, t) => cache.set(u, t));
+    }
+    console.log(`built cache`, cache);
+    const entryViews = [];
+    const elements = document.querySelectorAll(`[${attribute}]`);
     const threadPromises = [];
     for (let i = 0; i < elements.length; i++) {
         const element = elements[i];
         if (!element)
             continue;
-        const postUri = element.innerHTML;
-        if (!postUri) {
+        const uri = element.getAttribute(attribute);
+        if (uri === null)
             continue;
-        }
-        threadPromises[i] = getPostThread(profileUri, postUri, maxDepth);
+        threadPromises[i] = getPostThread(uri, 1);
     }
     const threads = await Promise.all(threadPromises);
     for (let i = 0; i < elements.length; i++) {
         const element = elements[i];
-        const thread = threads[i]?.thread;
+        const thread = threads[i];
         if (!element || !thread)
             continue;
-        element.innerHTML = ``;
-        parseThreadWithReplies(element, thread, 0, maxDepth, (entry) => parsedEntries.push({ sourceElement: element, entry: entry }));
+        entryViews.push({ element: element, entry: parsePost(thread.post) });
     }
     console.timeEnd(name);
-    return parsedEntries;
+    return entryViews;
 }
-function parseThreadWithReplies(parent, postThread, currentDepth, maxDepth, callback) {
-    if (currentDepth > maxDepth)
-        return;
-    // always render top level posts, otherwise only render posts with embeds
-    if (currentDepth == 0 || postThread.post.record.embed != null) {
-        const entry = parsePost(postThread.post);
-        callback(entry);
-    }
-    if (postThread.replies) {
-        for (const reply of postThread.replies) {
-            parseThreadWithReplies(parent, reply, currentDepth + 1, maxDepth, callback);
+async function getPostThread(uri, depth, ignoreCache = false) {
+    if (!ignoreCache) {
+        const cacheHit = cache.get(uri);
+        if (cacheHit) {
+            console.log(`cache HIT on`, uri);
+            return Promise.resolve(cacheHit);
+        }
+        else {
+            console.warn(`cache MISS on`, uri);
         }
     }
-}
-async function getPostThread(profileUri, postUri, depth) {
-    const atUri = `at://${profileUri}/app.bsky.feed.post/${postUri}`;
     const searchParams = new URLSearchParams();
-    searchParams.set(`uri`, atUri);
+    searchParams.set(`uri`, uri);
     searchParams.set(`depth`, `${depth}`);
     const response = await api(`/xrpc/app.bsky.feed.getPostThread`, searchParams);
     if (!response)
         return null;
     const json = await response.json();
-    return json;
+    return json.thread;
+}
+function walkThread(postThread, currentDepth, maxDepth, callback) {
+    if (currentDepth > maxDepth)
+        return;
+    callback(postThread.post.uri, postThread);
+    if (postThread.replies) {
+        for (const reply of postThread.replies) {
+            walkThread(reply, currentDepth + 1, maxDepth, callback);
+        }
+    }
 }
 async function api(endpoint, searchParams) {
     const api = `https://public.api.bsky.app`;
@@ -110,6 +124,13 @@ function parsePost(post) {
         }
     }
     return entry;
+}
+function renderCache(attribute) {
+    for (const t of cache.values()) {
+        const article = document.body.appendChild(document.createElement('article'));
+        article.className = 'listing';
+        article.setAttribute(attribute, t.post.uri);
+    }
 }
 //#endregion
 //#region Export

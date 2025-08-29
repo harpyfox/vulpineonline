@@ -1,32 +1,38 @@
 import * as m3u8Loader from "./m3u8-loader.js";
 import * as blueskySource from "./source-bluesky.js";
-import * as localSource from "./source-local.js";
 //#endregion
 //#region Variables
 const entryElementMap = [];
 //#endregion
 //#region Functions
-function createElement(parent, entry) {
-    const div = parent.appendChild(document.createElement('div'));
-    div.classList.add(`portfolio-entry`);
-    const details = div.appendChild(document.createElement('details'));
-    details.innerHTML = `${entry.text}`;
+function render(entryView) {
+    const entry = entryView.entry;
     if (entry.embed) {
-        for (const embed of entry.embed) {
+        let parent = entryView.element;
+        for (let i = 0; i < entry.embed.length; i++) {
+            const embed = entry.embed[i];
+            if (!embed)
+                continue;
+            if (i != 0) {
+                const newParent = parent.cloneNode();
+                if (newParent) {
+                    //@ts-expect-error
+                    parent.after(newParent);
+                    parent = newParent;
+                }
+            }
+            const a = parent.appendChild(document.createElement('a'));
+            a.href = embed.url;
             switch (embed.type) {
                 case "image":
-                    const img = div.appendChild(document.createElement('img'));
+                    const img = a.appendChild(document.createElement('img'));
                     img.src = embed.thumbnailUrl;
-                    const a = div.appendChild(document.createElement('a'));
-                    a.href = embed.url;
-                    a.innerText = `link to fullsize`;
                     break;
                 case "video":
-                    const video = div.appendChild(document.createElement(`video`));
+                    const video = a.appendChild(document.createElement(`video`));
                     //video.autoplay = true;
                     video.controls = false;
                     video.disablePictureInPicture = true;
-                    video.disableRemotePlayback = true;
                     video.loop = true;
                     video.muted = true;
                     video.playsInline = true;
@@ -36,14 +42,14 @@ function createElement(parent, entry) {
                     let hls = null;
                     if (video.src.endsWith('m3u8'))
                         hls = m3u8Loader.loadAndAttach(video);
-                    div.onmouseenter = (event) => {
+                    parent.onmouseenter = (event) => {
                         if (hls && !hls.loadingEnabled)
                             hls.startLoad();
                         video.play();
                         video.loop = true;
                         video.onended = null;
                     };
-                    div.onmouseleave = (event) => {
+                    parent.onmouseleave = (event) => {
                         video.loop = false;
                         video.onended = (event) => {
                             video.currentTime = 0;
@@ -53,28 +59,36 @@ function createElement(parent, entry) {
                 default:
                     break;
             }
+            //const p = a.appendChild(document.createElement('p'));
+            //p.innerText = `title`;
         }
     }
-    return div;
+    //const p = entryView.element.appendChild(document.createElement('p'));
+    //p.innerHTML = `${entry.text}`;
 }
 async function build() {
     const name = `portfolio.build()`;
     console.info(name);
     console.time(name);
-    const blueskyEntries = await blueskySource.parse(`source-bluesky`);
-    const localEntries = await localSource.parse(`source-local`);
-    const parsedEntries = [
+    const blueskyEntries = await blueskySource.parse(`data-bluesky-src`);
+    const entryViews = [
         blueskyEntries,
-        localEntries,
     ].flat(1);
-    console.time(`portfolio.createElements()`);
-    for (const parsedEntry of parsedEntries) {
-        const element = createElement(parsedEntry.sourceElement, parsedEntry.entry);
-        entryElementMap.push({ entry: parsedEntry.entry, element: element });
+    console.time(`portfolio.render()`);
+    for (const entryView of entryViews) {
+        render(entryView);
+        entryElementMap.push(entryView);
     }
-    console.timeEnd(`portfolio.createElements()`);
+    console.timeEnd(`portfolio.render()`);
     console.timeEnd(name);
     console.info(`${name} built ${entryElementMap.length} entries!`, entryElementMap);
+    for (const video of document.getElementsByTagName('video')) {
+        video.muted = true;
+        video.autoplay = true;
+        video.loop = true;
+        video.controls = false;
+        video.disablePictureInPicture = true;
+    }
 }
 //#endregion
 //#region Export

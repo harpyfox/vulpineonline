@@ -1,35 +1,326 @@
-* {
+/* reset */
+*, *::before, *::after {
     box-sizing: border-box;
 }
-
-html {
-    height: 100%;
-    background-color: #202020;
-}
-
-body {
-    height: 100%;
+* {
     margin: 0;
 }
+@media (prefers-reduced-motion: no-preference) {
+    html {
+        interpolate-size: allow-keywords;
+    }
+}
+body {
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+img, picture, video, canvas, svg {
+    display: block;
+    max-width: 100%;
+}
+input, button, textarea, select {
+    font: inherit;
+}
+p, h1, h2, h3, h4, h5, h6 {
+    overflow-wrap: break-word;
+}
+p {
+    text-wrap: pretty;
+}
+h1, h2, h3, h4, h5, h6 {
+    text-wrap: balance;
+}
 
-.portfolio-category {
-    background-color: #3a3a3a;
-    border: 4px solid #2c2c2c;
+
+:root {
+    color-scheme: dark;
+    --header-height: 48px;
+
+    --theme-font: "Helvetica", "Arial", sans-serif;
+    --theme-border: light-dark(rgba(0, 0, 0, 0.5), rgba(255, 255, 255, 0.25));
+    --theme-background: light-dark(whitesmoke, black);
+    --theme-text: light-dark(black, white);
+    --theme-interactive: light-dark(blue, cyan);
+    --theme-interactive-hover: light-dark(rgb(53, 93, 255), rgb(109, 255, 255));
+    --theme-interactive-active: light-dark(purple, magenta);
+
+    --theme-border-style: 1px var(--theme-border) solid;
+}
+
+
+html {
+    background-color: var(--theme-background);
+    font-family: var(--theme-font);
+}
+
+
+
+body {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    grid-template-columns: auto 1fr;
+    grid-template-areas: 
+    "header header"
+    "nav main"
+    "footer footer";
+
+    font-size: 1rem;
+}
+
+
+
+p, h1, h2, h3, h4, h5, h6 { color: var(--theme-text) }
+time { color: var(--theme-border); }
+a, a > *, a:visited, a:visited > * { color: var(--theme-interactive) }
+a:hover, a:hover > * { color: var(--theme-interactive-hover) }
+a:active, a:active > * { color: var(--theme-interactive-active) }
+
+
+
+img, video {
+    display: block flow;
+    max-width: 100%;
+    aspect-ratio: 4/3 auto;
+}
+
+:playing, :paused {
+
+}
+
+img.favicon {
+    display: inline flow-root;
+    width: 1rem;
+    height: 1rem;
+    vertical-align: middle;
+}
+
+blockquote > p::before {
+    content: open-quote;
+}
+blockquote>p::after {
+    content: close-quote;
+}
+
+blockquote ~ * {
+    font-size: smaller;
+}
+
+h3.logo {
+    display: contents;
+}
+
+.logo, h3.logo img {
+    padding: 8px;
+    width: 100%;
+    object-fit: contain;
+    filter: drop-shadow(2px 2px 0px black);
+    
+    text-align: center;
+}
+
+.squircle {
+    mask: url("img/squircle.png") center/cover no-repeat;
+    aspect-ratio: 1/1;
+}
+
+.vertical {
+    writing-mode: sideways-lr;
+    line-height: initial;
+}
+
+ul.horizontal {
+    li {
+        display: inline flow-root list-item;
+    }
+
+    img {
+        display: inline flow-root;
+        max-width: 32px;
+        vertical-align: middle;
+    }
+}
+
+
+article.table {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-auto-rows: min-content;
+    align-content: space-around;
+
+    line-height: initial;
+
+    h4 {
+        text-transform: uppercase;
+    
+        text-align: center; 
+        vertical-align: middle; 
+        font-stretch: condensed;
+        font-width: condensed;
+    }
+
+    ul {
+        padding: 0;
+        list-style-type: none;
+        align-content: center;
+    }
+
+    
+}
+
+
+
+
+
+header, nav, footer {
+    background-color: light-dark(rgba(245, 245, 245, 0.5), rgba(0, 0, 0, 0.2));
+    backdrop-filter: blur(10px);
+}
+
+header {
+    grid-area: header;
+
+    position: sticky;
+    top: 0px;
+    z-index: 100;
+}
+
+h1 {
+    margin-left: 16px;
+}
+
+nav {
+    grid-area: nav;
+    overflow-y: auto;
+
+    position: sticky;
+    z-index: 100;
+
+    top: var(--header-height);
+    max-height: calc(100vh - var(--header-height));
+
+    ul {
+        display: grid;
+        grid-template-columns: 1fr;
+        padding: 4px;
+        gap: 4px;
+        list-style-type: none;
+        align-items: center;
+
+        li {
+            padding: 1ch; /* one character of padding */
+            border: var(--theme-border-style);
+        }
+    }
+}
+
+
+main {
+    grid-area: main;
+}
+
+section {
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 8px;
 
     width: 100%;
     overflow: auto;
 }
 
-.portfolio-entry {
-    background-color: #bebebe;
-    border: 4px solid #b0b0b0;
-    width: 300px;
-    flex: 0 0 auto;
+div.cards {
+    display: block grid;
+    grid-template-columns: repeat(auto-fill, minmax(20ch, 1fr));
+    padding: 4px;
+    gap: 4px;
+
+    border: var(--theme-border-style);
 }
 
-.portfolio-entry > img, .portfolio-entry > video {
-    height: 128px;
+div.carousel {
+    display: block grid;
+    grid-template-columns: repeat(auto-fill, minmax(30ch, 1fr));
+    padding: 4px;
+    gap: 4px;
 }
+
+
+article {
+    background: center/cover no-repeat;
+}
+
+/* standard article with image, title, description, and date */
+article.listing {
+    display: block flex;
+    flex-direction: column;
+    border: var(--theme-border-style);
+}
+
+/* article with no text, image is scaled to cover */
+article.art {
+    img, video {
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+/* article with centered content */
+article.centered {
+    display: block flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    p {
+        text-align: center;
+    }
+}
+
+a.external {
+    display: inline flex;
+    flex-direction: column;
+    align-items: center;
+    aspect-ratio: 1/1;
+    height: 180px;
+    
+    border: var(--theme-border-style);
+
+    img, video {
+        width: 128px;
+        height: 128px;
+    }
+
+    p, h1, h2, h3, h4, h5, h6 {
+        text-align: center;
+    }
+}
+
+/* article that takes two grid columns. combine with other article classes. */
+article.wide {
+    grid-column: span 2;
+}
+
+
+
+
+footer {
+    grid-area: footer;
+    display: block flex;
+    flex-direction: row-reverse;
+
+}
+
+
+@media (max-width: 640px) {
+    body {
+        display: initial;
+    }
+
+    nav {
+        position: initial;
+
+        ul {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+}
+
