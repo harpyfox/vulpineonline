@@ -188,6 +188,10 @@ h1 {
     margin-left: 16px;
 }
 
+h2 {
+    margin-left: 8px;
+}
+
 nav {
     grid-area: nav;
     overflow-y: auto;
@@ -216,6 +220,7 @@ nav {
 
 main {
     grid-area: main;
+    padding-right: 4px;
 }
 
 section {
@@ -321,6 +326,14 @@ footer {
         ul {
             grid-template-columns: 1fr 1fr;
         }
+    }
+
+    main {
+        padding-right: 0px;
+    }
+
+    article.wide {
+        grid-column: span 1;
     }
 }
 
