@@ -21,7 +21,7 @@
     <!-- <meta name="generator" content="100% home grown baby"> -->
     <meta name="GENERATOR" content="IBM HomePage Builder 2001 V5.0.0 for Windows"> <!-- lol -->
 
-    <link rel="canonical" href="https://www.vulpineonline.com">
+    <link rel="canonical" href="https://www.vulpineonline.com/portfolio">
     <link rel="stylesheet" href="style.css" type="text/css" media="all">
     <link rel="icon" href="favicon.ico" type="image/png" sizes="50x50">
     <link rel="apple-touch-icon" href="favicon.ico" type="image/png" sizes="50x50">
@@ -63,8 +63,9 @@
         javascript is disabled. honestly i don't blame you. the site won't work though.
     </noscript>
 
-    <header>
-        <h1>harper fox</h1>
+    <header onclick="document.body.scrollTop = document.documentElement.scrollTop = 0;">
+        <h1>harper fox<img class="icon32" src="img/butterfly.gif" style="display: inline; vertical-align: middle;"></h1>
+        <p style="position: absolute; right: 0px;">click/tap to return to top of page</p>
     </header>
 
     <nav>
@@ -82,7 +83,7 @@
                 <a href="https://www.linkedin.com/in/vulpineonline/">LinkedIn</a>
             </li>
             <li>
-                <img class="favicon" src="img/github-favicon.ico">
+                <img class="favicon" src="img/github-favicon.ico" style="filter: invert()">
                 <a href="https://github.com/harpyfox">GitHub</a>
             </li>
             <li>
@@ -101,9 +102,33 @@
                 <img class="favicon" src="img/itch-favicon.ico" type="image/x-icon">
                 <a href="https://harpyfox.itch.io/">itch.io</a>
             </li>
-            <li style="pointer-events: none; height:35px; padding: 2px 8px 4px 8px; background-color: #48ac47; box-shadow: 3px 5px 4px -1px #8abb8a inset, -4px -3px 4px 0px #287828 inset; border: 1px #287828 solid; border-radius: 4px 10px 10px 4px / 4px 30px 30px 4px;">
-                <img class="favicon" src="img/windowsxp.ico" style="width: 22px; height: 20px; filter: drop-shadow(1px 2px 1px #00000069);">
-                <span style="color: white; vertical-align: middle; font-size: 1.1em; font-weight: bold; font-style: italic; text-shadow: 0px 1px 4px #000000;">start</span>
+            <style>
+                .xpstart {
+                    pointer-events: none; 
+                    height: 35px; 
+                    padding: 2px 8px 4px 8px; 
+                    background-color: #48ac47; 
+                    box-shadow: 3px 5px 4px -1px #8abb8a inset, -4px -3px 4px 0px #287828 inset;
+                    border: 1px #287828 solid; 
+                    border-radius: 4px 10px 10px 4px / 4px 30px 30px 4px;
+                    img {
+                        width: 22px; 
+                        height: 20px; 
+                        filter: drop-shadow(1px 2px 1px #00000069);
+                    }
+                    span {
+                        color: white; 
+                        vertical-align: middle; 
+                        font-size: 1.1em; 
+                        font-weight: bold; 
+                        font-style: italic; 
+                        text-shadow: 0px 1px 4px #000000;
+                    }
+                }
+            </style>
+            <li class="xpstart">
+                <img class="favicon" src="img/windowsxp.ico">
+                <span>start</span>
             </li>
         </ul>
     </nav>
@@ -133,18 +158,22 @@
                                 fill: red;
                             }
                         </style>
-                        <li><img src="img/unity-icon.svg" alt="Unity Engine" role="img" height="32px"></li>
-                        <li><img src="img/blender-icon.svg" alt="Blender" role="img" height="32px"></li>
+                        <li><img class="icon32" src="img/unity-icon.svg" alt="Unity Engine" role="img"></li>
+                        <li><img class="icon32" src="img/blender-icon.svg" alt="Blender" role="img"></li>
                     </ul>
                 </article>
                 <article class="art squircle"><video src="img/pollo-showcase.mp4"></video></article>
                 <article class="art squircle"><video src="img/pollo-chickenselect.mp4"></video></article>
+                <article class="art squircle"><video src="img/pollo-anims.webm"></video></article>
+                <article class="art squircle"><video src="img/pollo-blendtree.webm"></video></article>
+                <article class="art squircle"><img src="img/pollo-tubbe.gif"></article>
                 <article class="art squircle"><video src="img/pollo-tub.mp4"></video></article>
                 <article class="art squircle"><video src="img/pollo-foxytut.mp4"></video></article>
                 <article class="art squircle"><img src="img/pollo-foxypot.png"></article>
+                <article class="art squircle"><video src="img/pollo-dither.webm"></video></article>
                 <article class="art squircle"><video src="img/pollo-ship.mp4"></video></article>
-                <article class="art squircle"><img src="img/pollo-foxyalert.gif"></img></article>
-                <article class="listing wide"><img src="img/pollo-foxyalcoholic.png"></img></article>
+                <article class="art squircle"><img src="img/pollo-foxyalert.gif"></article>
+                <article class="art squircle"><video src="img/pollo-liftoff.webm"></video></article>
                 <article class="listing"><p>[TODO] get more footage of actual racing</p></article>
 
                 <article class="centered" style="display: none">
@@ -174,8 +203,8 @@
                     <p>Vertical slice third person hack-n-slash</p>
                     <h4 class="vertical">Tool</h4>
                     <ul class="horizontal">
-                        <li><img src="img/unity-icon.svg" alt="Unity Engine" role="img" height="32px"></li>
-                        <li><img src="img/blender-icon.svg" alt="Blender" role="img" height="32px"></li>
+                        <li><img class="icon32" src="img/unity-icon.svg" alt="Unity Engine" role="img"></li>
+                        <li><img class="icon32" src="img/blender-icon.svg" alt="Blender" role="img"></li>
                     </ul>
                 </article>
                 <article class="art"><video src="img/hsalpha-animshowcase.mp4"></video></article>
@@ -184,11 +213,12 @@
                 <article class="art"><img src="img/hsalpha-groundattacks.gif"></article>
                 <article class="art"><video src="img/hsalpha-walljump.mp4"></video></article>
                 <article class="art"><img src="img/hsalpha-dead.gif"></article>
-                <article class=" centered"><img src="img/hsalpha-hp.gif"></article>
+                <article class="centered"><img src="img/hsalpha-hp.gif"></article>
                 <article class="art"><img src="img/hsalpha-jogloop.gif"></article>
                 <article class="art"><img src="img/hsalpha-sprintloop.gif"></article>
                 <article class="art"><img src="img/hsalpha-sprintkick.gif"></article>
                 <article class="art"><img src="img/hsalpha-ui.png"></article>
+                <article class="art"><img src="img/hsalpha-brackeys.png"></article>
                 <article class="art"><img src="img/hsalpha-bodyfront.png"></article>
                 <article class="art"><img src="img/hsalpha-bodyback.png"></article>
                 <article class="art"><img src="img/hsalpha-basketball.png"></article>
@@ -210,8 +240,8 @@
                     <p>Commissioned project for Google's Fitbit Ace LTE smartwatch</p>
                     <h4 class="vertical">Tool</h4>
                     <ul class="horizontal">
-                        <li><img src="img/unity-icon.svg" alt="Unity Engine" role="img" height="32px"></li>
-                        <li><img src="img/blender-icon.svg" alt="Blender" role="img" height="32px"></li>
+                        <li><img class="icon32" src="img/unity-icon.svg" alt="Unity Engine" role="img"></li>
+                        <li><img class="icon32" src="img/blender-icon.svg" alt="Blender" role="img"></li>
                     </ul>
                 </article>
                 <article class="listing">
@@ -234,9 +264,9 @@
                     <p>Commissioned project for Google's Fitbit Ace LTE smartwatch</p>
                     <h4 class="vertical">Tool</h4>
                     <ul class="horizontal">
-                        <li><img src="img/unity-icon.svg" alt="Unity Engine" role="img" height="32px"></li>
-                        <li><img src="img/blender-icon.svg" alt="Blender" role="img" height="32px"></li>
-                        <li><img src="img/maya-icon.svg" alt="Autodesk Maya" role="img" height="32px"></li>
+                        <li><img class="icon32" src="img/unity-icon.svg" alt="Unity Engine" role="img"></li>
+                        <li><img class="icon32" src="img/blender-icon.svg" alt="Blender" role="img"></li>
+                        <li><img class="icon32" src="img/maya-icon.svg" alt="Autodesk Maya" role="img"></li>
                     </ul>
                 </article>
                 <article class="art squircle"><video src="img/kaiju-showcase.mp4"></article>
@@ -253,11 +283,11 @@
                         <li>3D Artist</li>
                     </ul>
                     <h4 class="vertical">Desc</h4>
-                    <p>3 days. 4 timezones. 1 dream</p>
+                    <p>3 days. 4 timezones. 1 dream. <small>0 name ideas.</small></p>
                     <h4 class="vertical">Tool</h4>
                     <ul class="horizontal">
-                        <li><img src="img/godot-icon.svg" alt="Godot Game Engine" role="img" height="32px"></li>
-                        <li><img src="img/blender-icon.svg" alt="Blender" role="img" height="32px"></li>
+                        <li><img class="icon32" src="img/godot-icon.svg" alt="Godot Game Engine" role="img"></li>
+                        <li><img class="icon32" src="img/blender-icon.svg" alt="Blender" role="img"></li>
                     </ul>
                 </article>
                 <article class="art"><img src="img/roborb-1.jpg"></article>
@@ -265,10 +295,12 @@
                 <article class="art"><img src="img/roborb-environment.png"></article>
                 <article class="art"><img src="img/roborb-ground.png"></article>
                 <article class="art"><img src="img/roborb-trash.png"></article>
+                <article class="centered"><img src="img/roborb-forcepush.png"></article>
+
             </div>
 
             <div class="cards" style="background-color: light-dark(#fefe89, #2a201f);">
-                <article class="centered" style="background-image: url(img/haunted-background.png);">
+                <article class="centered">
                     <h3 class="logo"><img src="img/haunted-logo.png" alt="Haunted Holdout"></h3>
                 </article>
                 <article class="table">
@@ -280,29 +312,30 @@
                     <p>3-day Game Jam with topic "vision"</p>
                     <h4 class="vertical">Tool</h4>
                     <ul class="horizontal">
-                        <li><img src="img/unity-icon.svg" alt="Unity Engine" role="img" height="32px"></li>
-                        <li><img src="img/blender-icon.svg" alt="Blender" role="img" height="32px"></li>
+                        <li><img class="icon32" src="img/unity-icon.svg" alt="Unity Engine" role="img"></li>
+                        <li><img class="icon32" src="img/blender-icon.svg" alt="Blender" role="img"></li>
+                        <li><img class="icon32" src="img/cooltext-icon.png" alt="COOL TEXT DOT COM"></li>
                     </ul>
                 </article>
+                <article class="art"><img src="img/haunted-background.png"></article>
                 <article class="art wide"><img src="img/haunted-1.jpg"></article>
                 <article class="art"><img src="img/haunted-2.jpg"></article>
-                <article class="art"><img src="img/haunted-3.jpg"></article>
                 <article class="art"><img src="img/haunted-characters.jpg"></article>
                 <article class="art"><img src="img/haunted-anims.gif"></article>
-                <article class="art"><video src="img/haunted-gameplay.mp4"></article>
+                <article class="art"><video src="img/haunted-gameplay.mp4"></video></article>
 
                 <article class="centered">
                     <a class="external" href="https://harpyfox.itch.io/haunted-holdout">
-                        <img src="img/haunted-icon.png">
+                        <img class="icon96" src="img/haunted-icon.png">
                         <h4>Haunted Holdout</h4>
                         <p>on itch.io</p>
                     </a>
                 </article>
             </div>
 
-            <div class="cards" style="background-color: light-dark(#bcbcbc, #353535);">
+            <div class="cards" style="background-color: light-dark(#bcbcbc, #0f0136);">
                 <article class="centered">
-                    <h3 class="logo"><img src="img/reptilian-logo.png" alt="Reptilian Rising"></h3>
+                    <h3 class="logo"><img src="img/reptilian-logo.jpg" alt="Reptilian Rising"></h3>
                 </article>
                 <article class="table">
                     <h4 class="vertical">Role</h4>
@@ -311,7 +344,7 @@
                         <li>UX Designer</li>
                     </ul>
                     <h4 class="vertical">Desc</h4>
-                    <p>Top-down strategy game with a frankly horrendous trailer <small>we weren't involved with it</small></p>
+                    <p>Tabletop-down strategy game</p>
                     <h4 class="vertical">Tool</h4>
                     <ul class="horizontal">
                         <li><img src="img/unity-icon.svg" alt="Unity Engine" role="img" height="32px"></li>
@@ -327,15 +360,16 @@
                 <article class="listing centered"><p style="line-height: 1;"><small >[TODO] i want to show more but the game hasn't released and since our final delivery milestone the steam page has actually removed screenshots so i don't know if i can even show them. welp</small></p></article>
                 <article class="centered">
                     <a class="external" href="https://store.steampowered.com/app/1625460/Reptilian_Rising/">
-                        <img src="img/steam-favicon.ico">
+                        <img class="icon96" src="img/steam-favicon.ico">
                         <h4>Reptilian Rising</h4>
                         <p>on Steam</p>
+                        <small style="position: absolute; background-color: #000; transform: rotate(10deg); width: 20ch;">we were NOT involved with the trailer.</small>
                     </a>
                 </article>
 
             </div>
 
-            <div class="cards" style="background-color: light-dark(#bcbcbc, #353535);">
+            <div class="cards" style="background-color: light-dark(#bcbcbc, #6e1547);">
                 <article class="centered">
                     <h3 class="logo"><img src="img/rockets-logo.png" alt="Math Rockets"></h3>
                 </article>
@@ -349,17 +383,19 @@
                     <p>Capture-the-flag competition with a mathematics twist</p>
                     <h4 class="vertical">Tool</h4>
                     <ul class="horizontal">
-                        <li>Roblox</li>
-                        <li>Luau</li>
-                        <li>Typescript</li>
+                        <li><img class="icon32" src="img/roblox-icon.svg" alt="Roblox Engine" role="img"></li>
+                        <li><img class="icon32" src="img/luau-icon.png" alt="Luau" role="img"></li>
+                        <li><img class="icon32" src="img/typescript-icon.svg" alt="TypeScript" role="img"></li>
                     </ul>
                 </article>
                 <article class="art"><img src="img/rockets-1.png"></article>
                 <article class="art"><img src="img/rockets-2.png"></article>
+                <article class="centered"><img src="img/roblox-spectacular.png"></article>
+
             
                 <article class="centered">
                     <a class="external" href="https://www.roblox.com/games/93946346542137/Math-Rockets">
-                        <img src="img/roblox-favicon.png">
+                        <img class="icon96" src="img/roblox-favicon.png">
                         <h4>Math Rockets</h4>
                         <p>on Roblox</p>
                     </a>
@@ -368,7 +404,7 @@
 
             <div class="cards" style="background-color: light-dark(#bcbcbc, #353535);">
                 <article class="centered">
-                    <h3 class="logo"><img src="img/debugdog-logo.png" alt="Debug Dog Adventures"></h3>
+                    <h3 class="logo"><img src="img/debugdog-logo.gif" alt="Untitled Project"></h3>
                 </article>
                 <article class="table">
                     <h4 class="vertical">Role</h4>
@@ -379,14 +415,14 @@
                     <p>Top-down testing ground to practice new tools</p>
                     <h4 class="vertical">Tool</h4>
                     <ul class="horizontal">
-                        <li>Unreal Engine 5</li>
-                        <li>Spine 2D</li>
+                        <li><img class="icon32" src="img/unreal-icon.svg" alt="Unreal Engine" role="img"></li>
+                        <li><img class="icon32" src="img/spine-icon.svg" alt="Spine 2D" role="img"></li>
                     </ul>
                 </article>
-                <article class="art"><video src="img/spine-clip.mp4"></article>
-                <article class="art"><video src="img/spine-debugdog.mp4"></article>
-                <article class="art"><video src="img/spine-runloop.mp4"></article>
-                <article class="art"><video src="img/spine-cannon.mp4"></article>
+                <article class="art"><video src="img/spine-cannon.webm"></video></article>
+                <article class="art"><video src="img/spine-debugdog.mp4"></video></article>
+                <article class="art"><img src="img/spine-runloop.gif"></article>
+                <article class="art"><video src="img/spine-clip.mp4"></video></article>
             </div>
 
             
@@ -431,32 +467,43 @@
         <section>
             <h2><a id="misc" href=#misc>#</a>assorted</h2>
             <div class="cards">
+                <article><img src="img/boneguy.gif"></article>
+                <article class="art centered"><video src="img/ROBOTR.mp4"></video></article>
+                <article class="art"><img src="img/spiderbot.gif"></article>
+                <article class="art"><img src="img/nxrig.gif"></article>
+                <article class="art"><img src="img/TEETH.gif"></article>
+                <article class="art"><video src="img/kot.webm"></video></article>
+                <article class="art centered"><img src="img/yumyumyumyumyum.gif"></article>
+                <article class="art"><img src="img/die.gif"></article>
+                <article class="art"><img src="img/roborun.gif"></article>
+
+
                 <article class="art"><img src="img/windowjumpscare.gif"></article>
                 <article class="art"><img src="img/room.png"></article>
 
                 <article class="listing" data-bluesky-src="at://did:plc:ee5pxx436s7areoj4epw3voj/app.bsky.feed.post/3lwody74vq22c"></article>                
-                <article class="listing" data-bluesky-src="at://did:plc:ee5pxx436s7areoj4epw3voj/app.bsky.feed.post/3lwoe2qujwc2c"></article>                
                 <article class="listing" data-bluesky-src="at://did:plc:ee5pxx436s7areoj4epw3voj/app.bsky.feed.post/3lv57id2v7k2p"></article>                
 
                 <article class="listing" data-bluesky-src="at://did:plc:ee5pxx436s7areoj4epw3voj/app.bsky.feed.post/3lv6jweqv3k2n"></article>                
                 <article class="art"><img src="img/boot.png"></article>
 
-                               
+                <article class="art centered"><img src="img/hom.gif"></article>
+                <article class="art"><img src="img/bob.png"></article>
+
                 <article class="listing" data-bluesky-src="at://did:plc:ee5pxx436s7areoj4epw3voj/app.bsky.feed.post/3ls3mtcxigc24"></article>                
                 <article class="listing" data-bluesky-src="at://did:plc:ee5pxx436s7areoj4epw3voj/app.bsky.feed.post/3ls4chxyxb224"></article>                
-                <article class="art centered"><img src="img/bomb.gif"></article>
+                <article class="centered"><img src="img/bomb.gif"></article>
 
-                <article class="art" data-bluesky-src="at://did:plc:ee5pxx436s7areoj4epw3voj/app.bsky.feed.post/3lrpxg6kbtk25"></article>                
                 <article class="art centered"><img src="img/V.png"></article>
                 <article class="art"><img src="img/trashfox.png"></article>
-                <article class="art" data-bluesky-src="at://did:plc:ee5pxx436s7areoj4epw3voj/app.bsky.feed.post/3lrpxfcmn5s25"></article>                
-                <article class="listing" data-bluesky-src="at://did:plc:ee5pxx436s7areoj4epw3voj/app.bsky.feed.post/3lrpxep3tyk25"></article>                
                 <article class="listing" data-bluesky-src="at://did:plc:ee5pxx436s7areoj4epw3voj/app.bsky.feed.post/3lrpxdwhjgk25"></article>                
                 <article class="art"><img src="img/harper.webp"></article>
                 <article class="art"><img src="img/foxspinnyHD.gif"></article>
                 <article class="listing" data-bluesky-src="at://did:plc:ee5pxx436s7areoj4epw3voj/app.bsky.feed.post/3lrpxdf2p3225"></article>                
-                <article class="listing" data-bluesky-src="at://did:plc:ee5pxx436s7areoj4epw3voj/app.bsky.feed.post/3lrpxcvgde225"></article>                
-                <article class="listing"><img src="img/donate.png"></article>
+
+                <article class="art"><img src="img/roblox.png"></article>
+                <article><img src="img/donate.png"></article>
+
 
             </div>
 
@@ -465,6 +512,17 @@
         <section>
             <h2><a id="changelog" href=#changelog>#</a>changelog</h2>
             <div class="cards">
+                <article class="listing">
+                    <h3>1.2.0</h3>
+                    <ul>
+                        <li>add tons more stuff</li>
+                        <li>fix logos (roborb/reptilian/haunted/rockets/debugdog)</li>
+                        <li>fix icons (unreal/spine/roblox/luau/typescript)</li>
+                        <li>convert a bunch of videos to gifs or webms</li>
+                        <li>layout improvements</li>
+                    </ul>
+                    <time>30<sup>th</sup> August 2025</time>
+                </article>
                 <article class="listing">
                     <h3>1.1.0</h3>
                     <ul>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generator: Adobe Illustrator 27.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+
+<svg
+   version="1.1"
+   viewBox="365.51 0 200 200"
+   id="svg6"
+   sodipodi:docname="spine-icon.svg"
+   width="200"
+   height="200"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs6" />
+  <sodipodi:namedview
+     id="namedview6"
+     pagecolor="#505050"
+     bordercolor="#ffffff"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="1"
+     inkscape:deskcolor="#505050" />
+  <style
+     type="text/css"
+     id="style1">
+.st0 { 
+    fill:#222222;
+}
+	.st1{fill:#FF4000;}
+</style>
+  <g
+     id="Layer_2"
+     transform="translate(-10.18,-182.51)"
+     inkscape:label="background">
+    <g
+       id="g2">
+      <path
+         class="st0"
+         d="m 575.69,365.51 c 0,9.35 -7.65,17 -17,17 h -166 c -9.35,0 -17,-7.65 -17,-17 v -166 c 0,-9.35 7.65,-17 17,-17 h 166 c 9.35,0 17,7.65 17,17 z"
+         id="path1" />
+      <path
+         class="st0"
+         d="m 575.69,365.51 c 0,9.35 -7.65,17 -17,17 h -166 c -9.35,0 -17,-7.65 -17,-17 v -166 c 0,-9.35 7.65,-17 17,-17 h 166 c 9.35,0 17,7.65 17,17 z"
+         id="path2" />
+    </g>
+  </g>
+  <g
+     id="Spine_Logo"
+     transform="translate(-10.18,-182.51)"
+     inkscape:label="logo">
+    <g
+       id="i">
+      <path
+         class="st1"
+         d="m 436.41,211.16 c 0.48,14.6 10.59,22.71 30.75,25.86 17.08,2.68 32.49,1.32 37.52,-13.32 9.8,-28.54 -13.46,-21.44 -33.61,-24.61 -20.16,-3.17 -35.43,-11.39 -34.66,12.07 z"
+         id="path3" />
+      <path
+         class="st1"
+         d="m 442.47,271.12 c 1.87,10.9 12.03,17.15 27.58,16.73 15.55,-0.43 27.15,-6.5 28.76,-18.26 2.98,-21.77 -14.17,-13.35 -29.72,-12.93 -15.56,0.43 -30.31,-6.93 -26.62,14.46 z"
+         id="path4" />
+      <path
+         class="st1"
+         d="m 462.7,321.03 c 3.09,8.14 11.56,11.58 23.01,9.13 11.44,-2.44 19.35,-6.23 18.71,-15.51 -1.16,-17.17 -12.47,-11.77 -23.91,-9.32 -11.45,2.43 -23.84,-0.28 -17.81,15.7 z"
+         id="path5" />
+      <path
+         class="st1"
+         d="m 472.52,359.07 c 0.9,6.87 6.84,10.92 16.14,10.85 9.32,-0.08 16.37,-3.75 17.57,-11.11 2.24,-13.63 -8.18,-8.56 -17.49,-8.48 -9.32,0.07 -17.99,-4.74 -16.22,8.74 z"
+         id="path6" />
+    </g>
+  </g>
+</svg>
