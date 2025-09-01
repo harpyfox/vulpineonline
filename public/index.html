@@ -1,35 +1,702 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-        <meta name="application-name" content="VULPINE ONLINE" lang="en">
-        <meta name="description" content="Harper's portfolio website, with samples of animation, rigging, shaders, and more. Updated regularly!">
-        <meta name="author" content="harper.iro@gmail.com" lang="en">
 
-        <meta property="og:url" content="https://www.vulpineonline.com/">
-        <meta property="og:type" content="website">
-        <meta property="og:title" content="VULPINE ONLINE">
-        <meta property="og:description" content="Harper's portfolio website, with samples of animation, rigging, shaders, and more. Updated regularly!">
-        <meta property="og:image" content="img/thumbnail.png">
-        <meta property="twitter:site" content="@harpyfox">
-        
-        <meta http-equiv="refresh" content="0;url=https://www.vulpineonline.com/portfolio/"/>
-        
-        <title>VULPINE ONLINE</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, viewport-fit=cover">
+    <meta name="color-scheme content="light dark">
 
-        <!-- 
-        <link href="style.css" rel="stylesheet" type="text/css" media="all">
-        <link href="frame.css" rel="stylesheet" type="text/css" media="all">
-        <link href="mobile.css" rel="stylesheet" type="text/css" media="(max-width: 960px)"> 
-        <link rel="icon" href="img/fav32.gif" type="image/gif">
-        -->
-        
-    </head> 
+    <link rel="preconnect" href="https://public.api.bsky.app" crossorigin="anonymous">
+    <link rel="preconnect" href="https://video.bsky.app" crossorigin="anonymous">
+    <link rel="preconnect" href="https://video.cdn.bsky.app" crossorigin="anonymous">
+    <link rel="preconnect" href="https://cdn.bsky.app" crossorigin="anonymous">
+    <link rel="preload" href="reset.css" as="style">
+    <link rel="preload" href="style.css" as="style">
 
-    <body>
-        <p>portfolio time!</p>
-    </body>
+    <title>Harper Fox</title>
+    <meta name="author" content="Harper Fox (harper.iro@gmail.com)">
+    <meta name="application-name" content="VULPINE ONLINE">
+    <meta name="description" content="Harper's personal website and portfolio">
+    <meta name="theme-color" content="#ffa500">
+    <!-- <meta name="generator" content="100% home grown baby"> -->
+    <meta name="GENERATOR" content="IBM HomePage Builder 2001 V5.0.0 for Windows"> <!-- lol -->
+
+    <link rel="canonical" href="https://www.vulpineonline.com/portfolio">
+    <link rel="icon" href="favicon.ico" type="image/png" sizes="50x50">
+    <link rel="apple-touch-icon" href="favicon.ico" type="image/png" sizes="50x50">
+
+    <link rel="stylesheet" href="reset.css" type="text/css">
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <!-- <link rel="stylesheet" href="vertical.css" type="text/css" title="Vertical Layout"> -->
+    <!-- <link rel="alternate stylesheet" href="horizontal.css" type="text/css" title="Horizontal Layout"> -->
+
+    <meta name="og:title" content="VULPINE ONLINE">
+    <meta name="og:description" content="Harper's personal website and portfolio">
+    <meta name="og:image" content="https://www.vulpineonline.com/thumbnail.png">
+    <meta name="og:url" content="https://www.vulpineonline.com">
+    <meta name="og:site_name" content="VULPINE ONLINE">
+    <meta name="og:type" content="website">
+
+    <meta name="twitter:title" content="VULPINE ONLINE">
+    <meta name="twitter:description" content="Harper's personal website and portfolio">
+    <meta name="twitter:image" content="https://www.vulpineonline.com/thumbnail.png">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@harpyfox">
+    <meta name="twitter:creator" content="@harpyfox">
+    <meta name="twitter:domain" content="vulpineonline.com">
+    <meta name="twitter:url" content="https://www.vulpineonline.com">
+
+    <script type="module" src="main.js"></script>
+
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org/",
+            "@type": "Person",
+            "@id": "https://www.vulpineonline.com/#HarperFox",
+            "name": "Harper Fox",
+            "email": "harper.iro@gmail.com",
+            "telephone": "email me for that.",
+            "description": "Harper Fox is an Australian animator and video game developer based in Melbourne, Australia.",
+        }
+    </script>
+
+</head>
+
+<body>
+    <noscript>
+        <p>javascript is disabled. honestly i don't blame you. fancy stuff won't work though.</p>
+    </noscript>
+
+    <figure id="viewer" onclick="this.style.display = 'none'">
+        <img src="img/pollo-foxypot.png">
+        <video controls="true" style="display:none"></video>
+        <figcaption>Caption</figcaption>
+    </figure>
+    <script type="module">
+        const viewer = document.getElementById('viewer');
+        const viewerImage = viewer.querySelector("img");
+        const viewerVideo = viewer.querySelector("video");
+        const viewerCaption = viewer.querySelector('figcaption');
+        viewer.style.display = "none";
+            // THIS IS FUCKIN STUPID
+        const imageElements = document.querySelectorAll('article > img');
+        for (const image of imageElements) { addViewerListener(image); }
+        const videoElements = document.querySelectorAll('article > video');
+        for (const video of videoElements) { addViewerListener(video); }
+        const figureElements = document.querySelectorAll('article > figure');
+        for (const figure of figureElements) {addViewerListener(figure); }
+
+        function addViewerListener(element) {
+            element.onclick = (event) => showViewer(element, event);
+            element.style.cursor = 'zoom-in';
+        }
+
+        function showViewer(element, ev) {
+            console.log(`showViewer: ${element?.tagName}`, element);
+            viewer.style.display = "flex";
+            viewerImage.style.display = 'none';
+            viewerVideo.style.display = 'none';
+            viewerCaption.innerText = element.src;
+
+            if (element == null) return;
+
+            if (element.tagName == 'FIGURE') {
+                setSrc(element.querySelector('img, video'));
+                viewerCaption.innerText = element.querySelector('figcaption').innerText;
+            } else {
+                setSrc(element);
+            }
+
+            function setSrc(media) {
+                if (media.tagName == 'IMG') {
+                    viewerImage.src = media.src;
+                    viewerImage.style.display = 'block';
+                    return;
+                }
+
+                if (media.tagName == 'VIDEO') {
+                    viewerVideo.src = media.src;
+                    viewerVideo.style.display = 'block';
+                    return;
+                }
+            }
+            
+        }
+    </script>
+    
+
+    <header onclick="document.body.scrollTop = document.documentElement.scrollTop = 0;" style="cursor: pointer;">
+        <h1>harper fox<img class="icon32" src="img/butterfly.gif" style="display: inline; vertical-align: middle;"></h1>
+        <p style="position: absolute; right: 8px; top: 8px;">return to top</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li>
+                <img class="favicon" src="img/email-favicon.ico">
+                <a href="mailto:harper.iro@gmail.com">Email</a>
+            </li>
+            <li>
+                <img class="favicon" src="img/bluesky-favicon.png">
+                <a href="https://bsky.app/profile/harpyfox.net" target="_blank" rel="noreferrer">Bluesky</a>
+            </li>
+            <li>
+                <img class="favicon" src="img/linkedin-favicon.ico">
+                <a href="https://www.linkedin.com/in/vulpineonline/" target="_blank" rel="noreferrer">LinkedIn</a>
+            </li>
+            <li>
+                <img class="favicon" src="img/github-favicon.ico" style="filter: invert()">
+                <a href="https://github.com/harpyfox" target="_blank" rel="noreferrer">GitHub</a>
+            </li>
+            <li>
+                <img class="favicon" src="img/twitter-favicon.svg">
+                <a href="https://x.com/harpyfox" target="_blank" rel="noreferrer">Twitter</a>
+            </li>
+            <li>
+                <img class="favicon" src="img/neocities-favicon.ico">
+                <a href="https://tinyfox.neocities.org/" target="_blank" rel="noreferrer">Neocities</a>
+            </li>
+            <!-- <li>
+                <img class="favicon" src="favicon.ico">
+                <a href="">Resume</a>
+            </li> -->
+            <li>
+                <img class="favicon" src="img/itch-favicon.ico" type="image/x-icon">
+                <a href="https://harpyfox.itch.io/" target="_blank" rel="noreferrer">itch.io</a>
+            </li>
+            <style>
+                .xpstart {
+                    pointer-events: none; 
+                    height: 35px; 
+                    padding: 2px 8px 4px 8px; 
+                    background-color: #48ac47; 
+                    box-shadow: 3px 5px 4px -1px #8abb8a inset, -4px -3px 4px 0px #287828 inset;
+                    border: 1px #287828 solid; 
+                    border-radius: 4px 10px 10px 4px / 4px 30px 30px 4px;
+                    img {
+                        width: 22px; 
+                        height: 20px; 
+                        filter: drop-shadow(1px 2px 1px #00000069);
+                    }
+                    span {
+                        color: white; 
+                        vertical-align: middle; 
+                        font-size: 1.1em; 
+                        font-weight: bold; 
+                        font-style: italic; 
+                        text-shadow: 0px 1px 4px #000000;
+                    }
+                }
+            </style>
+            <li class="xpstart">
+                <img class="favicon" src="img/windowsxp.ico">
+                <span>start</span>
+            </li>
+            <script>
+                function playAll() {
+                    for (const video of document.querySelectorAll('video')) { video.autoplay = true; video.play(); }
+                }
+                function pauseAll() {
+                    for (const video of document.querySelectorAll('video')) { video.autoplay = false; video.pause(); }
+                }
+            </script>
+            <li style="display: contents">
+                <button onclick=playAll()>PLAY ALL</button>
+            </li>
+            <li style="display: contents">
+                <button onclick=pauseAll()>PAUSE ALL</button>
+            </li>
+        </ul>
+    </nav>
+    
+    <main>
+        
+        
+        <section>
+            <h2><a id="projects" href=#projects>#</a>projects</h2>
+            
+            <div class="cards" style="background-color: light-dark(#727df8,#060435);">
+                <article class="squircle centered" style="background-image: url('img/pollo-background.png');"><h3 class="logo"><img src="img/pollo-logo.png" alt="Pollo 13: Space Race"></h3></article>
+                <article class="table">
+                    <h4 class="vertical">Role</h4>
+                    <ul>
+                        <li>Lead Animator</li>
+                        <li>Technical Artist</li>
+                        <li>Programmer</li>
+                    </ul>
+                    <h4 class="vertical">Desc</h4>
+                    <p>Commissioned project for Google's Fitbit Ace LTE smartwatch</p>
+                    <h4 class="vertical">Tool</h4>
+                    <ul class="horizontal">
+                        <style>
+                            path {
+                                fill: red;
+                            }
+                        </style>
+                        <li><img class="icon32" src="img/unity-icon.svg" alt="Unity Engine" role="img"></li>
+                        <li><img class="icon32" src="img/blender-icon.svg" alt="Blender" role="img"></li>
+                    </ul>
+                </article>
+                <article class="art squircle"><video src="img/pollo-showcase.mp4"></video></article>
+                <article class="art squircle"><video src="img/pollo-chickenselect.mp4"></video></article>
+                <article class="art squircle"><video src="img/pollo-anims.webm"></video></article>
+                <article class="art squircle"><video src="img/pollo-blendtree.webm"></video></article>
+                <article class="art squircle"><img src="img/pollo-tubbe.gif"></article>
+                <article class="art squircle"><video src="img/pollo-tub.mp4"></video></article>
+                <article class="art squircle"><video src="img/pollo-foxytut.mp4"></video></article>
+                <article class="art squircle"><img src="img/pollo-foxypot.png"></article>
+                <article class="art squircle"><video src="img/pollo-dither.webm"></video></article>
+                <article class="art squircle"><video src="img/pollo-ship.mp4"></video></article>
+                <article class="art squircle"><img src="img/pollo-foxyalert.gif"></article>
+                <article class="art squircle"><video src="img/pollo-liftoff.webm"></video></article>
+                <article class="listing"><p>[TODO] get more footage of actual racing</p></article>
+            </div>
+
+            <div class="cards" style="background-color: light-dark(#a2dff0, #0a4160);">
+                <article class="centered">
+                    <h3 class="logo"><img src="img/hsalpha-logo.png" alt="HS_ALPHA"></h3>
+                </article>
+                <article class="table">
+                    <h4 class="vertical">Role</h4>
+                    <ul>
+                        <li>Solo</li>
+                    </ul>
+                    <h4 class="vertical">Desc</h4>
+                    <p>Vertical slice third person hack-n-slash</p>
+                    <h4 class="vertical">Tool</h4>
+                    <ul class="horizontal">
+                        <li><img class="icon32" src="img/unity-icon.svg" alt="Unity Engine" role="img"></li>
+                        <li><img class="icon32" src="img/blender-icon.svg" alt="Blender" role="img"></li>
+                    </ul>
+                </article>
+                <article class="art"><video src="img/hsalpha-animshowcase.mp4"></video></article>
+                <article class="art"><video src="img/hsalpha-sprintlean.mp4"></video></article>
+                <article class="art"><video src="img/hsalpha-gameplay.mp4"></video></article>
+                <article class="art"><img src="img/hsalpha-groundattacks.gif"></article>
+                <article class="art"><video src="img/hsalpha-walljump.mp4"></video></article>
+                <article class="art"><img src="img/hsalpha-dead.gif"></article>
+                <article class="centered"><img src="img/hsalpha-hp.gif"></article>
+                <article class="art"><img src="img/hsalpha-jogloop.gif"></article>
+                <article class="art"><img src="img/hsalpha-sprintloop.gif"></article>
+                <article class="art"><img src="img/hsalpha-sprintkick.gif"></article>
+                <article class="art"><img src="img/hsalpha-ui.png"></article>
+                <article class="art"><img src="img/hsalpha-brackeys.png"></article>
+                <article class="art"><img src="img/hsalpha-bodyfront.png"></article>
+                <article class="art"><img src="img/hsalpha-bodyback.png"></article>
+                <article class="art"><img src="img/hsalpha-basketball.png"></article>
+
+            </div>
+
+            <div class="cards" style="background-color: light-dark(#f0cdbd, #361637); position: relative;">
+                <article class="squircle centered" style="background-image: url('img/witch-background.png');">
+                    <h3 class="logo"><img src="img/witch-logo.png" alt="Witch Academy"></h3>
+                </article>
+                <article class="table">
+                    <h4 class="vertical">Role</h4>
+                    <ul>
+                        <li>Technical Artist</li>
+                        <li>VFX Artist</li>
+                        <li>Programmer</li>
+                    </ul>
+                    <h4 class="vertical">Desc</h4>
+                    <p>Commissioned project for Google's Fitbit Ace LTE smartwatch</p>
+                    <h4 class="vertical">Tool</h4>
+                    <ul class="horizontal">
+                        <li><img class="icon32" src="img/unity-icon.svg" alt="Unity Engine" role="img"></li>
+                        <li><img class="icon32" src="img/blender-icon.svg" alt="Blender" role="img"></li>
+                    </ul>
+                </article>
+                <article class="squircle"><video class="cover" src="img/witch-grimoire.webm"></video></article>
+
+                <article class="square">
+                    <figure class="square">
+                        <video class="squircle cover" src="img/witch-palettes.webm" style="object-position: top;"></video>
+                        <figcaption>runtime vector sprite recolouring</figcaption>
+                    </figure>
+                </article>
+                <article class="squircle"><img class="cover" src="img/witch-biomes.gif"></article>
+
+                <article class="square">
+                    <figure class="square">
+                        <img class="squircle cover" src="img/witch-ambermeadows.gif">
+                        <figcaption>dynamic weather effects</figcaption>
+                    </figure>
+                </article>
+                <article class="squircle"><video class="cover" src="img/witch-door.webm"></video></article>
+                
+                <article class="square"><img class="contain" src="img/witch-portraitsystem.png"></article>
+                <article class="squircle"><video class="cover" src="img/witch-portraitvid.webm"></video></article>
+                <article class="squircle"><img class="cover" src="img/witch-dialogue.png"></article>
+
+                <article class="square">
+                    <figure class="square">
+                        <img class="squircle cover" src="img/witch-pann.gif">
+                        <figcaption>character portrait effects</figcaption>
+                    </figure>
+                </article>
+                <article class="square"><img class="contain" src="img/witch-portraitfx.png"></article>
+
+                <article class="square">
+                    <figure class="square">
+                        <img class="squircle cover" src="img/witch-repair.gif">
+                        <figcaption>spell VFX: Repair</figcaption>
+                    </figure>
+                </article>
+                <article class="square">
+                    <figure class="square">
+                        <img class="squircle cover" src="img/witch-growshrink.gif">
+                        <figcaption>spell VFX: Grow/Shrink</figcaption>
+                    </figure>
+                </article>
+                <article class="square">
+                    <figure class="square">
+                        <img class="squircle cover" src="img/witch-translate.gif">
+                        <figcaption>spell VFX: Translate</figcaption>
+                    </figure>
+                </article>
+
+                <article class="square"><img class="contain" src="img/witch-gameflows.png"></article>
+                <article class="square"><img class="contain" src="img/witch-wakeuppann.png"></article>
+
+
+            </div>
+
+            <div class="cards" style="background-color: light-dark(#f0cdbd, #302849);">
+                <article class="squircle centered" style="background-image: url('img/kaiju-background.png');">
+                    <h3 class="logo"><img src="img/kaiju-logo.png" alt="Kaiju Golf"></h3>
+                </article>
+                <article class="table">
+                    <h4 class="vertical">Role</h4>
+                    <ul>
+                        <li>Animator</li>
+                        <li>Technical Artist</li>
+                        <li>Programmer</li>
+                    </ul>
+                    <h4 class="vertical">Desc</h4>
+                    <p>Commissioned project for Google's Fitbit Ace LTE smartwatch</p>
+                    <h4 class="vertical">Tool</h4>
+                    <ul class="horizontal">
+                        <li><img class="icon32" src="img/unity-icon.svg" alt="Unity Engine" role="img"></li>
+                        <li><img class="icon32" src="img/blender-icon.svg" alt="Blender" role="img"></li>
+                        <li><img class="icon32" src="img/maya-icon.svg" alt="Autodesk Maya" role="img"></li>
+                    </ul>
+                </article>
+                <article class="art squircle"><video src="img/kaiju-showcase.mp4"></article>
+                <article class="listing"><p>[TODO] more footage than a single lonely video</p></article>
+            </div>
+
+            <div class="cards" style="background-color: light-dark(#b06362, #652e31);">
+                <article class="centered">
+                    <h3 class="logo"><img src="img/roborb-logo.png" alt="Roborb's Robortdeal"></h3>
+                </article>
+                <article class="table">
+                    <h4 class="vertical">Role</h4>
+                    <ul>
+                        <li>3D Artist</li>
+                    </ul>
+                    <h4 class="vertical">Desc</h4>
+                    <p>3 days. 4 timezones. 1 dream. <small>0 name ideas.</small></p>
+                    <h4 class="vertical">Tool</h4>
+                    <ul class="horizontal">
+                        <li><img class="icon32" src="img/godot-icon.svg" alt="Godot Game Engine" role="img"></li>
+                        <li><img class="icon32" src="img/blender-icon.svg" alt="Blender" role="img"></li>
+                    </ul>
+                </article>
+                <article class="art"><img src="img/roborb-1.jpg"></article>
+                <article class="art"><img src="img/roborb-2.jpg"></article>
+                <article class="art"><img src="img/roborb-environment.png"></article>
+                <article class="art"><img src="img/roborb-ground.png"></article>
+                <article class="art"><img src="img/roborb-trash.png"></article>
+                <article class="centered"><img src="img/roborb-forcepush.png"></article>
+
+            </div>
+
+            <div class="cards" style="background-color: light-dark(#fefe89, #2a201f);">
+                <article class="centered">
+                    <h3 class="logo"><img src="img/haunted-logo.png" alt="Haunted Holdout"></h3>
+                </article>
+                <article class="table">
+                    <h4 class="vertical">Role</h4>
+                    <ul>
+                        <li>Solo</li>
+                    </ul>
+                    <h4 class="vertical">Desc</h4>
+                    <p>3-day Game Jam with topic "vision"</p>
+                    <h4 class="vertical">Tool</h4>
+                    <ul class="horizontal">
+                        <li><img class="icon32" src="img/unity-icon.svg" alt="Unity Engine" role="img"></li>
+                        <li><img class="icon32" src="img/blender-icon.svg" alt="Blender" role="img"></li>
+                        <li><img class="icon32" src="img/cooltext-icon.png" alt="COOL TEXT DOT COM"></li>
+                    </ul>
+                </article>
+                <article class="art"><img src="img/haunted-background.png"></article>
+                <article class="art wide"><img src="img/haunted-1.jpg"></article>
+                <article class="art"><img src="img/haunted-characters.jpg"></article>
+                <article class="art"><img src="img/haunted-anims.gif"></article>
+                <article class="art"><video src="img/haunted-gameplay.mp4"></video></article>
+
+                <article class="centered">
+                    <a class="external" href="https://harpyfox.itch.io/haunted-holdout" target="_blank" rel="noreferrer">
+                        <img class="icon96" src="img/haunted-icon.png">
+                        <h4>Haunted Holdout</h4>
+                        <p>on itch.io</p>
+                    </a>
+                </article>
+            </div>
+
+            <div class="cards" style="background-color: light-dark(#bcbcbc, #0f0136);">
+                <article class="centered">
+                    <h3 class="logo"><img src="img/reptilian-logo.jpg" alt="Reptilian Rising"></h3>
+                </article>
+                <article class="table">
+                    <h4 class="vertical">Role</h4>
+                    <ul>
+                        <li>Technical Artist</li>
+                        <li>UX Designer</li>
+                    </ul>
+                    <h4 class="vertical">Desc</h4>
+                    <p>Tabletop-down strategy game</p>
+                    <h4 class="vertical">Tool</h4>
+                    <ul class="horizontal">
+                        <li><img src="img/unity-icon.svg" alt="Unity Engine" role="img" height="32px"></li>
+                    </ul>
+                </article>
+                <article class="art"><img src="img/reptilian-map.png"></article>
+                <article class="centered">
+                    <blockquote cite="">
+                        <p>this codebase is a trauma scene</p>
+                    </blockquote>
+                    <p>- [REDACTED], <cite>Slack</cite></p>
+                </article>
+                <article class="listing centered"><p style="line-height: 1;"><small >[TODO] i want to show more but the game hasn't released and since our final delivery milestone the steam page has actually removed screenshots so i don't know if i can even show them. welp</small></p></article>
+                <article class="centered">
+                    <a class="external" href="https://store.steampowered.com/app/1625460/Reptilian_Rising/" target="_blank" rel="noreferrer">
+                        <img class="icon96" src="img/steam-favicon.ico">
+                        <h4>Reptilian Rising</h4>
+                        <p>on Steam</p>
+                        <small style="position: absolute; background-color: #000; transform: rotate(10deg); width: 20ch;">we were NOT involved with the trailer.</small>
+                    </a>
+                </article>
+
+            </div>
+
+            <div class="cards" style="background-color: light-dark(#bcbcbc, #6e1547);">
+                <article class="centered">
+                    <h3 class="logo"><img src="img/rockets-logo.png" alt="Math Rockets"></h3>
+                </article>
+                <article class="table">
+                    <h4 class="vertical">Role</h4>
+                    <ul>
+                        <li>3D & VFX Artist</li>
+                        <li>Programmer</li>
+                    </ul>
+                    <h4 class="vertical">Desc</h4>
+                    <p>Capture-the-flag competition with a mathematics twist</p>
+                    <h4 class="vertical">Tool</h4>
+                    <ul class="horizontal">
+                        <li><img class="icon32" src="img/roblox-icon.svg" alt="Roblox Engine" role="img"></li>
+                        <li><img class="icon32" src="img/luau-icon.png" alt="Luau" role="img"></li>
+                        <li><img class="icon32" src="img/typescript-icon.svg" alt="TypeScript" role="img"></li>
+                    </ul>
+                </article>
+                <article class="art"><img src="img/rockets-1.png"></article>
+                <article class="art"><img src="img/rockets-2.png"></article>
+                <article class="centered"><img src="img/roblox-spectacular.png"></article>
+
+            
+                <article class="centered">
+                    <a class="external" href="https://www.roblox.com/games/93946346542137/Math-Rockets" target="_blank" rel="noreferrer">
+                        <img class="icon96" src="img/roblox-favicon.png">
+                        <h4>Math Rockets</h4>
+                        <p>on Roblox</p>
+                    </a>
+                </article>
+            </div>
+
+            <div class="cards" style="background-color: light-dark(#bcbcbc, #353535);">
+                <article class="centered">
+                    <h3 class="logo"><img src="img/debugdog-logo.gif" alt="Untitled Project"></h3>
+                </article>
+                <article class="table">
+                    <h4 class="vertical">Role</h4>
+                    <ul>
+                        <li>Solo</li>
+                    </ul>
+                    <h4 class="vertical">Desc</h4>
+                    <p>Top-down testing ground to practice new tools</p>
+                    <h4 class="vertical">Tool</h4>
+                    <ul class="horizontal">
+                        <li><img class="icon32" src="img/unreal-icon.svg" alt="Unreal Engine" role="img"></li>
+                        <li><img class="icon32" src="img/spine-icon.svg" alt="Spine 2D" role="img"></li>
+                    </ul>
+                </article>
+                <article class="art"><video src="img/spine-cannon.webm"></video></article>
+                <article class="art"><video src="img/spine-debugdog.mp4"></video></article>
+                <article class="art"><img src="img/spine-runloop.gif"></article>
+                <article class="art"><video src="img/spine-clip.mp4"></video></article>
+            </div>
+
+            
+        </section>
+
+        <section>
+            <h2><a id="demos" href=#demos>#</a>toys</h2>
+
+            <div class="cards">
+                <article class="listing">
+                    <a href="webgpu/samples/lab-ts/" target="_blank" rel="opener">
+                        <img src="img/webgpu.jpg">
+                        <h3>WebGPU Shader Editor</h3>
+                    </a>
+                    <p>shadertoy-like live shader editor built with WebGPU</p>
+                    <time>July 2025</time>
+                </article>
+
+                <article class="listing">
+                    <video src="img/autorender.mp4"></video>
+                    <p>blender script that separately renders a model's meshes from 8 cardinal directions. essentially a rudimentary
+                        blender-spine pipeline</p>
+                    <time>June 2025</time>
+                </article>
+
+                <article class="listing">
+                    <a href="https://tinyfox.neocities.org/" target="_blank" rel="noreferrer">
+                        <img src="img/neocities.png">
+                        <h3>tinyfox</h3>
+                    </a>
+                    <p>my neocities website with lots of fun animations and some WebGL experiments</p>
+                    <time>October 2022 - Present</time>
+                </article>
+
+                
+
+                
+            </div>
+
+        </section>
+
+        <section>
+            <h2><a id="misc" href=#misc>#</a>assorted</h2>
+            <div class="cards">
+                <article><img src="img/boneguy.gif"></article>
+                <article class="art centered"><video src="img/ROBOTR.mp4"></video></article>
+                <article class="art"><img src="img/spiderbot.gif"></article>
+                <article class="art"><img src="img/nxrig.gif"></article>
+                <article class="art"><img src="img/TEETH.gif"></article>
+                <article class="art"><video src="img/kot.webm"></video></article>
+                <article class="art centered"><img src="img/yumyumyumyumyum.gif"></article>
+                <article class="art"><img src="img/die.gif"></article>
+                <article class="art"><img src="img/roborun.gif"></article>
+
+
+                <article class="art"><img src="img/windowjumpscare.gif"></article>
+                <article class="art"><img src="img/room.png"></article>
+
+                <!-- <article class="listing" data-bluesky-src="at://did:plc:ee5pxx436s7areoj4epw3voj/app.bsky.feed.post/3lwody74vq22c"></article>                 -->
+                <!-- <article class="listing" data-bluesky-src="at://did:plc:ee5pxx436s7areoj4epw3voj/app.bsky.feed.post/3lv57id2v7k2p"></article>                 -->
+
+                <!-- <article class="listing" data-bluesky-src="at://did:plc:ee5pxx436s7areoj4epw3voj/app.bsky.feed.post/3lv6jweqv3k2n"></article>                 -->
+                <article class="art"><img src="img/boot.png"></article>
+
+                <article class="art centered"><img src="img/hom.gif"></article>
+                <article class="art"><img src="img/bob.png"></article>
+
+                <!-- <article class="listing" data-bluesky-src="at://did:plc:ee5pxx436s7areoj4epw3voj/app.bsky.feed.post/3ls3mtcxigc24"></article>                 -->
+                <!-- <article class="listing" data-bluesky-src="at://did:plc:ee5pxx436s7areoj4epw3voj/app.bsky.feed.post/3ls4chxyxb224"></article>                 -->
+                <article class="centered" style="background-color: white"><img src="img/bomb.gif"></article>
+
+                <article class="art centered"><img src="img/V.png"></article>
+                <article class="art"><img src="img/trashfox.png"></article>
+                <!-- <article class="listing" data-bluesky-src="at://did:plc:ee5pxx436s7areoj4epw3voj/app.bsky.feed.post/3lrpxdwhjgk25"></article>                 -->
+                <article class="art"><img src="img/harper.webp"></article>
+                <article class="art"><img src="img/foxspinnyHD.gif"></article>
+                <!-- <article class="listing" data-bluesky-src="at://did:plc:ee5pxx436s7areoj4epw3voj/app.bsky.feed.post/3lrpxdf2p3225"></article>                 -->
+
+                <article class="art"><img src="img/roblox.png"></article>
+                <article><img src="img/donate.png"></article>
+
+
+            </div>
+
+        </section>
+        
+        <section>
+            <h2><a id="changelog" href=#changelog>#</a>changelog</h2>
+            <div class="cards">
+                <article class="listing">
+                    <h3>1.3.1</h3>
+                    <ul>
+                        <li>PLAY ALL/PAUSE ALL buttons in navbar. i apologise to your CPU</li>
+                    </ul>
+                    <time>1<sup>st</sup> September 2025</time>
+                </article>
+                <article class="listing">
+                    <h3>1.3.0</h3>
+                    <ul>
+                        <li>add Witch Academy</li>
+                        <li>click/tap an entry to fullscreen it</li>
+                        <li>mobile will always be double-columned</li>
+                    </ul>
+                    <time>1<sup>st</sup> September 2025</time>
+                </article>
+                <article class="listing">
+                    <h3>1.2.0</h3>
+                    <ul>
+                        <li>add tons more stuff</li>
+                        <li>fix logos (roborb/reptilian/haunted/rockets/debugdog)</li>
+                        <li>fix icons (unreal/spine/roblox/luau/typescript)</li>
+                        <li>convert a bunch of videos to gifs or webms</li>
+                        <li>layout improvements</li>
+                    </ul>
+                    <time>30<sup>th</sup> August 2025</time>
+                </article>
+                <article class="listing">
+                    <h3>1.1.0</h3>
+                    <ul>
+                        <li>add WebGPU Shader Editor</li>
+                        <li>add tinyfox</li>
+                        <li>fix all links</li>
+                        <li>fix all favicons</li>
+                        <li>fix reptilian+rocket icons</li>
+                        <li>convert some videos to gif</li>
+                    </ul>
+                    <time>30<sup>th</sup> August 2025</time>
+                </article>
+                <article class="listing">
+                    <h3>1.0.0</h3>
+                    <p>initital releasde</p>
+                    <time>29<sup>th</sup> August 2025</time>
+                </article>
+
+            </div>
+
+        </section>
+        
+        
+        
+            
+
+        
+
+    </main>
+
+    <footer>
+        <p>
+            <a href="https://jigsaw.w3.org/css-validator/check/referer" target="_blank">
+                <img style="border:0;width:88px;height:31px" src="https://jigsaw.w3.org/css-validator/images/vcss.png"
+                    alt="Valid CSS!" />
+            </a>
+        </p>
+        <p>
+            <a href="https://validator.w3.org/" target="_blank" rel="noreferrer">
+                <img style="border:0;width:88px;height:31px" src="https://www.w3.org/Icons/valid-html40" alt="Valid HTML4!" />
+            </a>    
+        </p>
+
+    </footer>
+    
+
+    
+</body>
 
 </html>
