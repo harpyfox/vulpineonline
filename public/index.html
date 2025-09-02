@@ -7,10 +7,6 @@
     <meta name="color-scheme content="light dark">
     <meta name="google-site-verification" content="RnHxkxpiUsAAxgsNO88zdwJHdz0ujVAJyqluj6EG-p8" />
 
-    <link rel="preconnect" href="https://public.api.bsky.app" crossorigin="anonymous">
-    <link rel="preconnect" href="https://video.bsky.app" crossorigin="anonymous">
-    <link rel="preconnect" href="https://video.cdn.bsky.app" crossorigin="anonymous">
-    <link rel="preconnect" href="https://cdn.bsky.app" crossorigin="anonymous">
     <link rel="preload" href="reset.css" as="style">
     <link rel="preload" href="style.css" as="style">
 
@@ -61,68 +57,13 @@
 </head>
 
 <body>
-    <noscript>
-        <p>javascript is disabled. honestly i don't blame you. fancy stuff won't work though.</p>
-    </noscript>
-
+    
     <figure id="viewer" onclick="this.style.display = 'none'" style="display:'none'">
-        <img src="img/pollo-foxypot.png" style="display:'none'">
-        <video autoplay controls style="display:'none'"></video>
+        <img src="" style="display:'none'">
+        <video src="" autoplay controls style="display:'none'"></video>
         <figcaption>Caption</figcaption>
     </figure>
-    <script type="module">
-        const viewer = document.getElementById('viewer');
-        const viewerImage = viewer.querySelector("img");
-        const viewerVideo = viewer.querySelector("video");
-        const viewerCaption = viewer.querySelector('figcaption');
-        viewer.style.display = "none";
-            // THIS IS FUCKIN STUPID
-        const imageElements = document.querySelectorAll('article > img');
-        for (const image of imageElements) { addViewerListener(image); }
-        const videoElements = document.querySelectorAll('article > video');
-        for (const video of videoElements) { addViewerListener(video); }
-        const figureElements = document.querySelectorAll('article > figure');
-        for (const figure of figureElements) { addViewerListener(figure); }
-
-        function addViewerListener(element) {
-            element.onclick = (event) => showViewer(element, event);
-            element.style.cursor = 'zoom-in';
-        }
-
-        function showViewer(element, ev) {
-            console.log(`showViewer: ${element?.tagName}`, element);
-            viewer.style.display = "flex";
-            viewerImage.style.display = 'none';
-            viewerVideo.style.display = 'none';
-            viewerCaption.innerText = element.src;
-
-            if (element == null) return;
-
-            if (element.tagName == 'FIGURE') {
-                setSrc(element.querySelector('img, video'));
-                viewerCaption.innerText = element.querySelector('figcaption').innerText;
-            } else {
-                setSrc(element);
-            }
-
-            function setSrc(media) {
-                if (media.tagName == 'IMG') {
-                    viewerImage.src = media.src;
-                    viewerImage.style.display = 'block';
-                    return;
-                }
-
-                if (media.tagName == 'VIDEO') {
-                    viewerVideo.src = media.src;
-                    viewerVideo.style.display = 'block';
-                    return;
-                }
-            }
-            
-        }
-    </script>
     
-
     <header onclick="document.body.scrollTop = document.documentElement.scrollTop = 0;" style="cursor: pointer;">
         <h1>harper fox<img class="icon32" src="img/butterfly.gif" style="display: inline; vertical-align: middle;"></h1>
         <p style="position: absolute; right: 8px; top: 8px;">return to top</p>
@@ -208,7 +149,10 @@
     </nav>
     
     <main>
-        
+        <noscript>
+            javascript is disabled. honestly i don't blame you. fancy stuff won't work though.
+        </noscript>
+
         <section>
             <h2><a id="projects" href=#projects>#</a>projects</h2>
             
@@ -239,18 +183,18 @@
                             <li><img class="icon32" src="img/blender-icon.svg" alt="Blender" role="img"></li>
                         </ul>
                     </article>
-                    <article class="art squircle"><video src="img/pollo-showcase.mp4"></video></article>
-                    <article class="art squircle"><video src="img/pollo-chickenselect.mp4"></video></article>
-                    <article class="art squircle"><video src="img/pollo-anims.webm"></video></article>
-                    <article class="art squircle"><video src="img/pollo-blendtree.webm"></video></article>
-                    <article class="art squircle"><img src="img/pollo-tubbe.gif"></article>
-                    <article class="art squircle"><video src="img/pollo-tub.mp4"></video></article>
-                    <article class="art squircle"><video src="img/pollo-foxytut.mp4"></video></article>
-                    <article class="art squircle"><img src="img/pollo-foxypot.png"></article>
-                    <article class="art squircle"><video src="img/pollo-dither.webm"></video></article>
-                    <article class="art squircle"><video src="img/pollo-ship.mp4"></video></article>
-                    <article class="art squircle"><img src="img/pollo-foxyalert.gif"></article>
-                    <article class="art squircle"><video src="img/pollo-liftoff.webm"></video></article>
+                    <article class="art squircle"><video src="img/pollo-showcase.mp4" preload="none"></video></article>
+                    <article class="art squircle"><video src="img/pollo-chickenselect.mp4" preload="none"></video></article>
+                    <article class="art squircle"><video src="img/pollo-anims.webm" preload="none"></video></article>
+                    <article class="art squircle"><video src="img/pollo-blendtree.webm" preload="none"></video></article>
+                    <article class="art squircle"><img src="img/pollo-tubbe.gif" loading="lazy"></article>
+                    <article class="art squircle"><video src="img/pollo-tub.mp4" preload="none"></video></article>
+                    <article class="art squircle"><video src="img/pollo-foxytut.mp4" preload="none"></video></article>
+                    <article class="art squircle"><img src="img/pollo-foxypot.png" loading="lazy"></article>
+                    <article class="art squircle"><video src="img/pollo-dither.webm" preload="none"></video></article>
+                    <article class="art squircle"><video src="img/pollo-ship.mp4" preload="none"></video></article>
+                    <article class="art squircle"><img src="img/pollo-foxyalert.gif" loading="lazy"></article>
+                    <article class="art squircle"><video src="img/pollo-liftoff.webm" preload="none"></video></article>
                     <article class="listing"><p>[TODO] get more footage of actual racing</p></article>
                 </div>
             </details>
@@ -275,21 +219,21 @@
                             <li><img class="icon32" src="img/blender-icon.svg" alt="Blender" role="img"></li>
                         </ul>
                     </article>
-                    <article class="art"><video src="img/hsalpha-animshowcase.mp4"></video></article>
-                    <article class="art"><video src="img/hsalpha-sprintlean.mp4"></video></article>
-                    <article class="art"><video src="img/hsalpha-gameplay.mp4"></video></article>
-                    <article class="art"><img src="img/hsalpha-groundattacks.gif"></article>
-                    <article class="art"><video src="img/hsalpha-walljump.mp4"></video></article>
-                    <article class="art"><img src="img/hsalpha-dead.gif"></article>
-                    <article class="centered"><img src="img/hsalpha-hp.gif"></article>
-                    <article class="art"><img src="img/hsalpha-jogloop.gif"></article>
-                    <article class="art"><img src="img/hsalpha-sprintloop.gif"></article>
-                    <article class="art"><img src="img/hsalpha-sprintkick.gif"></article>
-                    <article class="art"><img src="img/hsalpha-ui.png"></article>
-                    <article class="art"><img src="img/hsalpha-brackeys.png"></article>
-                    <article class="art"><img src="img/hsalpha-bodyfront.png"></article>
-                    <article class="art"><img src="img/hsalpha-bodyback.png"></article>
-                    <article class="art"><img src="img/hsalpha-basketball.png"></article>
+                    <article class="art"><video src="img/hsalpha-animshowcase.mp4" preload="none"></video></article>
+                    <article class="art"><video src="img/hsalpha-sprintlean.mp4" preload="none"></video></article>
+                    <article class="art"><video src="img/hsalpha-gameplay.mp4" preload="none"></video></article>
+                    <article class="art"><img src="img/hsalpha-groundattacks.gif" loading="lazy"></article>
+                    <article class="art"><video src="img/hsalpha-walljump.mp4" preload="none"></video></article>
+                    <article class="art"><img src="img/hsalpha-dead.gif" loading="lazy"></article>
+                    <article class="centered"><img src="img/hsalpha-hp.gif" loading="lazy"></article>
+                    <article class="art"><img src="img/hsalpha-jogloop.gif" loading="lazy"></article>
+                    <article class="art"><img src="img/hsalpha-sprintloop.gif" loading="lazy"></article>
+                    <article class="art"><img src="img/hsalpha-sprintkick.gif" loading="lazy"></article>
+                    <article class="art"><img src="img/hsalpha-ui.png" loading="lazy"></article>
+                    <article class="art"><img src="img/hsalpha-brackeys.png" loading="lazy"></article>
+                    <article class="art"><img src="img/hsalpha-bodyfront.png" loading="lazy"></article>
+                    <article class="art"><img src="img/hsalpha-bodyback.png" loading="lazy"></article>
+                    <article class="art"><img src="img/hsalpha-basketball.png" loading="lazy"></article>
                 
                 </div>
             </details>
@@ -317,57 +261,57 @@
                             <li><img class="icon32" src="img/blender-icon.svg" alt="Blender" role="img"></li>
                         </ul>
                     </article>
-                    <article class="squircle"><video class="cover" src="img/witch-grimoire.webm"></video></article>
+                    <article class="squircle"><video class="cover" src="img/witch-grimoire.webm" preload="none"></video></article>
                 
                     <article class="square">
                         <figure class="square">
-                            <video class="squircle cover" src="img/witch-palettes.webm" style="object-position: top;"></video>
+                            <video class="squircle cover" src="img/witch-palettes.webm" preload="none" style="object-position: top;"></video>
                             <figcaption>runtime vector sprite recolouring</figcaption>
                         </figure>
                     </article>
-                    <article class="squircle"><img class="cover" src="img/witch-biomes.gif"></article>
+                    <article class="squircle"><img class="cover" src="img/witch-biomes.gif" loading="lazy"></article>
                 
                     <article class="square">
                         <figure class="square">
-                            <img class="squircle cover" src="img/witch-ambermeadows.gif">
+                            <img class="squircle cover" src="img/witch-ambermeadows.gif" loading="lazy">
                             <figcaption>dynamic weather effects</figcaption>
                         </figure>
                     </article>
-                    <article class="squircle"><video class="cover" src="img/witch-door.webm"></video></article>
+                    <article class="squircle"><video class="cover" src="img/witch-door.webm" preload="none"></video></article>
                 
-                    <article class="square"><img class="contain" src="img/witch-portraitsystem.png"></article>
-                    <article class="squircle"><video class="cover" src="img/witch-portraitvid.webm"></video></article>
-                    <article class="squircle"><img class="cover" src="img/witch-dialogue.png"></article>
+                    <article class="square"><img class="contain" src="img/witch-portraitsystem.png" loading="lazy"></article>
+                    <article class="squircle"><video class="cover" src="img/witch-portraitvid.webm" preload="none"></video></article>
+                    <article class="squircle"><img class="cover" src="img/witch-dialogue.png" loading="lazy"></article>
                 
                     <article class="square">
                         <figure class="square">
-                            <img class="squircle cover" src="img/witch-pann.gif">
+                            <img class="squircle cover" src="img/witch-pann.gif" loading="lazy">
                             <figcaption>character portrait effects</figcaption>
                         </figure>
                     </article>
-                    <article class="square"><img class="contain" src="img/witch-portraitfx.png"></article>
+                    <article class="square"><img class="contain" src="img/witch-portraitfx.png" loading="lazy"></article>
                 
                     <article class="square">
                         <figure class="square">
-                            <img class="squircle cover" src="img/witch-repair.gif">
+                            <img class="squircle cover" src="img/witch-repair.gif" loading="lazy">
                             <figcaption>spell VFX: Repair</figcaption>
                         </figure>
                     </article>
                     <article class="square">
                         <figure class="square">
-                            <img class="squircle cover" src="img/witch-growshrink.gif">
+                            <img class="squircle cover" src="img/witch-growshrink.gif" loading="lazy">
                             <figcaption>spell VFX: Grow/Shrink</figcaption>
                         </figure>
                     </article>
                     <article class="square">
                         <figure class="square">
-                            <img class="squircle cover" src="img/witch-translate.gif">
+                            <img class="squircle cover" src="img/witch-translate.gif" loading="lazy">
                             <figcaption>spell VFX: Translate</figcaption>
                         </figure>
                     </article>
                 
-                    <article class="square"><img class="contain" src="img/witch-gameflows.png"></article>
-                    <article class="square"><img class="contain" src="img/witch-wakeuppann.png"></article>
+                    <article class="square"><img class="contain" src="img/witch-gameflows.png" loading="lazy"></article>
+                    <article class="square"><img class="contain" src="img/witch-wakeuppann.png" loading="lazy"></article>
                 
                 
                     </div>
@@ -397,7 +341,7 @@
                             <li><img class="icon32" src="img/maya-icon.svg" alt="Autodesk Maya" role="img"></li>
                         </ul>
                     </article>
-                    <article class="art squircle"><video src="img/kaiju-showcase.mp4"></article>
+                    <article class="art squircle"><video src="img/kaiju-showcase.mp4" preload="none"></article>
                     <article class="listing">
                         <p>[TODO] more footage than a single lonely video</p>
                     </article>
@@ -427,11 +371,11 @@
                             <li><img class="icon32" src="img/cooltext-icon.png" alt="COOL TEXT DOT COM"></li>
                         </ul>
                     </article>
-                    <article class="art"><img src="img/haunted-background.png"></article>
-                    <article class="art wide"><img src="img/haunted-1.jpg"></article>
-                    <article class="art"><video src="img/haunted-gameplay.mp4"></video></article>
-                    <article><img class="contain" src="img/haunted-characters.jpg"></article>
-                    <article><video class="cover" src="img/haunted-anims.mp4"></video></article>
+                    <article class="art"><img src="img/haunted-background.png" loading="lazy"></article>
+                    <article class="art wide"><img src="img/haunted-1.jpg" loading="lazy"></article>
+                    <article class="art"><video src="img/haunted-gameplay.mp4" preload="none"></video></article>
+                    <article><img class="contain" src="img/haunted-characters.jpg" loading="lazy"></article>
+                    <article><video class="cover" src="img/haunted-anims.mp4" preload="none"></video></article>
                 
                     <article class="centered">
                         <a class="external" href="https://harpyfox.itch.io/haunted-holdout" target="_blank" rel="noreferrer">
@@ -463,12 +407,12 @@
                             <li><img class="icon32" src="img/blender-icon.svg" alt="Blender" role="img"></li>
                         </ul>
                     </article>
-                    <article class="art"><img src="img/roborb-1.jpg"></article>
-                    <article class="art"><img src="img/roborb-2.jpg"></article>
-                    <article class="art"><img src="img/roborb-environment.png"></article>
-                    <article class="art"><img src="img/roborb-ground.png"></article>
-                    <article class="art"><img src="img/roborb-trash.png"></article>
-                    <article class="centered"><img src="img/roborb-forcepush.png"></article>
+                    <article class="art"><img src="img/roborb-1.jpg" loading="lazy"></article>
+                    <article class="art"><img src="img/roborb-2.jpg" loading="lazy"></article>
+                    <article class="art"><img src="img/roborb-environment.png" loading="lazy"></article>
+                    <article class="art"><img src="img/roborb-ground.png" loading="lazy"></article>
+                    <article class="art"><img src="img/roborb-trash.png" loading="lazy"></article>
+                    <article class="centered"><img src="img/roborb-forcepush.png" loading="lazy"></article>
                 
                     </div>
             </details>
@@ -492,7 +436,7 @@
                             <li><img src="img/unity-icon.svg" alt="Unity Engine" role="img" height="32px"></li>
                         </ul>
                     </article>
-                    <article class="art"><img src="img/reptilian-map.png"></article>
+                    <article class="art"><img src="img/reptilian-map.png" loading="lazy"></article>
                     <!-- <article class="centered">
                         <blockquote cite="">
                             <p>this codebase is a trauma scene</p>
@@ -540,9 +484,9 @@
                             <li><img class="icon32" src="img/typescript-icon.svg" alt="TypeScript" role="img"></li>
                         </ul>
                     </article>
-                    <article class="art"><img src="img/rockets-1.png"></article>
-                    <article class="art"><img src="img/rockets-2.png"></article>
-                    <article class="centered"><img src="img/roblox-spectacular.png"></article>
+                    <article class="art"><img src="img/rockets-1.png" loading="lazy"></article>
+                    <article class="art"><img src="img/rockets-2.png" loading="lazy"></article>
+                    <article class="centered"><img src="img/roblox-spectacular.png" loading="lazy"></article>
                 
                 
                     <article class="centered">
@@ -576,10 +520,10 @@
                             <li><img class="icon32" src="img/spine-icon.svg" alt="Spine 2D" role="img"></li>
                         </ul>
                     </article>
-                    <article class="art"><video src="img/spine-cannonsmaller.webm"></video></article>
-                    <article class="art"><video src="img/spine-debugdog.mp4"></video></article>
-                    <article class="art"><img src="img/spine-runloop.gif"></article>
-                    <article class="art"><video src="img/spine-clip.mp4"></video></article>
+                    <article class="art"><video src="img/spine-cannonsmaller.webm" preload="none"></video></article>
+                    <article class="art"><video src="img/spine-debugdog.mp4" preload="none"></video></article>
+                    <article class="art"><img src="img/spine-runloop.gif" loading="lazy"></article>
+                    <article class="art"><video src="img/spine-clip.mp4" preload="none"></video></article>
                     </div>
             </details>
 
@@ -590,81 +534,48 @@
                     </h3>
                 </summary>
                 <div class="cards">
-                    <article><video class="contain" src="img/boneguy.webm"></video></article>
-                    <article class="art centered"><video src="img/ROBOTR.mp4"></video></article>
-                    <article class="art"><img src="img/spiderbot.gif"></article>
-                    <article class="art"><img src="img/nxrig.gif"></article>
-                    <article class="art"><img src="img/TEETH.gif"></article>
-                    <article class="art"><video src="img/kot.webm"></video></article>
-                    <article class="art centered"><img src="img/yumyumyumyumyum.gif"></article>
-                    <article class="art"><img src="img/die.gif"></article>
-                    <article class="art"><img src="img/roborun.gif"></article>
+                    <article><video class="contain" src="img/boneguy.webm" preload="none"></video></article>
+                    <article class="art centered"><video src="img/ROBOTR.mp4" preload="none"></video></article>
+                    <article class="art"><img src="img/spiderbot.gif" loading="lazy"></article>
+                    <article class="art"><img src="img/nxrig.gif" loading="lazy"></article>
+                    <article class="art"><img src="img/TEETH.gif" loading="lazy"></article>
+                    <article class="art"><video src="img/kot.webm" preload="none"></video></article>
+                    <article class="art centered"><img src="img/yumyumyumyumyum.gif" loading="lazy"></article>
+                    <article class="art"><img src="img/die.gif" loading="lazy"></article>
+                    <article class="art"><img src="img/roborun.gif" loading="lazy"></article>
     
     
-                    <article class="art"><img src="img/windowjumpscare.gif"></article>
-                    <article class="art"><img src="img/room.png"></article>
+                    <article class="art"><img src="img/windowjumpscare.gif" loading="lazy"></article>
+                    <article class="art"><img src="img/room.png" loading="lazy"></article>
     
                     <!-- <article class="listing" data-bluesky-src="at://did:plc:ee5pxx436s7areoj4epw3voj/app.bsky.feed.post/3lwody74vq22c"></article>                 -->
                     <!-- <article class="listing" data-bluesky-src="at://did:plc:ee5pxx436s7areoj4epw3voj/app.bsky.feed.post/3lv57id2v7k2p"></article>                 -->
     
                     <!-- <article class="listing" data-bluesky-src="at://did:plc:ee5pxx436s7areoj4epw3voj/app.bsky.feed.post/3lv6jweqv3k2n"></article>                 -->
-                    <article class="art"><img src="img/boot.png"></article>
+                    <article class="art"><img src="img/boot.png" loading="lazy"></article>
     
-                    <article class="art centered"><img src="img/hom.gif"></article>
-                    <article class="art"><img src="img/bob.png"></article>
+                    <article class="art centered"><img src="img/hom.gif" loading="lazy"></article>
+                    <article class="art"><img src="img/bob.png" loading="lazy"></article>
     
                     <!-- <article class="listing" data-bluesky-src="at://did:plc:ee5pxx436s7areoj4epw3voj/app.bsky.feed.post/3ls3mtcxigc24"></article>                 -->
                     <!-- <article class="listing" data-bluesky-src="at://did:plc:ee5pxx436s7areoj4epw3voj/app.bsky.feed.post/3ls4chxyxb224"></article>                 -->
-                    <article style="background-color: white; padding: 8px;"><img class="contain" src="img/bomb.gif"></article>
+                    <article style="background-color: white; padding: 8px;"><img class="contain" src="img/bomb.gif" loading="lazy"></article>
     
-                    <article class="art centered"><img src="img/V.png"></article>
-                    <article class="art"><img src="img/trashfox.png"></article>
+                    <article class="art centered"><img src="img/V.png" loading="lazy"></article>
+                    <article class="art"><img src="img/trashfox.png" loading="lazy"></article>
                     <!-- <article class="listing" data-bluesky-src="at://did:plc:ee5pxx436s7areoj4epw3voj/app.bsky.feed.post/3lrpxdwhjgk25"></article>                 -->
-                    <article class="art"><img src="img/harper.webp"></article>
-                    <article class="art"><img src="img/foxspinnyHD.gif"></article>
+                    <article class="art"><img src="img/harper.webp" loading="lazy"></article>
+                    <article class="art"><img src="img/foxspinnyHD.gif" loading="lazy"></article>
                     <!-- <article class="listing" data-bluesky-src="at://did:plc:ee5pxx436s7areoj4epw3voj/app.bsky.feed.post/3lrpxdf2p3225"></article>                 -->
     
-                    <article class="art"><img src="img/roblox.png"></article>
-                    <article><img src="img/donate.png"></article>
+                    <article class="art"><img src="img/roblox.png" loading="lazy"></article>
+                    <article><img src="img/donate.png" loading="lazy"></article>
     
     
                 </div>
             </details>
 
         </section>
-
-        <script>
-            // videos defaults:
-            for (const video of document.querySelectorAll('video')) {
-                video.muted = true;
-                video.loop = true;
-                if (!video.hasAttribute('controls')) {
-                    video.controls = false;
-                }
-                
-                video.disablePictureInPicture = true;
-            }
-        </script>
-
-        <script>
-            // details videos play on open, pause on close:
-            for (const details of document.querySelectorAll('details')) { 
-                details.addEventListener('toggle', 
-                function(e) { 
-                    if (this.open) {
-                        this.scrollIntoView();
-                        for (const video of this.querySelectorAll('video')) { 
-                            video.play(); 
-                        }
-
-                    } else {
-                        for (const video of this.querySelectorAll('video')) {
-                            video.pause();
-                        }
-                    }
-                });
-            }
-        </script>
 
         <section>
             <h2><a id="demos" href=#demos>#</a>toybox</h2>
@@ -680,7 +591,7 @@
                 </article>
 
                 <article class="listing">
-                    <video src="img/autorender.mp4"></video>
+                    <video src="img/autorender.mp4" preload="metadata"></video>
                     <h3>8 Direction Renderer</h3>
                     <p>blender script to render a model from 8 cardinal directions</p>
                     <ul class="horizontal">
@@ -706,6 +617,10 @@
             <h2><a id="changelog" href=#changelog>#</a>changelog</h2>
             <div class="cards changelog">
                 <article class="listing">
+                    <h3>1.4.4</h3>
+                    <ul>
+                        <li>massively improve load times</li>
+                    </ul>
                     <h3>1.4.3</h3>
                     <ul>
                         <li>ACTUALLY fix CPU usage</li>
@@ -774,12 +689,6 @@
             </div>
 
         </section>
-        
-        
-        
-            
-
-        
 
     </main>
 
@@ -797,8 +706,99 @@
         </p>
 
     </footer>
-    
 
+    <script>
+        // videos defaults:
+        document.addEventListener('DOMContentLoaded', (event) => {
+            for (const video of document.querySelectorAll('video')) {
+                video.muted = true;
+                video.loop = true;
+                if (!video.hasAttribute('controls')) {
+                    video.controls = false;
+                }
+
+                video.disablePictureInPicture = true;
+            }
+        });
+        
+    </script>
+
+    <script>
+        // viewer:
+        let viewer, viewerImage, viewerVideo, viewerCaption;
+        document.addEventListener('DOMContentLoaded', (event) => {
+            viewer = document.getElementById('viewer');
+            viewerImage = viewer.querySelector("img");
+            viewerVideo = viewer.querySelector("video");
+            viewerCaption = viewer.querySelector('figcaption');
+            viewer.style.display = "none";
+
+            const imageElements = document.querySelectorAll('article > img');
+            for (const image of imageElements) { addViewerListener(image); }
+            const videoElements = document.querySelectorAll('article > video');
+            for (const video of videoElements) { addViewerListener(video); }
+            const figureElements = document.querySelectorAll('article > figure');
+            for (const figure of figureElements) { addViewerListener(figure); }
+        });
+
+        function addViewerListener(element) {
+            element.onclick = (event) => showViewer(element, event);
+            element.style.cursor = 'zoom-in';
+        }
+
+        function showViewer(element, ev) {
+            console.log(`showViewer: ${element?.tagName}`, element);
+            viewer.style.display = "flex";
+            viewerImage.style.display = 'none';
+            viewerVideo.style.display = 'none';
+            viewerCaption.innerText = element.src;
+
+            if (element == null) return;
+            setViewer(element);
+
+            function setViewer(media) {
+                if (media.tagName == 'FIGURE') {
+                    viewerCaption.innerText = media.querySelector('figcaption').innerText;
+                    setViewer(media.querySelector('img, video'));
+                }
+
+                if (media.tagName == 'IMG') {
+                    viewerImage.src = media.src;
+                    viewerImage.style.display = 'block';
+                    return;
+                }
+
+                if (media.tagName == 'VIDEO') {
+                    viewerVideo.src = media.src;
+                    viewerVideo.style.display = 'block';
+                    return;
+                }
+            }
+        }
+    </script>
+
+    <script>
+        // details scroll on open, videos play on open, pause on close:
+        document.addEventListener('DOMContentLoaded', (event) => {
+            for (const details of document.querySelectorAll('details')) {
+                details.addEventListener('toggle',
+                    function (e) {
+                        if (this.open) {
+                            this.scrollIntoView();
+                            for (const video of this.querySelectorAll('video')) {
+                                video.play();
+                            }
+
+                        } else {
+                            for (const video of this.querySelectorAll('video')) {
+                                video.pause();
+                            }
+                        }
+                    }
+                );
+            }
+        });
+    </script>
     
 </body>
 
