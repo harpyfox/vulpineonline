@@ -45,7 +45,6 @@
     <meta name="twitter:domain" content="vulpineonline.com">
     <meta name="twitter:url" content="https://www.vulpineonline.com">
 
-    <script type="module" src="index.js"></script>
 
     <script type="application/ld+json">
         {
@@ -66,9 +65,9 @@
         <p>javascript is disabled. honestly i don't blame you. fancy stuff won't work though.</p>
     </noscript>
 
-    <figure id="viewer" onclick="this.style.display = 'none'" style="display: 'none'">
-        <img src="img/pollo-foxypot.png">
-        <video controls="true" style="display:none"></video>
+    <figure id="viewer" onclick="this.style.display = 'none'" style="display:'none'">
+        <img src="img/pollo-foxypot.png" style="display:'none'">
+        <video autoplay controls style="display:'none'"></video>
         <figcaption>Caption</figcaption>
     </figure>
     <script type="module">
@@ -83,7 +82,7 @@
         const videoElements = document.querySelectorAll('article > video');
         for (const video of videoElements) { addViewerListener(video); }
         const figureElements = document.querySelectorAll('article > figure');
-        for (const figure of figureElements) {addViewerListener(figure); }
+        for (const figure of figureElements) { addViewerListener(figure); }
 
         function addViewerListener(element) {
             element.onclick = (event) => showViewer(element, event);
@@ -635,10 +634,34 @@
         </section>
 
         <script>
+            // videos defaults:
+            for (const video of document.querySelectorAll('video')) {
+                video.muted = true;
+                video.loop = true;
+                if (!video.hasAttribute('controls')) {
+                    video.controls = false;
+                }
+                
+                video.disablePictureInPicture = true;
+            }
+        </script>
+
+        <script>
+            // details videos play on open, pause on close:
             for (const details of document.querySelectorAll('details')) { 
                 details.addEventListener('toggle', 
                 function(e) { 
-                    if (this.open) this.scrollIntoView() 
+                    if (this.open) {
+                        this.scrollIntoView();
+                        for (const video of this.querySelectorAll('video')) { 
+                            video.play(); 
+                        }
+
+                    } else {
+                        for (const video of this.querySelectorAll('video')) {
+                            video.pause();
+                        }
+                    }
                 });
             }
         </script>
@@ -681,8 +704,12 @@
         
         <section>
             <h2><a id="changelog" href=#changelog>#</a>changelog</h2>
-            <div class="cards">
+            <div class="cards changelog">
                 <article class="listing">
+                    <h3>1.4.3</h3>
+                    <ul>
+                        <li>ACTUALLY fix CPU usage</li>
+                    </ul>
                     <h3>1.4.2</h3>
                     <ul>
                         <li>move misc section to My Documents</li>
@@ -693,14 +720,16 @@
                     </ul>
                     <h3>1.4.0</h3>
                     <ul>
-                        <li>new accordion layout so it has a chance of loading on mobile</li>
+                        <li>new accordion layout</li>
+                        <li>fix CPU usage...?</li>
                     </ul>
                     <time>2<sup>nd</sup> September 2025</time>
                 </article>
                 <article class="listing">
                     <h3>1.3.1</h3>
                     <ul>
-                        <li>PLAY ALL/PAUSE ALL buttons in navbar. i apologise to your CPU</li>
+                        <li>PLAY ALL/PAUSE ALL buttons in navbar</li>
+                        <li>fix CPU usage</li>
                     </ul>
                     <h3>1.3.0</h3>
                     <ul>
@@ -735,8 +764,11 @@
                 </article>
                 <article class="listing">
                     <h3>1.0.0</h3>
-                    <p>initital releasde</p>
+                    <ul>
+                        <li>initial release</li>
+                    </ul>
                     <time>29<sup>th</sup> August 2025</time>
+
                 </article>
 
             </div>

@@ -249,6 +249,17 @@ details {
     }
 }
 
+.changelog {
+    line-height: initial;
+    ul {
+        list-style-type: square;
+        padding-left: 16px;
+    }
+    li, h3 {
+        font-size: smaller;
+    }
+}
+
 
 
 /* article types */
@@ -262,11 +273,10 @@ article, .article {
     flex-direction: column;
     border: var(--theme-border-style);
 
-    p {
-        flex: 1 0 auto;
-    }
+
     time {
         align-self: end;
+        margin-top: auto;
     }
 }
 
@@ -341,6 +351,7 @@ a.external {
 .accordion:hover {
 
 }
+
 
 
 footer {
