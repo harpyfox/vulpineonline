@@ -86,18 +86,13 @@ function parseURL() {
 
 //#region Sideeffects
 
-// when go forward or back load the demo it thje hbgh
 window.addEventListener('popstate', (e) => {
-    console.log("POP STATE!!!!!!!!!!")
     e.preventDefault();
     parseURL();
 });
 
-// initialise nav links
-document.addEventListener("DOMContentLoaded", initNavLinks);
-
-//when 
 document.addEventListener("DOMContentLoaded", () => {
+    initNavLinks();
     parseURL();
 });
 

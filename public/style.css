@@ -41,7 +41,9 @@ a, a > *, a:visited, a:visited > * { color: var(--theme-interactive); }
 a:hover, a:hover > * { color: var(--theme-interactive-hover); }
 a:active, a:active > * { color: var(--theme-interactive-active); }
 
-
+.contents {
+    display: contents;
+}
 
 img, video {
     display: block flow;
@@ -89,19 +91,6 @@ blockquote ~ * {
     font-size: smaller;
 }
 
-/* still want h3 to be in the dom for screen readers */
-h3.logo {
-    display: contents;
-}
-
-.logo, h3.logo img {
-    padding: 8px;
-    width: 100%;
-    filter: drop-shadow(2px 2px 0px black);
-    
-    text-align: center;
-}
-
 .square {
     aspect-ratio: 1/1;
 }
@@ -127,6 +116,10 @@ ul.horizontal {
     }
 }
 
+/* #viewer::backdrop {
+    background-color: black;
+} */
+
 figure {
     position: relative;
 }
@@ -138,7 +131,6 @@ figcaption {
     background-color: #11111191;
     width: 100%;
 }
-
 
 figure#viewer {
     position: fixed;
@@ -230,13 +222,15 @@ main {
 section {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 4px;
 
     width: 100%;
     overflow: auto;
 }
 
-div.cards {
+
+
+.cards {
     display: block grid;
     grid-template-columns: repeat(auto-fill, minmax(20ch, 1fr));
     padding: 4px;
@@ -245,20 +239,25 @@ div.cards {
     border: var(--theme-border-style);
 }
 
-div.carousel {
-    display: block grid;
-    grid-template-columns: repeat(auto-fill, minmax(30ch, 1fr));
-    padding: 4px;
-    gap: 4px;
+details {
+    border: var(--theme-border-style);
+    margin: 0px 4px;
+    scroll-margin-block-start: calc(var(--header-height) + 4px);
+    
+    .cards {
+        border: unset;
+    }
 }
 
 
-article {
+
+/* article types */
+article, .article {
     background: center/cover no-repeat;
 }
 
-/* article with img/video, h3, p, and time */
-article.listing {
+/* img/video, h3, p, and time */
+.listing {
     display: block flex;
     flex-direction: column;
     border: var(--theme-border-style);
@@ -271,8 +270,8 @@ article.listing {
     }
 }
 
-/* article with no text, image is scaled to cover */
-article.art {
+/* phase out, replace with cover/contain classes */
+.art {
     img, video {
         width: 100%;
         height: 100%;
@@ -280,10 +279,7 @@ article.art {
     }
 }
 
-
-
-/* article with centered content */
-article.centered {
+.centered {
     display: block flex;
     flex-direction: column;
     align-items: center;
@@ -302,11 +298,11 @@ a.external {
 }
 
 /* article that takes two grid columns. combine with other article classes. */
-article.wide {
+.wide {
     grid-column: span 2;
 }
 
-article.table {
+.table {
     display: grid;
     grid-template-columns: auto 1fr;
     grid-auto-rows: min-content;
@@ -328,7 +324,23 @@ article.table {
     }
 }
 
+.accordion {
+    background: 0% 10%/cover no-repeat;
+    height: 10ch;
+    cursor: pointer;
 
+    padding: 8px;
+
+    text-align: center;
+
+    img {
+        filter: drop-shadow(2px 2px 0px black);
+    }
+}
+
+.accordion:hover {
+
+}
 
 
 footer {
@@ -356,11 +368,11 @@ footer {
         padding-right: 0px;
     }
 
-    div.cards {
+    .cards {
         grid-template-columns: 1fr 1fr;
     }
 
-    article.wide {
+    .wide {
         grid-column: span 1;
     }
 }
