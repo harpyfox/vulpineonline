@@ -116,7 +116,6 @@ function render(entryView: EntryView) {
 async function build() {
 
     for (const video of document.getElementsByTagName('video')) {
-        
         video.muted = true;
         video.autoplay = true;
         video.loop = true;
