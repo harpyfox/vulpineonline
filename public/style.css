@@ -65,6 +65,7 @@ output {
     vertical-align: middle;
     width: 1em;
     height: 1em;
+    object-fit: contain;
 }
 
 .icon16 {
