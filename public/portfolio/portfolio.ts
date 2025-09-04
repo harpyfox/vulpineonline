@@ -123,6 +123,7 @@ async function build() {
             video.controls = false;
         }
         video.disablePictureInPicture = true;
+        
     }
 }
 
