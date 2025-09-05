@@ -7,7 +7,7 @@
     <meta name="color-scheme content="light dark">
     <meta name="google-site-verification" content="RnHxkxpiUsAAxgsNO88zdwJHdz0ujVAJyqluj6EG-p8" />
 
-    <!-- <link rel="preload" href="reset.css" as="style"> -->
+    <link rel="preload" href="style.css" as="style">
     <link rel="preload" href="style.css" as="style">
 
     <title>Harper Fox</title>
@@ -23,90 +23,9 @@
     <link rel="apple-touch-icon" href="favicon.ico" type="image/png" sizes="50x50">
     <!-- https://evilmartians.com/chronicles/how-to-favicon-in-2021-six-files-that-fit-most-needs -->
 
-    <style> /* layout */
-body {
-    image-rendering: pixelated;
-    display: grid;
-    grid-template-rows: auto 1fr;
-    grid-template-columns: auto 1fr;
-    grid-template-areas: 
-    "header header"
-    "nav main"
-    "footer footer";
-}
-header {
-    grid-area: header;
-}
-nav {
-    grid-area: nav;
-    overflow-y: auto;
-    ul {
-        display: grid;
-        grid-template-columns: 1fr;
-    }
-}
-main {
-    grid-area: main;
-}
-section {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    overflow: auto;
-}
-.accordion {
-    height: 10ch;
-}
-article, figure {
-    position: relative;
-}
-.listing {
-    display: block flex;
-    flex-direction: column;
-}
-footer {
-    grid-area: footer;
-    display: block grid;
-    grid-template-columns: repeat(auto-fill, minmax(88px, 1fr));
-
-}
-    </style>
-    <style> /* basic media styles */
-img, picture, video, canvas, svg {
-    display: block;
-    height: 100%;
-    max-height: 20ch;
-}
-[class*="icon"] {
-    display: inline flow-root;
-    vertical-align: middle;
-    &[class="favicon"] {
-        width: 1em;
-        height: 1em;
-        object-fit: contain;
-    }
-    &[class*="16"] {
-        width: 16px;
-        height: 16px;
-    }
-    &[class*="32"] {
-        width: 32px;
-        height: 32px;
-    }
-    &[class*="96"] {
-        width: 96px;
-        height: 96px;
-    }
-}
-.button {
-    border: none;
-    width: 88px;
-    height: 31px;
-}
-    </style>
+    <link rel="stylesheet" href="base.css" type="text/css">
     <link rel="stylesheet" href="style.css" title="Default" type="text/css">
     <link rel="alternate stylesheet" href="win98.css" title="Win98 by Jordan Scales" type="text/css">
-
 
     <meta property="og:title" content="VULPINE ONLINE">
     <meta property="og:description" content="Harper's personal website and portfolio">
@@ -123,7 +42,6 @@ img, picture, video, canvas, svg {
     <meta name="twitter:creator" content="@harpyfox">
     <meta name="twitter:domain" content="vulpineonline.com">
     <meta name="twitter:url" content="https://www.vulpineonline.com">
-
 
     <script type="application/ld+json">
 {
@@ -188,123 +106,9 @@ img, picture, video, canvas, svg {
     }
 }
     </script>
-
-<script type="application/ld+json">
-
-{
-    "@context": "https://schema.org/",
-        "@type": "Person",
-            "@id": "https://maxbo.me/#MaxBo",
-                "url": "https://maxbo.me",
-                    "name": "Maxwell Bo",
-                        "givenName": "Maxwell",
-                            "familyName": "Bo",
-                                "email": "max@maxbo.me",
-                                    "telephone": "+61 447 724 462",
-                                        "description": "Max Bo is an Australian software engineer currently working as a Senior Software Engineer at Canva.",
-                                            "affiliation": [
-                                                {
-                                                    "@type": "Organization",
-                                                    "@id": "https://www.wikidata.org/wiki/Q23498528",
-                                                    "url": "https://www.canva.com/about/",
-                                                    "name": "Canva"
-                                                },
-                                                {
-                                                    "@type": "Organization",
-                                                    "@id": "https://www.wikidata.org/wiki/Q95",
-                                                    "url": "https://about.google/",
-                                                    "name": "Google"
-                                                },
-                                                {
-                                                    "@type": "Organization",
-                                                    "@id": "https://www.wikidata.org/wiki/Q757307",
-                                                    "url": "https://www.atlassian.com/",
-                                                    "name": "Atlassian"
-                                                },
-                                                {
-                                                    "@type": "Organization",
-                                                    "url": "https://skedulo.com/",
-                                                    "name": "Skedulo"
-                                                }
-                                            ],
-                                                "sameAs": [
-                                                    "https://github.com/MaxwellBo",
-                                                    "https://www.linkedin.com/in/max-bo/",
-                                                    "https://twitter.com/_max_bo_",
-                                                    "https://observablehq.com/@mjbo",
-                                                    "https://www.instagram.com/maximally_boring",
-                                                    "https://rateyourmusic.com/~mbo",
-                                                    "https://letterboxd.com/mbo_/",
-                                                    "https://www.fragrantica.com/member/1619664",
-                                                    "https://untappd.com/user/max_bo"
-                                                ],
-                                                    "knowsAbout": [
-                                                        {
-                                                            "@type": "Thing",
-                                                            "@id": "https://www.wikidata.org/wiki/Q193076",
-                                                            "name": "Functional programming"
-                                                        },
-                                                        {
-                                                            "@type": "Thing",
-                                                            "@id": "https://www.wikidata.org/wiki/Q6504956",
-                                                            "name": "Data visualization"
-                                                        },
-                                                        {
-                                                            "@type": "Thing",
-                                                            "@id": "https://www.wikidata.org/wiki/Q2670534",
-                                                            "name": "Programming language theory"
-                                                        },
-                                                        {
-                                                            "@type": "Thing",
-                                                            "@id": "https://www.wikidata.org/wiki/Q70357595",
-                                                            "name": "Computational notebooks"
-                                                        }
-                                                    ],
-                                                        "nationality": [
-                                                            {
-                                                                "@type": "Country",
-                                                                "@id": "https://www.wikidata.org/wiki/Q408",
-                                                                "name": "Australia"
-                                                            }
-                                                        ],
-                                                            "alumniOf": [
-                                                                {
-                                                                    "@type": "CollegeOrUniversity",
-                                                                    "@id": "https://www.wikidata.org/wiki/Q866012",
-                                                                    "name": "University of Queensland",
-                                                                    "url": "https://www.uq.edu.au/",
-                                                                    "award": "Bachelor of Science (Computer Science Extended Major)"
-                                                                }
-                                                            ],
-                                                                "worksFor": {
-        "@type": "Organization",
-            "@id": "https://www.wikidata.org/wiki/Q23498528",
-                "name": "Canva",
-                    "url": "https://www.canva.com/about/"
-    },
-    "knowsLanguage": [
-        {
-            "@type": "Language",
-            "@id": "https://maxbo.me/#Person_knowsLanguage_Language1",
-            "name": "English"
-        }
-    ],
-        "mainEntityOfPage": {
-        "@type": "WebPage",
-            "@id": "https://maxbo.me",
-                "url": "https://maxbo.me",
-                    "name": "Maxwell Bo's Portfolio",
-                        "description": "The personal website and portfolio of Max Bo"
-    }
-}
-
-</script>
-
 </head>
 
 <body>
-    
-
     <header onclick="document.body.scrollTop = document.documentElement.scrollTop = 0" style="cursor: pointer;">
         <h1>harper fox<img class="icon32" width="32px" height="32px" src="img/butterfly.gif" style="display: inline; vertical-align: middle;"></h1>
         <p style="position: absolute; right: 8px; top: 8px;">return to top</p>
@@ -393,7 +197,7 @@ img, picture, video, canvas, svg {
             
             <details name="project" style="background-color: light-dark(#a2dff0, #0a4160);">
                 <summary class="contents">
-                    <h3 class="accordion"><img class="contain" src="img/hsalpha-logo.png" alt="HS_ALPHA"></h3>
+                    <h3 class="accordion"><img class="contain" src="img/hsalpha-logo.jpg" alt="HS_ALPHA"></h3>
                 </summary>
                 <div class="cards" >
                     <article class="table">
@@ -421,7 +225,7 @@ img, picture, video, canvas, svg {
             
             <details name="project" style="background-color: light-dark(#f0cdbd, #361637);">
                 <summary class="contents">
-                    <h3 class="accordion" style="background-image: url(img/witch-background.png);">
+                    <h3 class="accordion" style="background-image: url(img/witch-background.webp);">
                         <img class="contain" src="img/witch-logo.png" alt="Witch Academy">
                     </h3>
                 </summary>
@@ -703,7 +507,7 @@ img, picture, video, canvas, svg {
 
             <details name="project">
                 <summary class="contents">
-                    <h3 class="accordion" style="background-image: url('img/desktopnotb.jpg'); background-position-y: bottom;">
+                    <h3 class="accordion" style="background-image: url('img/desktopnotb.png'); background-position-y: bottom;">
                         <span style="filter:drop-shadow(2px 2px 0px black)">My Documents</span>
                     </h3>
                 </summary>
@@ -742,7 +546,7 @@ img, picture, video, canvas, svg {
                     <article class="art"><img src="img/foxspinnyHD.gif" loading="lazy"></article>
                     <!-- <article class="listing" data-bluesky-src="at://did:plc:ee5pxx436s7areoj4epw3voj/app.bsky.feed.post/3lrpxdf2p3225"></article>                 -->
     
-                    <article class="art"><img src="img/roblox.png" loading="lazy"></article>
+                    <article class="art"><img src="img/roblox.jpg" loading="lazy"></article>
                     <article><img src="img/donate.png" loading="lazy"></article>
     
     
@@ -777,7 +581,7 @@ img, picture, video, canvas, svg {
 
                 <article class="listing">
                     <a href="https://vulpineonline.com/" rel="noreferrer">
-                        <video src="img/autorender.mp4" poster="img/autorender.jpg" preload="none"></video>
+                        <video src="img/autorender.mp4" poster="img/autorender.webp" preload="none"></video>
                         <img class="icon32 badge" src="img/blender-icon.svg">
                         <h3>8-Dir. Renderer</h3>
                     </a>
@@ -798,7 +602,7 @@ img, picture, video, canvas, svg {
 
                 <article class="listing">
                     <a href="https://tinyfox.neocities.org/" target="_blank" rel="noreferrer">
-                        <img src="img/neocities.png">
+                        <img src="img/neocities_512x273.jpg">
                         <img class="icon32 badge" src="img/ie-icon.svg">
                         <h3>tinyfox</h3>
                     </a>
@@ -961,8 +765,8 @@ button.win95, .win95 button {
     </main>
 
     <footer>
-        <a href="https://jigsaw.w3.org/css-validator/check/referer" target="_blank"><img class="button" src="https://jigsaw.w3.org/css-validator/images/vcss.png" alt="Valid CSS!" /></a>
-        <a href="https://validator.w3.org/" target="_blank" rel="noreferrer"><img class="button" src="https://www.w3.org/Icons/valid-html40" alt="Valid HTML4!" /></a>
+        <a href="https://jigsaw.w3.org/css-validator/check/referer" target="_blank"><img class="button" src="buttons/vcss.png" alt="Valid CSS!" /></a>
+        <a href="https://validator.w3.org/" target="_blank" rel="noreferrer"><img class="button" src="buttons/valid-html40.png" alt="Valid HTML4!" /></a>
         <img class="button" src="buttons/microsoftinternetexplorer.gif" alt="Microsoft Internet Explorer" />
     </footer>
 
@@ -972,7 +776,6 @@ button.win95, .win95 button {
         <figcaption>i put a lot of work into that stylesheet, you know.</figcaption>
     </figure>
     
-
     <script src="video.js"></script>
     <script src="viewer.js"></script>
 
