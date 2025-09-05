@@ -7,7 +7,7 @@
     <meta name="color-scheme content="light dark">
     <meta name="google-site-verification" content="RnHxkxpiUsAAxgsNO88zdwJHdz0ujVAJyqluj6EG-p8" />
 
-    <link rel="preload" href="reset.css" as="style">
+    <!-- <link rel="preload" href="reset.css" as="style"> -->
     <link rel="preload" href="style.css" as="style">
 
     <title>Harper Fox</title>
@@ -23,8 +23,90 @@
     <link rel="apple-touch-icon" href="favicon.ico" type="image/png" sizes="50x50">
     <!-- https://evilmartians.com/chronicles/how-to-favicon-in-2021-six-files-that-fit-most-needs -->
 
-    <link rel="stylesheet" href="reset.css" type="text/css">
-    <link rel="stylesheet" href="style.css" type="text/css">
+    <style> /* layout */
+body {
+    image-rendering: pixelated;
+    display: grid;
+    grid-template-rows: auto 1fr;
+    grid-template-columns: auto 1fr;
+    grid-template-areas: 
+    "header header"
+    "nav main"
+    "footer footer";
+}
+header {
+    grid-area: header;
+}
+nav {
+    grid-area: nav;
+    overflow-y: auto;
+    ul {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+}
+main {
+    grid-area: main;
+}
+section {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    overflow: auto;
+}
+.accordion {
+    height: 10ch;
+}
+article, figure {
+    position: relative;
+}
+.listing {
+    display: block flex;
+    flex-direction: column;
+}
+footer {
+    grid-area: footer;
+    display: block grid;
+    grid-template-columns: repeat(auto-fill, minmax(88px, 1fr));
+
+}
+    </style>
+    <style> /* basic media styles */
+img, picture, video, canvas, svg {
+    display: block;
+    height: 100%;
+    max-height: 20ch;
+}
+[class*="icon"] {
+    display: inline flow-root;
+    vertical-align: middle;
+    &[class="favicon"] {
+        width: 1em;
+        height: 1em;
+        object-fit: contain;
+    }
+    &[class*="16"] {
+        width: 16px;
+        height: 16px;
+    }
+    &[class*="32"] {
+        width: 32px;
+        height: 32px;
+    }
+    &[class*="96"] {
+        width: 96px;
+        height: 96px;
+    }
+}
+.button {
+    border: none;
+    width: 88px;
+    height: 31px;
+}
+    </style>
+    <link rel="stylesheet" href="style.css" title="Default" type="text/css">
+    <link rel="alternate stylesheet" href="win98.css" title="Win98 by Jordan Scales" type="text/css">
+
 
     <meta property="og:title" content="VULPINE ONLINE">
     <meta property="og:description" content="Harper's personal website and portfolio">
@@ -218,40 +300,15 @@
 
 </script>
 
-
-
 </head>
 
 <body>
     
-    <script>
-        function displayNone(e) { 
-            e.style.display = 'none'; 
-        }
-    </script>
-    <figure id="viewer" onclick="displayNone(this)" style="display:'none'">
-        <img src="img/harper.webp" style="display:'none'">
-        <video autoplay controls style="display:'none'"></video>
-        <figcaption>i put a lot of work into that stylesheet, you know.</figcaption>
-    </figure>
-    
-    <script>
-        function scrollTopThisErrorsIfTheNameMatchesAnExistingFunctionSoCoolJavascript(e) { 
-            document.body.scrollTop = document.documentElement.scrollTop = 0; 
-        }
-    </script>
-    <header onclick="scrollTopThisErrorsIfTheNameMatchesAnExistingFunctionSoCoolJavascript(this)" style="cursor: pointer;">
+
+    <header onclick="document.body.scrollTop = document.documentElement.scrollTop = 0" style="cursor: pointer;">
         <h1>harper fox<img class="icon32" width="32px" height="32px" src="img/butterfly.gif" style="display: inline; vertical-align: middle;"></h1>
         <p style="position: absolute; right: 8px; top: 8px;">return to top</p>
     </header>
-    
-
-    <script>
-        function toggleDebug(e) {
-            const toggled = document.body.classList.toggle("debug");
-            document.dispatchEvent(new Event('debugtoggled'));
-        }
-    </script>
 
     <nav>
         <ul>
@@ -288,10 +345,15 @@
 .winxp-start:hover {
     background-color: #66cc66;
 }
-
             </style> 
-            <li class="winxp-start"><img width="256px" height="256px" src="img/windowsxp.ico">start</li>
+            <li class="winxp-start"><img width="22px" height="20px" src="img/windowsxp.ico">start</li>
         </ul>
+        <script>
+            function toggleDebug(e) {
+                const toggled = document.body.classList.toggle("debug");
+                document.dispatchEvent(new Event('debugtoggled'));
+            }
+        </script>
         <button class="win95" onclick="toggleDebug(this)"><span>debug</span></button>
     </nav>
     
@@ -490,7 +552,7 @@
                         </ul>
                     </article>
                     <article class="art"><img src="img/haunted-background.png" loading="lazy"></article>
-                    <article class="art wide"><img src="img/haunted-1.jpg" loading="lazy"></article>
+                    <article class="art" style="grid-column: span 2;"><img src="img/haunted-1.jpg" loading="lazy"></article>
                     <article class="art"><video src="img/haunted-gameplay.mp4" preload="none"></video></article>
                     <article><img class="contain" src="img/haunted-characters.jpg" loading="lazy"></article>
                     <article><video class="cover" src="img/haunted-anims.mp4" preload="none"></video></article>
@@ -696,16 +758,17 @@
                 <article class="listing">
                     <a href="https://vulpineonline.com/" rel="noreferrer">
                         <img src="thumbnail.webp">
-                        <img class="icon32 topright" src="img/ie-icon.svg">
+                        <img class="icon32 badge" src="img/ie-icon.svg">
                         <h3>this website</h3>
                     </a>
                     <p>hand-written with love and care!</p>
                     <time>July 2025 - Present</time>
                 </article>
+
                 <article class="listing">
                     <a href="webgpu/samples/lab-ts/" target="_blank" rel="opener">
                         <img src="img/webgpu.jpg">
-                        <img class="icon32 topright" src="img/ie-icon.svg">
+                        <img class="icon32 badge" src="img/ie-icon.svg">
                         <h3>WebGPU Shader Editor</h3>
                     </a>
                     <p>shadertoy-like live shader editor built with WebGPU</p>
@@ -713,28 +776,30 @@
                 </article>
 
                 <article class="listing">
-                    <video src="img/autorender.mp4" poster="img/autorender.jpg" preload="none"></video>
-                    <img class="icon32 topright" src="img/blender-icon.svg">
-                    <h3>8-Dir. Renderer</h3>
+                    <a href="https://vulpineonline.com/" rel="noreferrer">
+                        <video src="img/autorender.mp4" poster="img/autorender.jpg" preload="none"></video>
+                        <img class="icon32 badge" src="img/blender-icon.svg">
+                        <h3>8-Dir. Renderer</h3>
+                    </a>
                     <p>blender script for rendering a model from 8 cardinal directions</p>
                     <p><small>[TODO] add download</small></p>
                     <time>June 2025</time>
-                    
                 </article>
 
                 <article class="listing">
-                    <img class="icon32 topright" src="img/blender-icon.svg">
-                    <h3>ftx</h3>
+                    <a href="https://vulpineonline.com/" rel="noreferrer">
+                        <img class="icon32 badge" src="img/blender-icon.svg">
+                        <h3>ftx</h3>
+                    </a>
                     <p>blender addon with timesavers and whatnot</p>
                     <p><small>[TODO] add download</small></p>
-                    
                     <time>June 2025</time>
                 </article>
 
                 <article class="listing">
                     <a href="https://tinyfox.neocities.org/" target="_blank" rel="noreferrer">
                         <img src="img/neocities.png">
-                        <img class="icon32 topright" src="img/ie-icon.svg">
+                        <img class="icon32 badge" src="img/ie-icon.svg">
                         <h3>tinyfox</h3>
                     </a>
                     <p>my neocities website with lots of fun animations and some WebGL experiments &#x141b;</p>
@@ -749,7 +814,7 @@
     --win95-inset: inset -2px -2px 0px 0px #FFFFFF, inset 2px 2px 0px 0px #000000, inset -4px -4px 0px 0px #DFDFDF, inset 4px 4px 0px 0px #808080;
     
     image-rendering: pixelated;
-    font-family: 'MS Sans Serif', 'Arial', sans-serif;
+    font-family: 'Pixelated MS Sans Serif', 'Arial', sans-serif;
     font-size: 11px;
     line-height: normal;
     color-scheme: light;
@@ -766,10 +831,11 @@
 button.win95, .win95 button {
     cursor: pointer;
     padding: 8px;
+    min-width: 32px;
+    min-height: 32px;
     background-color: var(--win95-background);
     border: var(--win95-border);
     box-shadow: var(--win95-outset);
-
     * {
         position: relative;
         top: -2px;
@@ -807,15 +873,14 @@ button.win95, .win95 button {
     img + *:not(img) {
         flex: 1 0 auto;
         font-weight: bold;
-        font-size: 11px;
     }
     button {
         display: inline flow-root;
         vertical-align: middle;
         margin: 0;
         padding: 0;
-        width: 16px;
-        height: 16px;
+        min-width: 16px;
+        min-height: 16px;
         flex: 0 0 auto;
         background-color: var(--win95-background);
         border: none;
@@ -901,7 +966,11 @@ button.win95, .win95 button {
         <img class="button" src="buttons/microsoftinternetexplorer.gif" alt="Microsoft Internet Explorer" />
     </footer>
 
-    
+    <figure id="viewer" onclick="this.style.display = 'none'" style="display:'none'">
+        <img src="img/harper.webp" style="display:'none'">
+        <video autoplay controls style="display:'none'"></video>
+        <figcaption>i put a lot of work into that stylesheet, you know.</figcaption>
+    </figure>
     
 
     <script src="video.js"></script>
