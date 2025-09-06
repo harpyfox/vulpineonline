@@ -1,20 +1,6 @@
-@font-face {
-    font-family: "Pixelated MS Sans Serif";
-    src: url("fonts/ms_sans_serif.woff2") format("woff2");
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: "Pixelated MS Sans Serif";
-    src: url("fonts/ms_sans_serif_bold.woff2") format("woff2");
-    font-weight: bold;
-    font-style: normal;
-}
 :root {
     color-scheme: dark;
 
-    --font: "Arial", sans-serif;
     /* colour */
     --theme-border: light-dark(rgba(0, 0, 0, 0.5), rgba(255, 255, 255, 0.25));
     --theme-background: light-dark(whitesmoke, black);
@@ -24,7 +10,7 @@
     --theme-interactive-active: light-dark(purple, magenta);
 
     /* spacing */
-    --header-height: 48px;
+    --header-height: 38px;
 
     /* properties */
     --theme-border-style: 1px var(--theme-border) solid;
@@ -43,11 +29,9 @@
 }
 html {
     background-color: var(--theme-background);
-    font-family: var(--font);
+    font-family: "MS Sans Serif", "Arial", sans-serif;
 }
 body {
-    image-rendering: revert;
-    /* font: 11px/1 "Pixelated MS Sans Serif"; */
     -webkit-font-smoothing: antialiased;
 }
 img, picture, video, canvas, svg {
@@ -63,16 +47,10 @@ p, h1, h2, h3, h4, h5, h6 {
     overflow-wrap: break-word;
     color: var(--text-color);
 }
-h1, h2, h3, h4, h5, h6 {
-    text-wrap: balance;
-}
 time { color: var(--theme-border); }
 a, a > *, a:visited, a:visited > * { color: var(--theme-interactive); }
 a:hover, a:hover > * { color: var(--theme-interactive-hover); }
 a:active, a:active > * { color: var(--theme-interactive-active); }
-.contents {
-    display: contents;
-}
 .contain {
     width: 100%;
     height: 100%;
@@ -82,6 +60,16 @@ a:active, a:active > * { color: var(--theme-interactive-active); }
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+.square {
+    aspect-ratio: 1/1;
+    width: 100%;
+}
+.squircle {
+    aspect-ratio: 1/1;
+    width: 100%;
+    object-fit: cover;
+    mask: url("img/squircle.png") center/cover no-repeat;
 }
 output {
     font: 12px monospace;
@@ -105,12 +93,6 @@ output {
     left: 0;
     object-fit: cover;
     pointer-events: none;
-}
-.square, .squircle {
-    aspect-ratio: 1/1;
-}
-.squircle {
-    mask: url("img/squircle.png") center/cover no-repeat;
 }
 .vertical {
     writing-mode: sideways-lr;
@@ -159,9 +141,6 @@ header {
     z-index: 50;
 }
 h1 {
-    margin-left: 16px;
-}
-h2 {
     margin-left: 8px;
 }
 nav {
@@ -184,14 +163,14 @@ main {
     padding-right: 4px;
 }
 section {
+    padding: 4px;
     gap: 4px;
-    details[name="project"] {
-        border: var(--theme-border-style);
-        margin: 0px 4px;
-        scroll-margin-block-start: calc(var(--header-height) + 4px);
-        *.cards {
-            border: unset;
-        }
+}
+details[name="project"] {
+    border: var(--theme-border-style);
+    scroll-margin-block-start: calc(var(--header-height) + 4px);
+    summary {
+        display: contents;
     }
 }
 .accordion {
@@ -204,26 +183,27 @@ section {
         filter: drop-shadow(2px 2px 0px black);
     }
 }
-.cards {
+.gallery {
     display: block grid;
     grid-template-columns: repeat(auto-fill, minmax(20ch, 1fr));
-    
-    padding: 4px;
     gap: 4px;
-    border: var(--theme-border-style);
 }
 .changelog {
+    font-size: smaller;
     line-height: initial;
+    summary > h3 {
+        display: inline;
+    }
+    summary ~ * {
+        font-size: smaller;
+    }
+    > h3 {
+        margin-top: 4px;
+    }
     ul {
         list-style-type: square;
         padding-left: 16px;
     }
-    li, h3 {
-        font-size: smaller;
-    }
-}
-article, figure {
-    background: center/cover no-repeat;
 }
 figcaption {
     position: absolute;
@@ -233,33 +213,37 @@ figcaption {
     background-color: #11111191;
     width: 100%;
 }
-.listing {
+.card {
     border: var(--theme-border-style);
+    h3, p, time {
+        margin: 4px;
+    }
     time {
         align-self: end;
         margin-top: auto;
     }
 }
-.art { /* phase out, replace with cover/contain classes */
-    img, video {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-}
-.centered {
+a.biglink {
+    font-family: "Tahoma", sans-serif;
+    position: relative;
     display: block flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
+    place-items: center;
+    margin: auto;
+    width: fit-content;
+    padding: 8px;
+    /* border: var(--theme-border-style); */
+    h4 {
+        text-shadow: 2px 2px 1px #000000;
+    }
 }
-a.external {
-    display: inline flex;
-    flex-direction: column;
-    align-items: center;
-    aspect-ratio: 1/1;
-    border: var(--theme-border-style);
+a.biglink::before {
+    image-rendering: pixelated;
+    content: url("img/shortcut32.png");
+    display: inherit;
+    position: absolute;
+    width: 96px;
+    height: 96px;
 }
 .table {
     display: grid;
@@ -298,23 +282,18 @@ footer {
     body {
         display: initial;
     }
-
     nav {
         position: initial;
-
         ul {
             grid-template-columns: 1fr 1fr;
         }
     }
-
     main {
         padding-right: 0px;
     }
-
-    .cards {
+    .gallery {
         grid-template-columns: 1fr 1fr;
     }
-
     .wide {
         grid-column: span 1;
     }

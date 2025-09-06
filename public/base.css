@@ -1,5 +1,17 @@
+@font-face {
+    font-family: "Pixelated MS Sans Serif";
+    src: url("fonts/ms_sans_serif.woff2") format("woff2");
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: "Pixelated MS Sans Serif";
+    src: url("fonts/ms_sans_serif_bold.woff2") format("woff2");
+    font-weight: bold;
+    font-style: normal;
+}
+
 body {
-    image-rendering: pixelated;
     display: grid;
     grid-template-rows: auto 1fr;
     grid-template-columns: auto 1fr;
@@ -22,7 +34,7 @@ nav {
 main {
     grid-area: main;
 }
-section {
+main > section {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -35,7 +47,7 @@ article,
 figure {
     position: relative;
 }
-.listing {
+.card {
     display: block flex;
     flex-direction: column;
 }
@@ -61,6 +73,9 @@ svg {
         width: 1em;
         height: 1em;
         object-fit: contain;
+        +* {
+            margin-left:4px;
+        }
     }
     &[class*="16"] {
         width: 16px;

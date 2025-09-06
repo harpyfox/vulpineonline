@@ -1,0 +1,12 @@
+body {
+    image-rendering: pixelated;
+    display: revert;
+}
+details[name="project"] {
+    list-style-position: inside;
+}
+a.biglink {
+    img {
+        float: left;
+    }
+}
