@@ -1,4 +1,4 @@
-import type * as portfolio from "./portfolio.js";
+import type * as portfolio from "../portfolio/portfolio.js";
 
 //#region Types
 
