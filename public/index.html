@@ -109,12 +109,17 @@
 </head>
 
 <body>
-    <figure id="viewer" onclick="this.style.display = 'none'" style="display:'none'">
-        <img style="display:'none'">
-        <video autoplay controls style="display:'none'"></video>
+    <figure id="viewer" onclick="this.style.display = 'none'" style="display: none">
+        <img style="display: none">
+        <video autoplay controls style="display:none"></video>
         <figcaption>-</figcaption>
     </figure>
 
+    <noscript>
+        header > p {
+            display: none;
+        }
+    </noscript>
     <header onclick="document.body.scrollTop = document.documentElement.scrollTop = 0" style="cursor: pointer;">
         <h1>harper fox<img class="icon32" width="32px" height="32px" src="img/butterfly.gif" style="display: inline; vertical-align: middle;"></h1>
         <p class="badge">return to top</p>
