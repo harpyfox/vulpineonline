@@ -14,6 +14,7 @@ export default class extends WorkerEntrypoint {
     }
     // hit counter!
     async tryPutHit(request, response) {
+        console.log(`tryPutHit`, response.url);
         if (request.headers.get("Sec-Fetch-Mode") != "navigate")
             return;
         if (!response.ok)
@@ -29,8 +30,6 @@ export default class extends WorkerEntrypoint {
             value.hits = 0;
         value.hits++;
         this.env.KV.put(key, value);
-    }
-    async tryPutReferer() {
     }
     async api(url) {
         const endpoint = url.pathname.slice("/api/".length);

@@ -24,6 +24,7 @@ export default class<TEnv extends Env = Env> extends WorkerEntrypoint<TEnv> {
 
     // hit counter!
     async tryPutHit(request: Request, response: Response) {
+        console.log(`tryPutHit`, response.url);
         if (request.headers.get("Sec-Fetch-Mode") != "navigate") return;
         if (!response.ok) return;
         
