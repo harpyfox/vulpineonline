@@ -39,7 +39,7 @@ export default class<TEnv extends Env = Env> extends WorkerEntrypoint<TEnv> {
         if (!value.hits) value.hits = 0;
 
         value.hits++;
-        this.env.KV.put(key, value);
+        await this.env.KV.put(key, value);
     }
 
     async api(url: URL): Promise<Response> {
