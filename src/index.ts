@@ -69,3 +69,5 @@ export default class<TEnv extends Env = Env> extends WorkerEntrypoint<TEnv> {
 
     }
 }
+
+//https://github.com/cloudflare/workerd/blob/main/samples/static-files-from-disk/static.js

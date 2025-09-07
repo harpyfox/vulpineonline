@@ -29,7 +29,7 @@ export default class extends WorkerEntrypoint {
         if (!value.hits)
             value.hits = 0;
         value.hits++;
-        this.env.KV.put(key, value);
+        await this.env.KV.put(key, value);
     }
     async api(url) {
         const endpoint = url.pathname.slice("/api/".length);
@@ -52,3 +52,4 @@ export default class extends WorkerEntrypoint {
         return response;
     }
 }
+//https://github.com/cloudflare/workerd/blob/main/samples/static-files-from-disk/static.js
