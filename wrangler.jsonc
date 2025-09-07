@@ -23,5 +23,12 @@
         "html_handling": "auto-trailing-slash",
         "binding": "ASSETS",
         "run_worker_first": true
-    }
+    },
+    "kv_namespaces": [
+        {
+            "binding": "KV",
+            "id": "0829dc3e8fac4591937177abad1ccd2d"
+        }
+    ]
+
 }
