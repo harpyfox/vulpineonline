@@ -115,11 +115,6 @@
         <figcaption>-</figcaption>
     </figure>
 
-    <noscript>
-        header > p {
-            display: none;
-        }
-    </noscript>
     <header onclick="document.body.scrollTop = document.documentElement.scrollTop = 0" style="cursor: pointer;">
         <h1>harper fox<img class="icon32" width="32px" height="32px" src="img/butterfly.gif" style="display: inline; vertical-align: middle;"></h1>
         <p class="badge">return to top</p>
@@ -167,7 +162,14 @@
     
     <main>
         <noscript>
-            javascript is disabled. honestly i don't blame you. fancy stuff won't work though.
+            <aside>
+                <small>javascript is disabled. honestly i don't blame you.<br><strong>videos</strong> and <strong>fancy stuff</strong> won't work though.</small>
+            </aside>
+            <style>
+                header > p {
+                    display: none;
+                }
+            </style>
         </noscript>
 
         <section>
