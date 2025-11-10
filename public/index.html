@@ -116,8 +116,8 @@
     </figure>
 
     <header onclick="document.body.scrollTop = document.documentElement.scrollTop = 0" style="cursor: pointer;">
-        <h1>harper fox<img class="icon32" width="32px" height="32px" src="img/butterfly.gif" style="display: inline; vertical-align: middle;"></h1>
-        <p class="badge">return to top</p>
+        <h1><img class="icon32" src="favicon.ico"> harper fox</h1>
+        <img class="icon32 badge" src="img/butterfly.gif">
     </header>
 
     <nav>
@@ -171,9 +171,8 @@
                 }
             </style>
         </noscript>
-
         <section>
-            <h2><a id="projects" href=#projects>#</a>projects</h2>
+            <h2><a id="games" href=#games>#</a>games&animations</h2>
             
             <details name="project" style="background-color: light-dark(#727df8,#060435);">
                 <summary>
@@ -365,13 +364,13 @@
                     <article><img src="img/reptilian-map.png" loading="lazy"></article>
                 </div>
                 <aside>
-                    <p>[TODO] i want to show more but the game hasn't released and since our final delivery milestone the steam page has actually removed screenshots so i don't know if i can even show them. welp</p>
+                    <p>i want to show more, but the game hasn't released. in fact, since our final delivery milestone, the steam page has actually removed screenshots that were previously there. the game is somehow less released than last i worked on it.</p>
                 </aside>
                 <a class="biglink" href="https://store.steampowered.com/app/1625460/Reptilian_Rising/" target="_blank" rel="noreferrer">
                     <img class="icon96" src="img/steam-favicon.ico">
                     <h4>Reptilian Rising</h4>
                     <p>on Steam</p>
-                    <small style="position: absolute; background-color: #000; transform: rotate(10deg); width: 20ch;top:-14px;right:-40px;">we were
+                    <small style="position: absolute; background-color: #000; transform: rotate(10deg); width: 20ch;top:0px;right:-40px;">we were
                         NOT involved with the trailer.</small>
                 </a>
             </details>
@@ -433,7 +432,10 @@
                     <article><video src="img/spine-debugdog.mp4" preload="none" poster="img/mediaplayer48.png"></video></article>
                     <article><img src="img/spine-runloop.gif" loading="lazy"></article>
                     <article><video src="img/spine-clip.mp4" preload="none" poster="img/mediaplayer48.png"></video></article>
-                    </div>
+                </div>
+                <aside>
+                    <p>fun fact: i primarily made this for a job attempt to show that i can use Unreal Engine and Spine 2D. they held 2 interviews with me that were "very promising" (their words), then waited 4 months to tell me i didn't get the job.</p>
+                </aside>
             </details>
 
             <details name="project">
@@ -473,7 +475,6 @@
                     <article><img src="img/V.png" loading="lazy"></article>
                     <article><img src="img/trashfox.png" loading="lazy"></article>
                     <!-- <article class="card" data-bluesky-src="at://did:plc:ee5pxx436s7areoj4epw3voj/app.bsky.feed.post/3lrpxdwhjgk25"></article>                 -->
-                    <article><img src="img/harper.webp" loading="lazy"></article>
                     <article><img src="img/foxspinnyHD.gif" loading="lazy"></article>
                     <!-- <article class="card" data-bluesky-src="at://did:plc:ee5pxx436s7areoj4epw3voj/app.bsky.feed.post/3lrpxdf2p3225"></article>                 -->
     
@@ -484,21 +485,44 @@
                 </div>
             </details>
 
+            <!-- <div class="gallery">
+                <article class="card">
+                    <a href="/">
+                        <img src="img/.png">
+                        <img class="icon32 badge" src="img/blender-icon.svg">
+                        <h3>inktober 2025</h3>
+                    </a>
+                    <p>animation shorts made during inktober 2025</p>
+                    <time>31<sup>st</sup> October 2025</time>
+                </article>
+            </div> -->
+
         </section>
 
+
         <section>
-            <h2><a id="demos" href=#demos>#</a>toybox</h2>
+            <h2><a id="software" href=#software>#</a>software</h2>
 
             <div class="gallery">
                 <article class="card">
+                    <a href="charachnid/">
+                        <img src="img/charachnid.png">
+                        <img class="icon32 badge" src="img/python-icon.svg">
+                        <h3>charachnid</h3>
+                    </a>
+                    <p>Australian Charities and Not-for-profits Commission website crawler</p>
+                    <time>9<sup>th</sup> November 2025</time>
+                </article>
+
+                <!-- <article class="card">
                     <a href="downloads/restore-windows-photo-viewer.reg" download>
                         <img src="img/windowsphotoviewer256.png">
                         <img class="icon32 badge" src="img/reg32.png">
                         <h3>Windows Photo Viewer</h3>
                     </a>
-                    <p>restore Windows Photo Viewer as an image filetype handler on Windows computers.</p>
+                    <p>restore Windows Photo Viewer as an image filetype handler on Windows computers</p>
                     <time>8<sup>th</sup> September 2025</time>
-                </article>
+                </article> -->
 
                 <article class="card">
                     <script>
@@ -509,12 +533,12 @@
                         <img class="icon32 badge" src="img/ie-icon.svg">
                         <h3>this website</h3>
                     </a>
-                    <p id="here">you're here!</p>
+                    <p id="here">you are here</p>
                     <time>July 2025 - Present</time>
                 </article>
 
                 <article class="card">
-                    <a href="webgpu/samples/lab-ts/" target="_blank" rel="opener">
+                    <a href="webgpu/samples/lab-ts/">
                         <img src="img/webgpu.jpg">
                         <img class="icon32 badge" src="img/ie-icon.svg">
                         <h3>WebGPU Shader Editor</h3>
@@ -524,28 +548,19 @@
                 </article>
 
                 <article class="card">
-                    <a href="/" rel="noreferrer" onclick="event.preventDefault()">
-                        <video src="img/autorender.mp4" poster="img/autorender.webp" preload="none" poster="img/mediaplayer48.png"></video>
-                        <img class="icon32 badge" src="img/blender-icon.svg">
-                        <h3>8-Dir. Renderer</h3>
-                    </a>
-                    <p>blender script for rendering a model from 8 cardinal directions</p>
-                    <p><small>[TODO] add download</small></p>
-                    <time>June 2025</time>
-                </article>
-
-                <article class="card">
-                    <a href="/" rel="noreferrer" onclick="event.preventDefault()">
+                    <a href="https://github.com/harpyfox/ftx">
+                        <img src="img/autorender.webp">
                         <img class="icon32 badge" src="img/blender-icon.svg">
                         <h3>ftx</h3>
                     </a>
-                    <p>blender addon with timesavers and whatnot</p>
-                    <p><small>[TODO] add download</small></p>
-                    <time>June 2025</time>
+                    <p>blender addon with my personal tools, scripts, and timesavers</p>
+                    <time>June 2025 - Present</time>
                 </article>
 
+                <article><img src="img/harper.webp" loading="lazy"></article>
+
                 <article class="card">
-                    <a href="https://tinyfox.neocities.org/" target="_blank" rel="noreferrer">
+                    <a href="https://tinyfox.neocities.org/">
                         <img src="img/neocities_512x273.jpg">
                         <img class="icon32 badge" src="img/ie-icon.svg">
                         <h3>tinyfox</h3>
@@ -665,35 +680,47 @@ button.win95, .win95 button {
 
         </section>
 
-        <!-- <section>
+        <div class="annex">
+        <section>
             <h2><a id="employment" href=#employment>#</a>employment</h2>
-            <dl>
-                <dt>Robot Circus</dt>
-                <dd>Animator / Technical Artist / Programmer</dd>
-                <dd><time>February 2023 - June 2025</time></dd>
-            </dl>
-        </section> -->
+            <article>
+                <img class="favicon" src="img/dubious.webp"><h3>Freelancing?</h3>
+                <p>help me</p>
+                <time>June 2025 - Present</time>
+            </article>
+            <article>
+                <img class="favicon" src="img/rc-icon.webp"><a href="https://www.robot-circus.com/"><h3>Robot Circus</h3></a>
+                <p>Animator / Technical Artist / Programmer</p>
+                <time>February 2023 - June 2025</time>
+            </article>
+        </section>
 
-        <!-- <section>
+        <section>
             <h2><a id="education" href=#education>#</a>education</h2>
-            <dl>
-                <dt>Swinburne University of Technology</dt>
-                <dd>Bachelor of Computer Science (Cybersecurity)</dd>
-                <dd><time>December 2022</time></dd>
-                <dt>RMIT University</dt>
-                <dd>VCE Extension - Computer Science</dd>
-                <dd><time>December 2017</time></dd>
-            </dl>
-        </section> -->
+            <article>
+                <img class="favicon" src="img/swin-favicon.ico"><a href="https://www.swinburne.edu.au/corporate/feedback/"><h3>Swinburne University of Technology</h3></a>
+                <p>BSc Computer Science - Cybersecurity Major</p>
+                <time>December 2022</time>
+            </article>
+            <article>
+                <img class="favicon" src="img/rmit-favicon.ico"><a href="https://www.rmit.edu.au/utilities/complaints/staff-complaints"><h3>RMIT University</h3></a>
+                <p>BSc Computer Science</p>
+                <time>December 2017</time>
+            </article>
+        </section>
+        </div>
         
         <section>
             <h2><a id="changelog" href=#changelog>#</a>changelog</h2>
             <details class="changelog">
                 <summary>
-                    <h3>1.4.6</h3>
-                    <ul><li>site is now 100% operational in noscript mode. please enable media elements to see videos though, since most of my work here is in mp4 format.</li></ul>
-                    <time>7<sup>th</sup> September 2025</time>
+                    <h3>1.4.7</h3>
+                    <ul><li>add charachnid</li><li>employment and education sections</li><li>style updates</li></ul>
+                    <time>10<sup>th</sup> November 2025</time>
                 </summary>
+                <h3>1.4.6</h3>
+                <ul><li>site is now 100% operational in noscript mode. please enable media elements to see videos though, since most of my work here is in mp4 format.</li></ul>
+                <time>7<sup>th</sup> September 2025</time>
                 <h3>1.4.5</h3>
                 <ul><li>lots of optimizations</li><li>flattened style hierarchy a bit</li><li>fix viewer misbehaving on mobile</li></ul>
                 <time>6<sup>th</sup> September 2025</time>
@@ -731,6 +758,7 @@ button.win95, .win95 button {
         <a href="https://jigsaw.w3.org/css-validator/check/referer" target="_blank"><img class="button" src="buttons/vcss.png" alt="Valid CSS!" /></a>
         <a href="https://validator.w3.org/" target="_blank" rel="noreferrer"><img class="button" src="buttons/valid-html40.png" alt="Valid HTML4!" /></a>
         <img class="button" src="buttons/microsoftinternetexplorer.gif" alt="Microsoft Internet Explorer" />
+        <img class="button" src="buttons/html_learn_it_today.gif" alt="HTML - Learn It Today!"/>
         <script>
             function toggleDebug(e) {
                 const toggled = document.body.classList.toggle("debug");
@@ -738,9 +766,8 @@ button.win95, .win95 button {
             }
         </script>
         <button class="win95 button" onclick="toggleDebug(this);this.style=`font-weight: ${document.body.classList.contains('debug')?'bold':'normal'}`;"><span>debug</span></button>
+        <a href="colophon/">colophon</a>
     </footer>
-
-    
     
     <script src="video.js"></script>
     <script src="viewer.js"></script>

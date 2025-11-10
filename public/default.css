@@ -29,7 +29,7 @@
 }
 html {
     background-color: var(--theme-background);
-    font-family: "MS Sans Serif", "Arial", sans-serif;
+    font-family: "Arial", sans-serif;
 }
 body {
     -webkit-font-smoothing: antialiased;
@@ -48,8 +48,14 @@ p, h1, h2, h3, h4, h5, h6 {
     color: var(--text-color);
 }
 time { color: var(--theme-border); }
-a, a > *, a:visited, a:visited > * { color: var(--theme-interactive); }
-a:hover, a:hover > * { color: var(--theme-interactive-hover); }
+a, a > *, a:visited, a:visited > * { 
+    color: var(--theme-interactive); 
+    text-decoration: none;
+}
+a:hover, a:hover > * { 
+    color: var(--theme-interactive-hover);
+    text-decoration: underline;
+}
 a:active, a:active > * { color: var(--theme-interactive-active); }
 .contain {
     width: 100%;
@@ -166,6 +172,19 @@ section {
     padding: 4px;
     gap: 4px;
 }
+.annex {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 4px;
+    gap: 4px;
+    section {
+        border: var(--theme-border-style);
+    }
+    h3 {
+        display: inline;
+        padding-top: 0.3rem;
+    }
+}
 details[name="project"] {
     border: var(--theme-border-style);
     scroll-margin-block-start: calc(var(--header-height) + 4px);
@@ -212,6 +231,10 @@ figcaption {
     line-height: initial;
     background-color: #11111191;
     width: 100%;
+}
+aside {
+    padding: 8px;
+    text-align: center;
 }
 .card {
     border: var(--theme-border-style);
@@ -267,11 +290,9 @@ a.biglink::before {
 blockquote>p::before {
     content: open-quote;
 }
-
 blockquote>p::after {
     content: close-quote;
 }
-
 blockquote~* {
     font-size: smaller;
 }
@@ -290,6 +311,12 @@ footer {
     }
     main {
         padding-right: 0px;
+    }
+    .annex {
+        grid-template-columns: 1fr;
+        section {
+            border: initial;
+        }
     }
     .gallery {
         grid-template-columns: 1fr 1fr;
