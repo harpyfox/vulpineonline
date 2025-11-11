@@ -1,31 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-AU">
 
 <head>
-    <meta charset="ASCII">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, viewport-fit=cover">
-    <meta name="color-scheme content="light dark">
+    <meta name="color-scheme" content="light dark">
     <meta name="google-site-verification" content="RnHxkxpiUsAAxgsNO88zdwJHdz0ujVAJyqluj6EG-p8" />
+    
+    <link rel="stylesheet" href="default.css" title="Default" type="text/css">
+    <!-- <link rel="alternate stylesheet" href="classic.css" title="Classic" type="text/css"> -->
 
-    <link rel="preload" href="base.css" as="style">
-    <link rel="preload" href="default.css" as="style">
-
-    <title>Harper Fox</title>
-    <meta name="author" content="Harper Fox (harper.iro@gmail.com)">
-    <meta name="application-name" content="VULPINE ONLINE">
-    <meta name="description" content="Harper's personal website and portfolio">
-    <meta name="theme-color" content="#ffa500">
-    <!-- <meta name="generator" content="100% home grown baby"> -->
-    <meta name="GENERATOR" content="IBM HomePage Builder 2001 V5.0.0 for Windows"> <!-- lol -->
-
-    <link rel="canonical" href="https://www.vulpineonline.com/">
-    <link rel="icon" href="favicon.ico" type="image/png" sizes="50x50">
-    <link rel="apple-touch-icon" href="favicon.ico" type="image/png" sizes="50x50">
+    <link rel="icon" href="favicon.png" type="image/png" sizes="50x51">
+    <link rel="apple-touch-icon" href="favicon.png" type="image/png" sizes="50x51">
     <!-- https://evilmartians.com/chronicles/how-to-favicon-in-2021-six-files-that-fit-most-needs -->
 
-    <link rel="stylesheet" href="base.css" type="text/css">
-    <link rel="stylesheet" href="default.css" title="Default" type="text/css">
-    <link rel="alternate stylesheet" href="classic.css" title="Classic" type="text/css">
+    <title>VULPINE ONLINE</title>
+    <meta name="description" content="Harper's personal website and portfolio">
+    <meta name="author" content="Harper Fox (harper.iro@gmail.com)">
+    <link rel="canonical" href="https://www.vulpineonline.com/">
+
+    <meta name="application-name" content="VULPINE ONLINE">
+    <meta name="theme-color" content="#ffa500">
+    <meta name="generator" content="IBM HomePage Builder 2001 V5.0.0 for Windows"> <!-- lol -->
 
     <meta property="og:title" content="VULPINE ONLINE">
     <meta property="og:description" content="Harper's personal website and portfolio">
@@ -116,8 +112,9 @@
     </figure>
 
     <header onclick="document.body.scrollTop = document.documentElement.scrollTop = 0" style="cursor: pointer;">
-        <h1><img class="icon32" src="favicon.ico"> harper fox</h1>
-        <img class="icon32 badge" src="img/butterfly.gif">
+        <img class="icon32" src="favicon.png">
+        <h1 style="flex: auto;">harper fox</h1>
+        <img class="icon32" src="img/butterfly.gif">
     </header>
 
     <nav>
@@ -505,10 +502,11 @@
 
             <div class="gallery">
                 <article class="card">
+                    
                     <a href="charachnid/">
                         <img src="img/charachnid.png">
                         <img class="icon32 badge" src="img/python-icon.svg">
-                        <h3>charachnid</h3>
+                        <h3>charachnid</h3><img class="icon" src="img/newstar.gif">
                     </a>
                     <p>Australian Charities and Not-for-profits Commission website crawler</p>
                     <time>9<sup>th</sup> November 2025</time>
@@ -551,7 +549,7 @@
                     <a href="https://github.com/harpyfox/ftx">
                         <img src="img/autorender.webp">
                         <img class="icon32 badge" src="img/blender-icon.svg">
-                        <h3>ftx</h3>
+                        <h3>ftx</h3><img class="icon" src="img/newstar.gif">
                     </a>
                     <p>blender addon with my personal tools, scripts, and timesavers</p>
                     <time>June 2025 - Present</time>
@@ -683,13 +681,15 @@ button.win95, .win95 button {
         <div class="annex">
         <section>
             <h2><a id="employment" href=#employment>#</a>employment</h2>
-            <article>
-                <img class="favicon" src="img/dubious.webp"><h3>Freelancing?</h3>
-                <p>help me</p>
+            <article class="card">
+                <div>
+                    <img class="favicon" src="img/dubious.webp"><h3>Freelance</h3>
+                </div>
+                <strong>HELP ME</strong>
                 <time>June 2025 - Present</time>
-            </article>
-            <article>
-                <img class="favicon" src="img/rc-icon.webp"><a href="https://www.robot-circus.com/"><h3>Robot Circus</h3></a>
+                <div>
+                    <img class="favicon" src="img/rc-icon.webp"><a href="https://www.robot-circus.com/"><h3>Robot Circus</h3></a>
+                </div>
                 <p>Animator / Technical Artist / Programmer</p>
                 <time>February 2023 - June 2025</time>
             </article>
@@ -697,13 +697,15 @@ button.win95, .win95 button {
 
         <section>
             <h2><a id="education" href=#education>#</a>education</h2>
-            <article>
-                <img class="favicon" src="img/swin-favicon.ico"><a href="https://www.swinburne.edu.au/corporate/feedback/"><h3>Swinburne University of Technology</h3></a>
+            <article class="card">
+                <div>
+                    <img class="favicon" src="img/swin-favicon.ico"><a href="https://www.swinburne.edu.au/corporate/feedback/"><h3>Swinburne University of Technology</h3></a>
+                </div>
                 <p>BSc Computer Science - Cybersecurity Major</p>
                 <time>December 2022</time>
-            </article>
-            <article>
-                <img class="favicon" src="img/rmit-favicon.ico"><a href="https://www.rmit.edu.au/utilities/complaints/staff-complaints"><h3>RMIT University</h3></a>
+                <div>
+                    <img class="favicon" src="img/rmit-favicon.ico"><a href="https://www.rmit.edu.au/utilities/complaints/staff-complaints"><h3>RMIT University</h3></a>
+                </div>
                 <p>BSc Computer Science</p>
                 <time>December 2017</time>
             </article>
@@ -714,10 +716,13 @@ button.win95, .win95 button {
             <h2><a id="changelog" href=#changelog>#</a>changelog</h2>
             <details class="changelog">
                 <summary>
-                    <h3>1.4.7</h3>
-                    <ul><li>add charachnid</li><li>employment and education sections</li><li>style updates</li></ul>
-                    <time>10<sup>th</sup> November 2025</time>
+                    <h3>1.4.8</h3>
+                    <ul><li>made small things bigger yipee</li><li>style updates</li></ul>
+                    <time>11<sup>th</sup> November 2025</time>
                 </summary>
+                <h3>1.4.7</h3>
+                <ul><li>add charachnid</li><li>employment and education sections</li><li>style updates</li></ul>
+                <time>10<sup>th</sup> November 2025</time>
                 <h3>1.4.6</h3>
                 <ul><li>site is now 100% operational in noscript mode. please enable media elements to see videos though, since most of my work here is in mp4 format.</li></ul>
                 <time>7<sup>th</sup> September 2025</time>
@@ -765,8 +770,10 @@ button.win95, .win95 button {
                 document.dispatchEvent(new Event('debugtoggled'));
             }
         </script>
+        <div class="button" style="display:flex;"><a style="margin:auto;" href="colophon/">colophon</a></div>
+        <img class="button" src="buttons/firefox.gif" alt="Firefox" />
         <button class="win95 button" onclick="toggleDebug(this);this.style=`font-weight: ${document.body.classList.contains('debug')?'bold':'normal'}`;"><span>debug</span></button>
-        <a href="colophon/">colophon</a>
+
     </footer>
     
     <script src="video.js"></script>
