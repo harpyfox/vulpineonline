@@ -1,0 +1,25 @@
+---
+{
+    "layout": "portfolio_entry.njk",
+    "title": "Haunted Holdout",
+    "description": "3-day Game Jam with topic \"vision\"",
+    "client": "",
+    "date": "2000-01-01",
+    "roles": [ "Solo" ],
+    "tags": [ "Blender", "Unity", "Web" ]
+}
+---
+<section class="gallery">
+    <figure>{{ img("img/haunted-background.png") }}</figure>
+    <figure style="grid-column: span 2;">{{ img("img/haunted-1.jpg") }}</figure>
+    <figure>{{ video("img/haunted-gameplay.mp4") }}</figure>
+</section>
+<section class="gallery">
+    <figure>{{ img("img/haunted-characters.jpg", "class=\"contain\"") }}</figure>
+    <figure>{{ video("img/haunted-anims.mp4", "class=\"cover\"") }}</figure>
+</section>
+<a class="biglink" href="https://harpyfox.itch.io/haunted-holdout" target="_blank" rel="noreferrer">
+    {{ img("img/haunted-icon.png", "class=\"icon96\"") }}
+    <h4>Haunted Holdout</h4>
+    <p>on itch.io</p>
+</a>

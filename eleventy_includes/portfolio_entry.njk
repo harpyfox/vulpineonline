@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, viewport-fit=cover">
+        <title>{{ title }}</title>
+        <link rel="stylesheet" href="../default.css" title="Default" type="text/css">
+        <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+    </head>
+    <body>
+        <header>
+            <nav>
+                <p><a href="https://www.vulpineonline.com/"><< VULPINE ONLINE</a></p>
+            </nav>
+        </header>
+        <main>
+            <hgroup>
+                <h1>{{ title }}</h1>
+                <p>{{ description }}</p>
+            </hgroup>
+            
+            <time>{{ page.date }}</time>
+            <section>
+                <dl>
+                    <div>
+                        <dt>Role(s)</dt>
+                        {%- for role in roles %}
+                        <dd>{{ role }}</dd>
+                        {%- endfor %}
+                    </div>
+                    <div>
+                        <dt>Client</dt>
+                        <dd>{{ client }}</dd>
+                    </div>
+                    <div>
+                        <dt>Tags</dt>
+                        {%- for tag in tags %}
+                        <dd>{{ tag }}</dd>
+                        {%- endfor %}
+                    </div>
+                </dl>
+            </section>
+            
+            {{ content | safe }}
+
+        </main>
+        <footer>
+            <ul>
+            {%- for tag in tags %}
+            {%- set tagUrl %}/tags/{{ tag | slugify }}/{% endset %}
+            <li><a href="{{ tagUrl }}" class="post-tag">{{ tag }}</a>{%- if not loop.last %}, {% endif %}</li>
+            {%- endfor %}
+            </ul>
+        </footer>
+    </body>
+</html>
