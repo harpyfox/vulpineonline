@@ -22,8 +22,9 @@ class Default(WorkerEntrypoint):
         logger = logging.getLogger(__name__)
         logging.basicConfig(level=logging.INFO)
 
+    async def fetch(self, request):
+
         url = urlparse(request.url)
-        url.path
 
         if str.startswith(url.path, 'api'):
             return self.api(request)
