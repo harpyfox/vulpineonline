@@ -23,8 +23,9 @@ class Default(WorkerEntrypoint):
         logging.basicConfig(level=logging.INFO)
 
         url = urlparse(request.url)
+        url.path
 
-        if "api.vulpineonline.com" in url.hostname:
+        if str.startswith(url.path, 'api'):
             return self.api(request)
 
         sec_fetch_mode = request.headers["Sec-Fetch-Mode"] or ""
