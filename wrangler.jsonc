@@ -1,34 +1,43 @@
 {
+    "$schema": "node_modules/wrangler/config-schema.json",
     "name": "bubble",
-    "compatibility_date": "2025-08-01",
-    "main": "src/index.ts",
+    "compatibility_date": "2025-11-15",
+    "main": "src/main.py",
     "compatibility_flags": [
-        "nodejs_compat"
+        "python_workers"
     ],
     "observability": {
         "enabled": true
     },
-    "rules": [
-        { 
-            "type": "Text", 
-            "globs": [
-                "**/*.ttf"
-            ], 
-            "fallthrough": true
-        }
-    ],
+    
+    // https://developers.cloudflare.com/workers/static-assets/binding/
     "assets": {
         "directory": "./public/",
-        //"not_found_handling": "404-page",
+        "not_found_handling": "404-page",
         "html_handling": "auto-trailing-slash",
         "binding": "ASSETS",
         "run_worker_first": true
     },
+    
+    // https://developers.cloudflare.com/workers/runtime-apis/bindings/
     "kv_namespaces": [
-        {
-            "binding": "KV",
-            "id": "0829dc3e8fac4591937177abad1ccd2d"
-        }
+        { "binding": "KV", "id": "0829dc3e8fac4591937177abad1ccd2d" }
+    ],
+    "version_metadata": { 
+        "binding": "CF_VERSION_METADATA" 
+    },
+    "analytics_engine_datasets": [
+        { "binding": "REFERERS", "dataset": "values"}
     ]
+
+    // https://developers.cloudflare.com/workers/wrangler/configuration/#environment-variables
+    // https://developers.cloudflare.com/workers/configuration/secrets/
+    // "vars": { "MY_VARIABLE": "production_value" }
+
+    //https://developers.cloudflare.com/workers/wrangler/configuration/#service-bindings
+    // "services": [{ "binding": "MY_SERVICE", "service": "my-service" }]
+
+    // https://developers.cloudflare.com/workers/configuration/smart-placement/#smart-placement
+    // "placement": { "mode": "smart" }
 
 }
