@@ -1,14 +1,14 @@
-from js import Object
 from workers import WorkerEntrypoint, Response
-from pyodide.ffi import to_js as _to_js
+from pyodide.ffi import JsArray
 
  # stdlib
 import logging
 import datetime
+from urllib.parse import urlparse
 
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, MutableSequence
 if TYPE_CHECKING:
-    from js import Env
+    from js import Env, Object
 
 
 class Default(WorkerEntrypoint):
@@ -22,17 +22,24 @@ class Default(WorkerEntrypoint):
         logger = logging.getLogger(__name__)
         logging.basicConfig(level=logging.INFO)
 
-        version_proxy = self.env.CF_VERSION_METADATA;
+        url = urlparse(request.url)
 
-        headers = dict(request.headers)
-        if headers.get("sec-fetch-mode", None) == "navigate":
-            referer = headers.get("referer", "no-referrer")
-            ua = headers.get("user-agent", "no-useragent")
+        if "api.vulpineonline.com" in url.hostname:
+            return self.api(request)
+
+        sec_fetch_mode = request.headers["Sec-Fetch-Mode"] or ""
+        if sec_fetch_mode == "navigate":
+            referer = request.headers["Referer"] or "NOREFERER"
+            ua = request.headers["User-Agent"] or "NOUSERAGENT"
             timestamp = datetime.datetime.now().isoformat()
+
             self.env.REFERERS.writeDataPoint(
-                indexes=[version_proxy.id],
-                doubles=[],
-                blobs=[ ua, referer, timestamp ],
+                indexes=JsArray([ referer ]),
+                doubles=JsArray([]),
+                blobs=JsArray([ ua, timestamp ]),
             )
         
         return await self.env.ASSETS.fetch(request)
+    
+    async def api(self, request):
+        return Response("API call yipee", status=418)
