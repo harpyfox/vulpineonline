@@ -17,13 +17,12 @@ class Default(WorkerEntrypoint):
     def __init__(self, ctx, env: "Env"):
         self.ctx = ctx
         self.env = env
-
-    async def fetch(self, request):
-        logger = logging.getLogger(__name__)
+        self.logger = logging.getLogger(__name__)
         logging.basicConfig(level=logging.INFO)
 
+    async def fetch(self, request):
+
         url = urlparse(request.url)
-        url.path
 
         if str.startswith(url.path, 'api'):
             return self.api(request)
