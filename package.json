@@ -6,6 +6,6 @@
     "@webgpu/types": "^0.1.64",
     "globals": "^16.3.0",
     "typescript": "^5.9.2",
-    "wrangler": "^4.29.1"
+    "wrangler": "^4.47.0"
   }
 }
