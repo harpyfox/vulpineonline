@@ -1,2 +1,6 @@
-/ref
+ref
 .DS_Store
+.venv
+.venv-workers
+.wrangler/
+node_modules/
