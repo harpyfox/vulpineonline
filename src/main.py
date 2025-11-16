@@ -1,5 +1,5 @@
 from workers import WorkerEntrypoint, Response
-from pyodide.ffi import JsArray
+from pyodide.ffi import to_js
 
  # stdlib
 import logging
@@ -34,9 +34,9 @@ class Default(WorkerEntrypoint):
             timestamp = datetime.datetime.now().isoformat()
 
             self.env.REFERERS.writeDataPoint(
-                indexes=JsArray([ referer ]),
-                doubles=JsArray([]),
-                blobs=JsArray([ ua, timestamp ]),
+                indexes=to_js([ referer ]),
+                doubles=to_js([]),
+                blobs=to_js([ ua, timestamp ]),
             )
         
         return await self.env.ASSETS.fetch(request)
