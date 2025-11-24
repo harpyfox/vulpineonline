@@ -760,15 +760,15 @@ button.win95, .win95 button {
         <a href="https://validator.w3.org/" target="_blank" rel="noreferrer"><img class="button" src="buttons/valid-html40.png" alt="Valid HTML4!" /></a>
         <img class="button" src="buttons/microsoftinternetexplorer.gif" alt="Microsoft Internet Explorer" />
         <img class="button" src="buttons/html_learn_it_today.gif" alt="HTML - Learn It Today!"/>
+        <div class="button" style="display:flex;"><a style="margin:auto;" href="colophon/">colophon</a></div>
         <script>
             function toggleDebug(e) {
                 const toggled = document.body.classList.toggle("debug");
                 document.dispatchEvent(new Event('debugtoggled'));
             }
         </script>
-        <div class="button" style="display:flex;"><a style="margin:auto;" href="colophon/">colophon</a></div>
-        <img class="button" src="buttons/firefox.gif" alt="Firefox" />
         <button class="win95 button" onclick="toggleDebug(this);this.style=`font-weight: ${document.body.classList.contains('debug')?'bold':'normal'}`;"><span>debug</span></button>
+        <img class="button" src="buttons/firefox.gif" alt="Firefox" />
 
         <script>
             function setColorScheme(e) {
@@ -788,7 +788,6 @@ button.win95, .win95 button {
     <script src="viewer.js"></script>
 
     <script>
-// details scroll window to their position on open.
 // videos within details play on open, pause on close.
 document.addEventListener('DOMContentLoaded', function(e) {
     initAccordion();
