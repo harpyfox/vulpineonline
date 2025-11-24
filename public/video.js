@@ -1,14 +1,9 @@
-const query = 'video';
-
 document.addEventListener('DOMContentLoaded', function(event) {
-    for (const video of document.querySelectorAll(query)) {
+    for (const video of document.querySelectorAll('video')) {
         console.debug('setting defaults', video);
         video.muted = true;
         video.loop = true;
-        if (!video.hasAttribute('controls')) {
-            video.controls = false;
-        }
-
+        video.controls = false;
         video.disablePictureInPicture = true;
         
         video.addEventListener("abort", logVideoStats);
