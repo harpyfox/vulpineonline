@@ -770,6 +770,18 @@ button.win95, .win95 button {
         <img class="button" src="buttons/firefox.gif" alt="Firefox" />
         <button class="win95 button" onclick="toggleDebug(this);this.style=`font-weight: ${document.body.classList.contains('debug')?'bold':'normal'}`;"><span>debug</span></button>
 
+        <script>
+            function setColorScheme(e) {
+                const element = document.documentElement;
+                const scheme = e.value;
+                element.style["colorScheme"] = scheme == "system" ? null : scheme;
+            }
+        </script>
+        <select id="color-scheme-picker" onchange="setColorScheme(this)">
+            <option value="system">system</option>
+            <option value="light">light</option>
+            <option value="dark">dark</option>
+        </select>
     </footer>
     
     <script src="video.js"></script>
