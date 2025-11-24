@@ -12,7 +12,7 @@
 }
 
 :root {
-    color-scheme: dark;
+    color-scheme: light dark;
 
     --font-family-text: "Arial", sans-serif;
     --font-family-code: "Maple Mono Regular", monospace;
