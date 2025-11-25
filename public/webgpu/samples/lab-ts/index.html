@@ -1,116 +1,121 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <link href="style.css" rel="stylesheet">
-        <script src="main.js" type="module"></script>
-    </head>
-    <body>
-        <div class="wrapper">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1, shrink-to-fit=no">
+    <link rel="canonical" href="https://www.vulpineonline.com/webgpu/lab-ts/">
+    <link href="style.css" rel="stylesheet">
+    <script src="main.js" type="module"></script>
+</head>
+<body>
+    <nav class="sub-block">
+        <p><a href="https://www.vulpineonline.com/"><< VULPINE ONLINE</a></p>
+    </nav>
+    <div class="wrapper">
 
-            <div class="block">
-                <div id="player" class="sub-block">
-                    <canvas id="player-canvas" width="960" height="540"></canvas>
-                    <div id="player-ui">
-                        NOW IN TYPE SCRIPT!!!!!! !!!!!!
-                    </div>
-                    <div id="player-controls">
-                        <button id="button-restart" title="Restart playback from t = 0.">⏮️</button>
-                        <button id="button-play" title="Pause or resume playback.">▶️</button>
-                        <div id="player-time">0.00</div>
-                        <div id="player-resolution">000 x 000</div>
-                    </div>
+        <div class="block">
+            <div id="player" class="sub-block">
+                <canvas id="player-canvas" width="960" height="540"></canvas>
+                <div id="player-ui">
+                    NOW IN TYPE SCRIPT!!!!!! !!!!!!
                 </div>
-
-                <div id="examples" class="sub-block">
-                    <h1>examples</h1>
-                    <div class="examples-list">
-                        <button class="button-example">triangle</button>
-                        <button class="button-example">triangle2</button>
-                    </div>
-                    
-                    
+                <div id="player-controls">
+                    <button id="button-restart" title="Restart playback from t = 0.">⏮️</button>
+                    <button id="button-play" title="Pause or resume playback.">▶️</button>
+                    <div id="player-time">0.00</div>
+                    <div id="player-resolution">000 x 000</div>
                 </div>
             </div>
 
-            <div class="block">
-                <div id="editor" class="sub-block">
-                    <div id="editor-code"></div>
-                    
-                    <div id="editor-controls">
-                        <button id="button-compile" title="Compile">✅</button>
-                        <div id="editor-log">
-                        
-                        </div>
-                    </div>
-                </div>
-
-                <div id="inputs" class="sub-block">
-                    <details>
-                        <summary><h1>shader inputs</h1></summary>
-                        <table>
-                            <tbody>
-                                <tr>
-                                    <td>vec4f</td>
-                                    <td>position</td>
-                                    <td>// info about parameter</td>
-                                </tr>
-                                <tr>
-                                    <td>vec4f</td>
-                                    <td>color</td>
-                                    <td>// info about parameter</td>
-                                </tr>
-                            </tbody>
-                            </table>
-                    </details>
-
+            <div id="examples" class="sub-block">
+                <h1>examples</h1>
+                <div class="examples-list">
+                    <button class="button-example">triangle</button>
+                    <button class="button-example">triangle2</button>
                 </div>
                 
-                <div id="help" class="sub-block">
-                    <details>
-                        <summary><h1>shader HELP</h1></summary>
-                        <p>shaders are writtn in <a href="https://google.github.io/tour-of-wgsl/">WGSL</a></p>
-                    </details>
-                </div>
-                
-                <div id="snippets" class="sub-block">
-                    <h1>shader snippets (these get copied to your clipboard)</h1>
-                    <p>[TODO] hese dont actually work yet sorry</p>
-                    <p>[TODO] would be cute to drag and drop them into the editor</p>
-                    <div class="snippets-list">
-                        <h2>vertex arrays</h2>
-                        <button class="button-snippet" disabled="true">triangle</button>
-                        <button class="button-snippet" disabled="true">square</button>
-                        <button class="button-snippet" disabled="true">cube</button>
-                        <button class="button-snippet" disabled="true">sphere</button>
-                    </div>
-                    <div class="snippets-list">
-                        <h2>fragment shaders</h2>
-                        <button class="button-snippet" disabled="true">red</button>
-                        <button class="button-snippet" disabled="true">RGB</button>
-                        <button class="button-snippet" disabled="true">random</button>
-                    </div>
-                </div>
-
-                <div id="changelog" class="sub-block">
-                    <details>
-                        <summary><h1>changelog</h1></summary>
-                        <p>0.3.0 monaco editor</p>
-                        <p>0.2.5 de[pth And stencil buffer i think</p>
-                        <p>0.2.4 monaco editor testing</p>
-                        <p>0.2.3 put utils in module</p>
-                        <p>0.2.2 resfactoring</p>
-                        <p>0.2.1 fetch shaders from local files</p>
-                        <p>0.2.0 convert to typescipt</p>
-                        <p>0.1.0 initeal rlease</p>
-                    </details>
-                    
-                </div>
                 
             </div>
-
         </div>
-        
-        
-    </body>
+
+        <div class="block">
+            <div id="editor" class="sub-block">
+                <div id="editor-code"></div>
+                
+                <div id="editor-controls">
+                    <button id="button-compile" title="Compile">✅</button>
+                    <div id="editor-log">
+                    
+                    </div>
+                </div>
+            </div>
+
+            <div id="inputs" class="sub-block">
+                <details>
+                    <summary><h1>shader inputs</h1></summary>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>vec4f</td>
+                                <td>position</td>
+                                <td>// info about parameter</td>
+                            </tr>
+                            <tr>
+                                <td>vec4f</td>
+                                <td>color</td>
+                                <td>// info about parameter</td>
+                            </tr>
+                        </tbody>
+                        </table>
+                </details>
+
+            </div>
+            
+            <div id="help" class="sub-block">
+                <details>
+                    <summary><h1>shader HELP</h1></summary>
+                    <p>shaders are writtn in <a href="https://google.github.io/tour-of-wgsl/">WGSL</a></p>
+                </details>
+            </div>
+            
+            <div id="snippets" class="sub-block">
+                <h1>shader snippets (these get copied to your clipboard)</h1>
+                <p>[TODO] hese dont actually work yet sorry</p>
+                <p>[TODO] would be cute to drag and drop them into the editor</p>
+                <div class="snippets-list">
+                    <h2>vertex arrays</h2>
+                    <button class="button-snippet" disabled="true">triangle</button>
+                    <button class="button-snippet" disabled="true">square</button>
+                    <button class="button-snippet" disabled="true">cube</button>
+                    <button class="button-snippet" disabled="true">sphere</button>
+                </div>
+                <div class="snippets-list">
+                    <h2>fragment shaders</h2>
+                    <button class="button-snippet" disabled="true">red</button>
+                    <button class="button-snippet" disabled="true">RGB</button>
+                    <button class="button-snippet" disabled="true">random</button>
+                </div>
+            </div>
+
+            <div id="changelog" class="sub-block">
+                <details>
+                    <summary><h1>changelog</h1></summary>
+                    <p>0.3.0 monaco editor</p>
+                    <p>0.2.5 de[pth And stencil buffer i think</p>
+                    <p>0.2.4 monaco editor testing</p>
+                    <p>0.2.3 put utils in module</p>
+                    <p>0.2.2 resfactoring</p>
+                    <p>0.2.1 fetch shaders from local files</p>
+                    <p>0.2.0 convert to typescipt</p>
+                    <p>0.1.0 initeal rlease</p>
+                </details>
+                
+            </div>
+            
+        </div>
+
+    </div>
+    
+    
+</body>
 </html>
