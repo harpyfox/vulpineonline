@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+    <url><loc>https://www.vulpineonline.com/</loc></url>
     <url>
-        <loc>https://www.vulpineonline.com/</loc>
+        <loc>https://www.vulpineonline.com/demoreel2025/</loc>
         <video:video>
             <video:thumbnail_loc>https://www.vulpineonline.com/demoreel2025/poster.jpg</video:thumbnail_loc>
             <video:title>Demo Reel 2025</video:title>
