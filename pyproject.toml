@@ -7,6 +7,7 @@ requires-python = ">=3.14"
 dependencies = []
 [dependency-groups]
 dev = [
+    "jinja2>=3.1.6",
     "workers-py",
-    "workers-runtime-sdk"
+    "workers-runtime-sdk",
 ]

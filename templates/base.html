@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, viewport-fit=cover">
+    <title>{% block title required %}{% endblock title %}</title>
+    <link rel="icon" href="img/html-0.png" type="image/png">
+    <meta name="generator" content="Jinja2">
+</head>
+<body>
+    <header>
+        {% block header %}
+        <nav>
+            {% block nav %}
+            <p><a href="https://www.vulpineonline.com/"><< VULPINE ONLINE</a></p>
+            {% endblock nav %}
+        </nav>
+        {% endblock header %}
+    </header>
+    
+    <main>
+        <hgroup>
+            <h1>{{ self.title() }}</h1>
+            <p>hardcoded description</p>
+        </hgroup>
+        
+        <time>{% block time %}time goes here{% endblock time %}</time>
+        {% block main %}
+        <p>main</p>
+        {% endblock main %}
+    </main>
+
+    <footer>
+        {% block footer %}
+        <p>footer</p>
+        {% endblock footer %}
+    </footer>
+
+</body>
+</html>
