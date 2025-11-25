@@ -28,6 +28,7 @@
 User-Agent: *
 Content-signal: search=yes, ai-input=no, ai-train=no
 Allow: /
+Sitemap: https://www.vulpineonline.com/sitemap.xml
 
 # GO FUCK YOURSELF GO FUCK YOURSELF GO FUCK YOURSELF GO FUCK YOURSELF GO FUCK YOURSELF GO FUCK YOURSELF 
 User-agent: Amazonbot
