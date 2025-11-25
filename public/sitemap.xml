@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-    <url><loc>https://www.vulpineonline.com/</loc></url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+    xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+    <url>
+        <loc>https://www.vulpineonline.com/</loc>
+        <video:video>
+            <video:thumbnail_loc>https://www.vulpineonline.com/demoreel2025/poster.jpg</video:thumbnail_loc>
+            <video:title>Demo Reel 2025</video:title>
+            <video:description>Harper Fox's animation demo reel</video:description>
+            <video:content_loc>https://www.vulpineonline.com/demoreel2025/reel.mp4</video:content_loc>
+            <video:player_loc>https://www.vulpineonline.com/demoreel2025/</video:player_loc>
+            <video:publication_date>2026-01-01T19:00:00+11:00</video:publication_date>
+        </video:video>
+    </url>
     <url><loc>https://www.vulpineonline.com/charachnid/</loc></url>
     <url><loc>https://www.vulpineonline.com/colophon/</loc></url>
     <url><loc>https://www.vulpineonline.com/webgpu/samples/lab-ts/</loc></url>
