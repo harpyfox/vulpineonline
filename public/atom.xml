@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <title>Harper Fox's Atom feed</title>
+    <link href="https://www.vulpineonline.com/atom.xml" rel="self"/>
+    <link href="https://www.vulpineonline.com/" rel="alternate"/>
+    <updated>2025-11-26T00:00:00Z</updated>
+    <author>
+        <name>Harper Fox</name>
+        <uri>https://www.vulpineonline.com/</uri>
+        <email>harper.iro@gmail.com</email>
+    </author>
+    <id>tag:vulpineonline.com</id>
+
+    <entry>
+        <title>Atom Feed</title>
+        <link href="https://www.vulpineonline.com/atom.xml"/>
+        <id>tag:vulpineonline.com</id>
+        <published>2025-11-26T13:00:00+11:00</published>
+        <updated>2025-11-27T14:28:00+11:00</updated>
+        <summary>this is a summary of the entry.</summary>
+    </entry>
+
+    <entry>
+        <title>asdfghjkjhytreds</title>
+        <link href="https://www.vulpineonline.com/atom.xml"/>
+        <id>tag:vulpineonline.com</id>
+        <published>2025-11-20T13:00:00+11:00</published>
+        <updated>2025-11-20T14:28:00+11:00</updated>
+        <summary>this is a summary of the entry.</summary>
+    </entry>
+</feed>
