@@ -9,7 +9,7 @@ uv run pywrangler dev
 ```
 python3 renderer.py
 ```
-pages have METADATA in the form on a JSON block at the tippy top.
+pages have METADATA in the form of a JSON block at the tippy top.
 ```
 {
     "title": "my awesome web page",
