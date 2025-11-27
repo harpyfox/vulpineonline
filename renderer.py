@@ -5,24 +5,22 @@ from pathlib import Path
 from datetime import datetime
 import json
 import re
+import ast
 
 LOG_LEVEL = logging.INFO
+LOG_FORMAT = "%(name)s:%(levelname)s: %(message)s"
 TEMPLATE_DIR = "templates"
 OUTPUT_DIR = "public"
+GLOBALS = {
+    "site": {
+        "title": "VULPINE ONLINE",
+        "author": "harper fox",
+        "domain": "vulpineonline.com",
+    }
+}
 
-logging.basicConfig(level=LOG_LEVEL)
+logging.basicConfig(format=LOG_FORMAT, level=LOG_LEVEL)
 logger = logging.getLogger(__name__)
-
-def split_template(text: str):
-    # exp = re.compile(r"^(?:{|})$", ) # https://github.com/eyeseast/python-frontmatter/blob/main/frontmatter/default_handlers.py#L281
-    try:
-        _, meta, content = re.split(r"^(?:{|})$", text, maxsplit=2, flags=re.MULTILINE)
-        metadata = json.loads("{"+meta+"}")
-        logger.debug(f"metadata: {metadata}")
-        return metadata, content
-    except ValueError as valueError:
-        logger.debug(f"assuming no metadata - {str(valueError)}")
-        return {}, text
 
 # example filter
 def filter_datetime_format(value: datetime, format="%H:%M %y-%m-%d"):
@@ -43,9 +41,7 @@ def main():
             default=False
         ),
     )
-    env.globals = {
-        "happy": True,
-    }
+    env.globals = GLOBALS
     compiled_globals = env.make_globals(None)
     env.filters = {
         "datetime_format": filter_datetime_format,
@@ -55,26 +51,57 @@ def main():
     logger.debug(f"globals: {env.globals}")
     logger.debug(f"filters: {list(env.filters.keys())}")
 
-    for template_name in template_names:
-        logger.debug(f"parsing {template_name}")
-        template_source, template_path, uptodate = loader.get_source(env, template_name)
-        template_metadata, template_content = split_template(template_source)
+    for name in template_names:
+        logger.debug(f"parsing {name}")
+        source, path, uptodate = loader.get_source(env, name)
+        metadata, content = get_metadata(source)
+        metadict = parse_metadata_ast(metadata) if metadata else None
+        if metadict is None:
+            logger.info(f"skipped {path} - no metadata, treating as abstract")
+            continue
 
-        code = env.compile(template_content, template_name, template_path)
+
+        code = env.compile(content, name, path)
         template = env.template_class.from_code(env, code, compiled_globals, uptodate)
         
         try:
-            rendered = template.render(template_metadata)
+            rendered = template.render(metadict)
         except TemplateRuntimeError as runtimeError:
-            logger.warning(f"skipped {template_path} - {str(runtimeError)}")
+            logger.warning(f"skipped {path} - {str(runtimeError)}")
             continue
         else:
-            output_path = Path(OUTPUT_DIR, template_name)
+            output_path = Path(OUTPUT_DIR, name)
             output_path.parent.mkdir(exist_ok=True, parents=True)
             with open(output_path, "w") as output:
                 output.write(rendered)
-            logger.info(f"wrote {template_path} to {output_path}")
+            logger.info(f"wrote {path} to {output_path}")
     logger.debug(f"done")
+
+def get_metadata(text: str) -> tuple[str | None, str]:
+    try:
+        _, meta, content = re.split(r"^(?:{|})$", text, maxsplit=2, flags=re.MULTILINE) # https://github.com/eyeseast/python-frontmatter/blob/main/frontmatter/default_handlers.py#L281
+        return "{"+meta+"}", content
+    except ValueError as valueError:
+        logger.debug(f"assuming no metadata - {str(valueError)}")
+    return None, text
+
+def parse_metadata(text: str) -> object:
+    try:
+        metadata = json.loads(text)
+        logger.debug(f"metadata: {metadata}")
+        return metadata
+    except json.JSONDecodeError as jsonError:
+        logger.error(f"metadata parsing error - {str(jsonError)}")
+    return {}
+
+def parse_metadata_ast(text: str) -> object:
+    try:
+        metadata = ast.literal_eval(text)
+        logger.debug(f"metadata: {metadata}")
+        return metadata
+    except (ValueError, TypeError, SyntaxError, MemoryError, RecursionError) as error:
+        logger.error(f"metadata parsing error - {str(error)}")
+    return {}
 
 if __name__ == "__main__":
     main()

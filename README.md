@@ -9,11 +9,13 @@ uv run pywrangler dev
 ```
 python3 renderer.py
 ```
-pages have METADATA in the form of a JSON block at the tippy top.
+pages have METADATA in the form of a ~~JSON~~ raw Python block at the tippy top. 
+trailing commas come to mumma. it is parsed via ast.literal_eval.
 ```
 {
     "title": "my awesome web page",
-    "summary": "it's the best"
+    "summary": "it's the best",
+    "author": "not json get FUCKED",
 }
 <html>
     <head>

@@ -1,0 +1,30 @@
+{
+    "title": "charachnid",
+    "description": "Australian Charities and Not-for-profits Commission website crawler",
+    "date": "2025-11-09T00:00:00+11:00",
+}
+{% extends "article.html" %}
+
+{% block content %}
+
+<section>
+    <figure>
+        <code>Mozilla/5.0 (compatible; charachnid/x.y.z; +https://www.vulpineonline.com/charachnid)</code>
+    </figure>
+    <p>charachnid is a web scraper for the <a href="https://www.acnc.gov.au/">Australian 
+        Charities and Not-for-profits Commission</a> website.</p>
+    <p>its first runs were on approximately <time>2025-10-23T19:00:00+11:00</time> with 
+        user-agent:</p>
+    <figure>
+        <code>Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:144.0) Gecko/20100101 Firefox/144.0</code>
+    </figure>
+    <p>(it wasnt working with a custom user-agent at this point, so i just copied my browser's.)</p>
+</section>
+<section>
+    <p>charachnid was built for <a href="https://www.wendybrooks.com.au/">Wendy Brooks & Partners</a>. 
+        if you have an inquiry regarding charachnid's <strong>behaviour</strong> or <strong>usage</strong>, please direct them there.</p>
+    <p>if you have an inquiry regarding charachnid's <strong>implementation</strong> or <strong>methods</strong>, 
+        you can contact <a href="https://www.vulpineonline.com/">harper fox</a>.</p>
+</section>
+
+{% endblock %}
