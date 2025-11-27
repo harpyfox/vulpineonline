@@ -67,6 +67,32 @@
                 <p>{{ description }}</p>
                 <time>{{ date }}</time>
             </section>
+            {% if tags %}
+            <section>
+                <dl>
+                    {% if roles %}
+                    <div>
+                        <dt>Role(s)</dt>
+                        {%- for role in roles %}
+                        <dd>{{ role }}</dd>
+                        {%- endfor %}
+                    </div>
+                    {% endif %}
+                    {% if client %}
+                    <div>
+                        <dt>Client</dt>
+                        <dd>{{ client }}</dd>
+                    </div>
+                    {% endif %}
+                    <div>
+                        <dt>Tags</dt>
+                        {%- for tag in tags %}
+                        <dd>{{ tag }}</dd>
+                        {%- endfor %}
+                    </div>
+                </dl>
+            </section>
+            {% endif %}
             {% block content %}
             {% endblock %}
         </article>
