@@ -1,39 +1,32 @@
----
 {
-    "layout": "portfolio_entry.njk",
     "title": "Wolf Game",
     "description": "Vertical slice third person hack-n-slash",
-    "client": "",
     "date": "2000-01-01",
-    "roles": [ "Solo" ],
-    "tags": [ "Blender", "Unity" ]
+    "sections": [
+        # { "client": "Myself!!!!"},
+        { "roles": [ "Solo" ], },
+        { "tags": [ "Blender", "Unity" ] },
+        { "gallery": [
+            { "video": "img/hsalpha-animshowcase.mp4", },
+            { "video": "img/hsalpha-sprintlean.mp4", },
+            { "video": "img/hsalpha-gameplay.mp4", },
+            { "video": "img/hsalpha-walljump.mp4", },
+        ]},
+        { "gallery": [
+            { "img": "img/hsalpha-groundattacks.gif", },
+            { "img": "img/hsalpha-dead.gif", },
+            { "img": "img/hsalpha-jogloop.gif", },
+            { "img": "img/hsalpha-sprintloop.gif", },
+            { "img": "img/hsalpha-sprintkick.gif", },
+        ]},
+        { "gallery": [
+            { "img": "img/hsalpha-hp.gif", },
+            { "img": "img/hsalpha-ui.png", },
+            { "img": "img/hsalpha-bodyfront.png", },
+            { "img": "img/hsalpha-bodyback.png", },
+            { "img": "img/hsalpha-brackeys.png", },
+            { "img": "img/hsalpha-basketball.png", },
+        ]},
+    ]
 }
----
-
-<section class="gallery">
-    <figure>
-        <ul class="horizontal">
-            <li><img class="icon32" src="../img/unity-icon.svg" alt="Unity Engine" role="img"></li>
-            <li><img class="icon32" src="../img/blender-icon.svg" alt="Blender" role="img"></li>
-        </ul>
-    </figure>
-    <figure><video src="img/hsalpha-animshowcase.mp4" preload="none" poster="../img/mediaplayer48.png"></video></figure>
-    <figure><video src="img/hsalpha-sprintlean.mp4" preload="none" poster="../img/mediaplayer48.png"></video></figure>
-    <figure><video src="img/hsalpha-gameplay.mp4" preload="none" poster="../img/mediaplayer48.png"></video></figure>
-    <figure><video src="img/hsalpha-walljump.mp4" preload="none" poster="../img/mediaplayer48.png"></video></figure>
-</section>
-<section class="gallery">
-    <figure><img src="img/hsalpha-groundattacks.gif" loading="lazy"></figure>
-    <figure><img src="img/hsalpha-dead.gif" loading="lazy"></figure>
-    <figure><img src="img/hsalpha-jogloop.gif" loading="lazy"></figure>
-    <figure><img src="img/hsalpha-sprintloop.gif" loading="lazy"></figure>
-    <figure><img src="img/hsalpha-sprintkick.gif" loading="lazy"></figure>
-</section>
-<section class="gallery">
-    <figure><img src="img/hsalpha-hp.gif" loading="lazy"></figure>
-    <figure><img src="img/hsalpha-ui.png" loading="lazy"></figure>
-    <figure><img src="img/hsalpha-bodyfront.png" loading="lazy"></figure>
-    <figure><img src="img/hsalpha-bodyback.png" loading="lazy"></figure>
-    <figure><img src="img/hsalpha-brackeys.png" loading="lazy"></figure>
-    <figure><img src="img/hsalpha-basketball.png" loading="lazy"></figure>
-</section>
+{% extends "article.html" %}
