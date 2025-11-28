@@ -1,3 +1,4 @@
+{% import "macros.html" as macros %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -67,32 +68,50 @@
                 <p>{{ description }}</p>
                 <time>{{ date }}</time>
             </section>
-            {% if tags %}
-            <section>
+            {% for section in sections %}
+            {% if section.client %}
+            <section class="client">
                 <dl>
-                    {% if roles %}
-                    <div>
-                        <dt>Role(s)</dt>
-                        {%- for role in roles %}
-                        <dd>{{ role }}</dd>
-                        {%- endfor %}
-                    </div>
-                    {% endif %}
-                    {% if client %}
-                    <div>
-                        <dt>Client</dt>
-                        <dd>{{ client }}</dd>
-                    </div>
-                    {% endif %}
-                    <div>
-                        <dt>Tags</dt>
-                        {%- for tag in tags %}
-                        <dd>{{ tag }}</dd>
-                        {%- endfor %}
-                    </div>
+                    <dt>Client</dt>
+                    <dd>{{ section.client }}</dd>
                 </dl>
             </section>
+            {% elif section.roles %}
+            <section class="roles">
+                <dl>
+                    <dt>Roles</dt>
+                    {% for role in section.roles %}
+                    <dd>{{ role }}</dd>
+                    {% endfor %}
+                </dl>
+            </section>
+            {% elif section.tags %}
+            <section class="tags">
+                <dl>
+                    <dt>Tags</dt>
+                    {% for tag in section.tags %}
+                    <dd>{{ tag }}</dd>
+                    {% endfor %}
+                </dl>
+            </section>
+            {% elif section.gallery %}
+            <section class="gallery">
+            {% for element in section.gallery %}
+                <figure>
+                {% if element.img %}
+                    <img src="{{ element.img }}" loading="lazy">
+                {% elif element.video %}
+                    <video src="{{ element.video }}" preload="none" poster="../img/mediaplayer48.png"></video>
+                {% endif %}
+                {% if element.caption %}
+                    <figcaption>{{ element.caption }}</figcaption>
+                {% endif %}
+                </figure>
+            {% endfor %}
+            </section>
             {% endif %}
+            {% endfor %}
+
             {% block content %}
             {% endblock %}
         </article>

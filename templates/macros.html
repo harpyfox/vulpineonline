@@ -1,0 +1,15 @@
+{% macro card(url, title, summary, img, date=None, badge=None) %}
+<article class="card">
+    <a href="{{ url }}">
+        <img src="{{ img }}">
+        {% if badge %}
+        <img class="icon32 badge" src="{{ badge }}">
+        {% endif %}
+        <h3>{{ title }}</h3><img class="icon" src="img/newstar.gif">
+    </a>
+    <p>{{ summary }}</p>
+    {% if date %}
+    <time>{{ date }}</time>
+    {% endif %}
+</article>
+{% endmacro %}
