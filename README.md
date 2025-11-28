@@ -29,3 +29,20 @@ like that
 ```
 uv run pywrangler types
 ```
+
+### CHECKLIST
+DONE:
+- Witch
+- Pollo
+- Haunted
+- HSALPHA
+- Misc
+- Debugdog
+- Kaiju
+
+TODO:
+- Inktober2025
+- Reptilian
+- Roborb
+- Rockets
+- Zoo

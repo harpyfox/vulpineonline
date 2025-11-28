@@ -40,6 +40,8 @@ def main():
             default_for_string=True,
             default=False
         ),
+        trim_blocks=True,
+        lstrip_blocks=True,
     )
     env.globals = GLOBALS
     compiled_globals = env.make_globals(None)
@@ -59,7 +61,6 @@ def main():
         if metadict is None:
             logger.info(f"skipped {path} - no metadata, treating as abstract")
             continue
-
 
         code = env.compile(content, name, path)
         template = env.template_class.from_code(env, code, compiled_globals, uptodate)
