@@ -1,31 +1,33 @@
 {
     "title": "Rune Witch Academy",
     "description": "Commissioned project for Google's Fitbit Ace LTE smartwatch",
-    "client": "Google",
     "date": "2000-01-01",
-    "roles": [ "Technical Art", "VFX Art", "Programming" ],
-    "tags": [ "Blender", "Unity", "Android" ],
+    "sections": [
+        { "client": "Google" },
+        { "roles": [ "Technical Art", "VFX Art", "Programming" ] },
+        { "tags": [ "Blender", "Unity", "Android" ] },
+        { "gallery": 
+            [
+                { "video": "img/witch-grimoire.webm", "class": "squircle", },
+                { "video": "img/witch-palettes.webm", "class": "squircle", "caption": "runtime vector sprite recolouring", },
+                { "img": "img/witch-biomes.gif", "class": "squircle", },
+                { "img": "img/witch-ambermeadows.gif", "class": "squircle", "caption": "dynamic weather effects", },
+                { "video": "img/witch-door.webm", "class": "squircle", },
+                { "img": "img/witch-portraitsystem.png", },
+                { "video": "img/witch-portraitvid.webm", "class": "squircle", },
+                { "img": "img/witch-dialogue.png", "class": "squircle", },
+                { "img": "img/witch-pann.gif", "class": "squircle", "caption": "character portrait effects", },
+                { "img": "img/witch-portraitfx.png", },
+                { "img": "img/witch-repair.gif", "class": "squircle", "caption": "spell VFX: Repair", },
+                { "img": "img/witch-growshrink.gif", "class": "squircle", "caption": "spell VFX: Grow/Shrink", },
+                { "img": "img/witch-translate.gif", "class": "squircle", "caption": "spell VFX: Translate", },
+                { "img": "img/witch-gameflows.png", },
+                { "img": "img/witch-wakeuppann.png", },
+            ]
+        }
+    ],
 }
 {% extends "article.html" %}
 
 {% block content %}
-
-<section class="gallery">
-    <figure><video class="squircle" src="img/witch-grimoire.webm" preload="none" poster="../img/mediaplayer48.png"></video></figure>
-    <figure><video class="squircle" src="img/witch-palettes.webm" preload="none" style="object-position: top;"></video><figcaption>runtime vector sprite recolouring</figcaption></figure>
-    <figure><img class="squircle" src="img/witch-biomes.gif" loading="lazy"></figure>
-    <figure><img class="squircle" src="img/witch-ambermeadows.gif" loading="lazy"><figcaption>dynamic weather effects</figcaption></figure>
-    <figure><video class="squircle" src="img/witch-door.webm" preload="none" poster="../img/mediaplayer48.png"></video></figure>
-    <figure><img src="img/witch-portraitsystem.png" loading="lazy"></figure>
-    <figure><video class="squircle" src="img/witch-portraitvid.webm" preload="none" poster="../img/mediaplayer48.png"></video></figure>
-    <figure><img class="squircle" src="img/witch-dialogue.png" loading="lazy"></figure>
-    <figure><img class="squircle" src="img/witch-pann.gif" loading="lazy"><figcaption>character portrait effects</figcaption></figure>
-    <figure><img src="img/witch-portraitfx.png" loading="lazy"></figure>
-    <figure><img class="squircle" src="img/witch-repair.gif" loading="lazy"><figcaption>spell VFX: Repair</figcaption></figure>
-    <figure><img class="squircle" src="img/witch-growshrink.gif" loading="lazy"><figcaption>spell VFX: Grow/Shrink</figcaption></figure>
-    <figure><img class="squircle" src="img/witch-translate.gif" loading="lazy"><figcaption>spell VFX: Translate</figcaption></figure>
-    <figure><img src="img/witch-gameflows.png" loading="lazy"></figure>
-    <figure><img src="img/witch-wakeuppann.png" loading="lazy"></figure>
-</section>
-
 {% endblock %}
