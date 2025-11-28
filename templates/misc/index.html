@@ -1,15 +1,16 @@
----
 {
-    "layout": "portfolio_entry.njk",
     "title": "Everything Else",
     "description": "whatever strikes your fancy",
-    "client": "The whims of fate",
     "date": "2000-01-01",
-    "roles": [ "Solo" ],
-    "tags": [ "Blender", "Unity" ]
+    "sections": [
+        { "client": "the whims of fate" },
+        { "roles": [ "Solo" ], },
+        { "tags": [ "Blender", "Unity" ] },
+    ]
 }
----
+{% extends "article.html" %}
 
+{% block content %}
 <section class="gallery">
     <figure><video class="contain" src="img/boneguy.webm" preload="none" poster="../img/mediaplayer48.png"></video></figure>
     <figure><video src="img/ROBOTR.mp4" preload="none" poster="../img/mediaplayer48.png"></video></figure>
@@ -50,3 +51,4 @@
 
 
 </section>
+{% endblock %}
