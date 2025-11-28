@@ -1,26 +1,25 @@
----
 {
-    "layout": "portfolio_entry.njk",
     "title": "Pollo 13: Space Race",
     "description": "Commissioned project for Google's Fitbit Ace LTE smartwatch",
-    "client": "Google",
     "date": "2000-01-01",
-    "roles": [ "Animation Lead", "Technical Art", "Programming" ],
-    "tags": [ "Blender", "Unity", "Android" ]
+    "sections": [
+        {"client": "Google"},
+        { "roles": [ "Animation Lead", "Technical Art", "Programming" ], },
+        { "tags": [ "Blender", "Unity", "Android" ] },
+        { "gallery": [
+            { "video": "img/pollo-showcase.mp4", "class": "squircle", },
+            { "video": "img/pollo-chickenselect.mp4", "class": "squircle", },
+            { "video": "img/pollo-anims.webm", "class": "squircle", },
+            { "video": "img/pollo-blendtree.webm", "class": "squircle", },
+            { "img": "img/pollo-tubbe.gif", "class": "squircle", },
+            { "video": "img/pollo-tub.mp4", "class": "squircle", },
+            { "video": "img/pollo-foxytut.mp4", "class": "squircle", },
+            { "img": "img/pollo-foxypot.png", "class": "squircle", },
+            { "video": "img/pollo-dither.webm", "class": "squircle", },
+            { "video": "img/pollo-ship.mp4", "class": "squircle", },
+            { "img": "img/pollo-foxyalert.gif", "class": "squircle", },
+            { "video": "img/pollo-liftoff.webm", "class": "squircle", },
+        ]},
+    ]
 }
----
-
-<section class="gallery">
-    <figure><video class="squircle" src="img/pollo-showcase.mp4" preload="none" poster="../img/mediaplayer48.png"></video></figure>
-    <figure><video class="squircle" src="img/pollo-chickenselect.mp4" preload="none" poster="../img/mediaplayer48.png"></video></figure>
-    <figure><video class="squircle" src="img/pollo-anims.webm" preload="none" poster="../img/mediaplayer48.png"></video></figure>
-    <figure><video class="squircle" src="img/pollo-blendtree.webm" preload="none" poster="../img/mediaplayer48.png"></video></figure>
-    <figure><img class="squircle" src="img/pollo-tubbe.gif" loading="lazy"></figure>
-    <figure><video class="squircle" src="img/pollo-tub.mp4" preload="none" poster="../img/mediaplayer48.png"></video></figure>
-    <figure><video class="squircle" src="img/pollo-foxytut.mp4" preload="none" poster="../img/mediaplayer48.png"></video></figure>
-    <figure><img class="squircle" src="img/pollo-foxypot.png" loading="lazy"></figure>
-    <figure><video class="squircle" src="img/pollo-dither.webm" preload="none" poster="../img/mediaplayer48.png"></video></figure>
-    <figure><video class="squircle" src="img/pollo-ship.mp4" preload="none" poster="../img/mediaplayer48.png"></video></figure>
-    <figure><img class="squircle" src="img/pollo-foxyalert.gif" loading="lazy"></figure>
-    <figure><video class="squircle" src="img/pollo-liftoff.webm" preload="none" poster="../img/mediaplayer48.png"></video></figure>      
-</section>
+{% extends "article.html" %}
