@@ -49,7 +49,7 @@ def main():
         "datetime_format": filter_datetime_format,
     }
 
-    logger.debug(f"initialised environment")
+    logger.debug("initialised environment")
     logger.debug(f"globals: {env.globals}")
     logger.debug(f"filters: {list(env.filters.keys())}")
 
@@ -76,7 +76,7 @@ def main():
             with open(output_path, "w") as output:
                 output.write(rendered)
             logger.info(f"wrote {path} to {output_path}")
-    logger.debug(f"done")
+    logger.debug("done")
 
 def get_metadata(text: str) -> tuple[str | None, str]:
     try:
@@ -86,7 +86,7 @@ def get_metadata(text: str) -> tuple[str | None, str]:
         logger.debug(f"assuming no metadata - {str(valueError)}")
     return None, text
 
-def parse_metadata(text: str) -> object:
+def parse_metadata_json(text: str) -> object:
     try:
         metadata = json.loads(text)
         logger.debug(f"metadata: {metadata}")
