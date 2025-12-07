@@ -1,16 +1,25 @@
----
 {
-    "layout": "portfolio_entry.njk",
     "title": "Inktober 2025",
     "description": "description goes here",
-    "client": "",
     "date": "2000-01-01",
-    "roles": [ "Solo" ],
-    "tags": [ "Blender" ]
+    "sections": [
+        { "client": "Wendy Brooks & Partners" },
+        { "roles": [ "Solo" ] },
+        { "tags": [ "Blender" ] },
+        { "gallery": [
+            { "video": "img/spine-cannonsmaller.webm", },
+            { "video": "img/spine-debugdog.mp4", },
+            { "img": "img/spine-runloop.gif", },
+            { "video": "img/spine-clip.mp4", },
+        ]},
+    ]
 }
----
+{% extends "article.html" %}
 
-<section class="gallery">
-    <figure></figure>
-         
+{% block content %}
+<section>
+    <p>hehehe</p>
+
 </section>
+{% endblock %}
+
