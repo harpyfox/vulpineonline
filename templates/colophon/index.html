@@ -1,68 +1,11 @@
+{
+    "title": "colophon",
+    "description": "",
+    "date": "2025-11-09T00:00:00+11:00",
+}
+{% extends "article.html" %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, viewport-fit=cover">
-    <meta name="color-scheme" content="light dark">
-
-
-    <link rel="stylesheet" href="../default.css" title="Default" type="text/css">
-    
-
-    <link rel="icon" href="../favicon.png" type="image/png" sizes="50x51">
-    <link rel="apple-touch-icon" href="../favicon.png" type="image/png" sizes="50x51">
-    
-
-    <title>colophon</title>
-    <meta name="description" content="">
-    <meta name="author" content="harper fox"> <!-- this element is used for firefox reader author. -->
-    <link rel="canonical" href="https://www.vulpineonline.com/charachnid/">
-
-    <meta name="application-name" content="VULPINE ONLINE">
-    <meta name="theme-color" content="#ffa500">
-    <meta name="generator" content="Jinja2">
-    
-    <meta property="og:title" content="colophon">
-    <meta property="og:description" content="">
-    <meta property="og:image" content="https://www.vulpineonline.com/thumbnail.webp">
-    <meta property="og:url" content="https://www.vulpineonline.com/">
-    <meta property="og:site_name" content="VULPINE ONLINE">
-    <meta property="og:type" content="article">
-    
-    <meta name="twitter:title" content="colophon">
-    <meta name="twitter:description" content="">
-    <meta name="twitter:image" content="https://www.vulpineonline.com/thumbnail.png">
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:site" content="@vulpineonline">
-    <meta name="twitter:creator" content="@vulpineonline">
-    <meta name="twitter:domain" content="vulpineonline.com">
-    <meta name="twitter:url" content="https://www.vulpineonline.com/">
-</head>
-<body>
-    <header>
-        <h2><a href="../"><< VULPINE ONLINE</a></h2>
-    </header>
-
-    <nav>
-        <ul>
-            <li><a href="#">todo</a></li>
-            <li><a href="#">todo</a></li>
-            <li><a href="#">todo</a></li>
-            <li><a href="#">todo</a></li>
-        </ul>
-    </nav>
-    
-    <main>
-        <article>
-            <header>
-                <h1>colophon</h1>
-            </header>
-            <section>
-                <p></p>
-                <time>2025-11-09T00:00:00+11:00</time>
-            </section>
-
+{% block content %}
 <section>
     <p>this website is my personal hate letter to the modern web.</p>
     <p>i do not want a website that moves. i do not want fades. i do not want pulldowns. i do not want scrolling
@@ -90,6 +33,7 @@
         <li><a href="https://maxbo.me/">maxbo.me</a></li>
         <li><a href="https://s-i-l-o.fr/">s-i-l-o.fr</a></li>
         <li><a href="https://john-doe.neocities.org/">john-doe.neocities.org</a></li>
+        <li><a href="https://invisible-island.net/">invisible-island</a></li>
     </ul>
 </section>
 <section>
@@ -110,11 +54,14 @@
         <li><a href="developers.google.com/search/docs/crawling-indexing/sitemaps/video-sitemaps">video sitemaps - google delvepers</a></li>
     </ul>
 </section>
-        </article>
-    </main>
-    <footer>
-        <p>copyright? &copy; harper fox current year</p>
-    </footer>
+<section>
+    <h2>ansi</h2>
+    <ul>
+        <li><a href="https://16colo.rs">16colo.rs</a></li>
+        <li><a href="https://16colo.rs/artist/squidgalator2">SQ2 squidgalator2</a></li>
+        <li><a href="https://16colo.rs/artist/delicious">DEL delicious/euphoria</a></li>
+        <li><a href="https://16colo.rs/artist/asylum">AY  asylum</a></li>
 
-</body>
-</html>
+    </ul>
+</section>
+{% endblock %}
