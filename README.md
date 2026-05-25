@@ -1,13 +1,18 @@
 hjghghdfghdf
 
-### DEV SERVER!!!!!
+### DDEV DEPENDEDNECIES
+- uv
+- PYTHON 
+- jinja2
+
+### DEV SERVER
 ```
 uv run pywrangler dev
 ```
 
 ### RENDER PAGES!!!!
 ```
-python3 renderer.py
+uv run render.py
 ```
 pages have METADATA in the form of a ~~JSON~~ raw Python block at the tippy top. 
 trailing commas come to mumma. it is parsed via ast.literal_eval.
@@ -25,25 +30,22 @@ like that
 
 "isn't this the same as Eleventy" yes but i dont want to use eleventy or npm or node or javascript
 
-### UPDATE TYPS!!!!!!!!!
+### UPDATE TYPEs i dont know what this ctually does 
 ```
 uv run pywrangler types
 ```
 
 ### CHECKLIST
-DONE:
-- Witch
-- Pollo
-- Haunted
-- HSALPHA
-- Misc
-- Debugdog
-- Kaiju
-- Roborb
-
-
-TODO:
-- Inktober2025
-- Reptilian
-- Rockets
-- Zoo
+- [x] Witch
+- [x] Pollo
+- [x] Haunted
+- [x] HSALPHA
+- [x] Misc
+- [x] Debugdog
+- [x] Kaiju
+- [x] Roborb
+- [ ] Rockets
+- [ ] Zoo
+- [ ] Inktober2025
+- [ ] Reptilian
+- [ ] TMOSI
