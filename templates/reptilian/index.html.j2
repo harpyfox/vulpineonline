@@ -1,15 +1,15 @@
----
 {
-    "layout": "portfolio_entry.njk",
     "title": "Reptilian Rising",
     "description": "Tabletop-down strategy game",
-    "client": "\"Greg\"",
     "date": "2000-01-01",
-    "roles": [ "Technical Art", "UX Design" ],
-    "tags": [ "Blender", "Unity", "Maya" ]
-}
----
+    "tags": [ "Blender", "Unity", "Maya" ],
 
+    "client": "\"Greg\"",
+    "roles": [ "Technical Art", "UX Design" ],
+}
+{% extends "post-project.html.j2" %}
+{% block content %}
+{{ super() }}
 <section class="gallery">
     <figure><img src="img/reptilian-map.png" loading="lazy"></figure>
 </section>
@@ -28,3 +28,4 @@
     <small style="position: absolute; background-color: #000; transform: rotate(10deg); width: 20ch;top:0px;right:-40px;">we were
         NOT involved with the trailer.</small>
 </a>
+{% endblock %}

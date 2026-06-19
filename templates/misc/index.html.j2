@@ -2,15 +2,14 @@
     "title": "Everything Else",
     "description": "whatever strikes your fancy",
     "date": "2000-01-01",
-    "sections": [
-        { "client": "the whims of fate" },
-        { "roles": [ "Solo" ], },
-        { "tags": [ "Blender", "Unity" ] },
-    ]
-}
-{% extends "article.html" %}
+    "tags": [ "Blender", "Unity" ]
 
+
+
+}
+{% extends "post.html.j2" %}
 {% block content %}
+{{ super() }}
 <section class="gallery">
     <figure><video class="contain" src="img/boneguy.webm" preload="none" poster="../img/mediaplayer48.png"></video></figure>
     <figure><video src="img/ROBOTR.mp4" preload="none" poster="../img/mediaplayer48.png"></video></figure>

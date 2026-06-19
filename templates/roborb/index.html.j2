@@ -1,0 +1,23 @@
+{
+    "title": "Roborb's Robortdeal",
+    "description": "3 days. 4 timezones. 1 dream. <small>0 name ideas.</small>",
+    "date": "2000-01-01",
+    "tags": [ "Blender", "Godot" ],
+
+    "client": "",
+    "roles": [ "3D Art" ],
+}
+{% extends "post-project.html.j2" %}
+{% block content %}
+{{ super() }}
+<section class="gallery">
+    <figure><img src="img/roborb-1.jpg" loading="lazy"></figure>
+    <figure><img src="img/roborb-2.jpg" loading="lazy"></figure>                
+</section>
+<section class="gallery">
+    <figure><img src="img/roborb-environment.png" loading="lazy"></figure>
+    <figure><img src="img/roborb-ground.png" loading="lazy"></figure>
+    <figure><img src="img/roborb-trash.png" loading="lazy"></figure>
+    <figure><img src="img/roborb-forcepush.png" loading="lazy"></figure>
+</section>
+{% endblock %}

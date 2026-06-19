@@ -1,18 +1,16 @@
-{% import "macros.html" as macros %}
+{% import "macros.html.j2" as macros %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% block head %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, viewport-fit=cover">
     <meta name="color-scheme" content="light dark">
 
-
     <link rel="stylesheet" href="../default.css" title="Default" type="text/css">
     
-
     <link rel="icon" href="../favicon.png" type="image/png" sizes="50x51">
     <link rel="apple-touch-icon" href="../favicon.png" type="image/png" sizes="50x51">
-    
 
     <title>{{ title if title is defined else site.title }}</title>
     <meta name="description" content="{{ description }}">
@@ -31,14 +29,13 @@
     <meta property="og:type" content="article">
     
     <meta name="twitter:title" content="{{ title }}">
-    <meta name="twitter:description" content="{{ description}}">
+    <meta name="twitter:description" content="{{ description }}">
     <meta name="twitter:image" content="https://www.vulpineonline.com/thumbnail.png">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:site" content="@vulpineonline">
     <meta name="twitter:creator" content="@vulpineonline">
     <meta name="twitter:domain" content="{{ site.domain }}">
     <meta name="twitter:url" content="https://www.vulpineonline.com/">
-    {% block head %}
     {% endblock %}
 </head>
 <body>
@@ -61,58 +58,19 @@
     
     <main>
         <article>
+            {% block content %}
             <header>
                 <h1>{{ title }}</h1>
             </header>
             <section>
                 <p>{{ description }}</p>
                 <time>{{ date }}</time>
-            </section>
-            {% for section in sections %}
-            {% if section.client %}
-            <section class="client">
-                <dl>
-                    <dt>Client</dt>
-                    <dd>{{ section.client }}</dd>
-                </dl>
-            </section>
-            {% elif section.roles %}
-            <section class="roles">
-                <dl>
-                    <dt>Roles</dt>
-                    {% for role in section.roles %}
-                    <dd>{{ role }}</dd>
+                <ul>
+                    {% for tag in tags %}
+                    <li>{{ tag }}</li>
                     {% endfor %}
-                </dl>
+                </ul>
             </section>
-            {% elif section.tags %}
-            <section class="tags">
-                <dl>
-                    <dt>Tags</dt>
-                    {% for tag in section.tags %}
-                    <dd>{{ tag }}</dd>
-                    {% endfor %}
-                </dl>
-            </section>
-            {% elif section.gallery %}
-            <section class="gallery">
-            {% for element in section.gallery %}
-                <figure>
-                {% if element.img %}
-                    <img src="{{ element.img }}" loading="lazy">
-                {% elif element.video %}
-                    <video src="{{ element.video }}" preload="none" poster="../img/mediaplayer48.png"></video>
-                {% endif %}
-                {% if element.caption %}
-                    <figcaption>{{ element.caption }}</figcaption>
-                {% endif %}
-                </figure>
-            {% endfor %}
-            </section>
-            {% endif %}
-            {% endfor %}
-
-            {% block content %}
             {% endblock %}
         </article>
     </main>

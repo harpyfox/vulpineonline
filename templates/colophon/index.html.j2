@@ -2,10 +2,14 @@
     "title": "colophon",
     "description": "",
     "date": "2025-11-09T00:00:00+11:00",
-}
-{% extends "article.html" %}
+    "tags": [],
 
+
+
+}
+{% extends "post.html.j2" %}
 {% block content %}
+{{ super() }}
 <section>
     <p>this website is my personal hate letter to the modern web.</p>
     <p>i do not want a website that moves. i do not want fades. i do not want pulldowns. i do not want scrolling
@@ -15,6 +19,7 @@
     <p>i just want a webpage that shows me what i want to see. that is my goal for this website: a portfolio that
         quickly and reliably shows you the shit you came here for.</p>
 </section>
+
 <section>
     <h2>technologies</h2>
     <p>most of the site is hand-written. Jinja2 is used to avoid copy-pasting the same &lt;head&gt; element with minor 
@@ -27,6 +32,7 @@
         when a push is made to the repository.
         isn't that nice.</p>
 </section>
+
 <section>
     <h2>inspirations</h2>
     <ul>
@@ -36,6 +42,7 @@
         <li><a href="https://invisible-island.net/">invisible-island</a></li>
     </ul>
 </section>
+
 <section>
     <h2>graphics</h2>
     <p>some of the sites used to source graphics include:</p>
@@ -46,6 +53,7 @@
 
     </ul>
 </section>
+
 <section>
     <h2>tools and things</h2>
     <ul>
@@ -54,6 +62,7 @@
         <li><a href="developers.google.com/search/docs/crawling-indexing/sitemaps/video-sitemaps">video sitemaps - google delvepers</a></li>
     </ul>
 </section>
+
 <section>
     <h2>ansi</h2>
     <ul>
@@ -61,7 +70,6 @@
         <li><a href="https://16colo.rs/artist/squidgalator2">SQ2 squidgalator2</a></li>
         <li><a href="https://16colo.rs/artist/delicious">DEL delicious/euphoria</a></li>
         <li><a href="https://16colo.rs/artist/asylum">AY  asylum</a></li>
-
     </ul>
 </section>
 {% endblock %}
