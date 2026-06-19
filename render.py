@@ -107,7 +107,7 @@ f'''initialised Environment
     for name in template_names:
         logger.debug(f"parsing {name}")
         if not name.endswith(TEMPLATE_EXT):
-            logger.info(ansi(
+            logger.debug(ansi(
                 f"{name:36} x---- not a template file", 2))
             skip_count += 1
             continue
@@ -183,7 +183,7 @@ f'''initialised Environment
 
 
 LOG_LEVEL = logging.INFO
-TEMPLATE_DIR = "templates"
+TEMPLATE_DIR = "public"
 TEMPLATE_EXT = "j2"
 OUTPUT_DIR = "public"
 GLOBALS = {
