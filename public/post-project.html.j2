@@ -1,0 +1,17 @@
+{% extends "post.html.j2" %}
+
+{% block content %}
+{{ super() }}
+<section>
+    <dl>
+        <dt>Client</dt>
+        <dd>{{ client }}</dd>
+    </dl>
+    <dl>
+        <dt>Roles</dt>
+        {% for role in roles %}
+        <dd>{{ role }}</dd>
+        {% endfor %}
+    </dl>
+</section>
+{% endblock %}

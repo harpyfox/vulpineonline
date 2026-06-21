@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, viewport-fit=cover">
+    <link rel="canonical" href="https://www.vulpineonline.com/correction-factor/">
+
+    <style>
+html {
+    font-family: "Arial", sans-serif;
+    color: #006b40;
+}
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    text-transform: uppercase;
+}
+fieldset {
+    border: 2px solid #006b40;
+}
+dl {
+    display: flex;
+    flex-direction: column;
+}
+button {
+    text-transform: uppercase;
+}
+    </style>
+</head>
+<body>
+    <nav>
+        <p><a href="https://www.vulpineonline.com/"><< VULPINE ONLINE</a></p>
+    </nav>
+    <main>
+        <article>
+            <h1>ASHRAE Psychrometric Calculator</h1>
+
+            <form action="" method="get">
+                <fieldset>
+                    <legend><h2>Parameters</h2></legend>
+                    <dl>
+                        <dt><label for="dry-temp"><h3>Dry Bulb Temperature</h3></label></dt>
+                        <dd><input type="number" id="dry-temp"> °C</dd>
+                        <dt><label for="wet-temp"><h3>Wet Bulb Temperature</h3></label></dt>
+                        <dd><input type="number" id="wet-temp"> °C</dd>
+                        <dt><label for="air-pressure"><h3>Air Pressure</h3></label></dt>
+                        <dd><input type="number" id="air-pressure"> Pa</dd>
+                        <dd>(standard atmospheric pressure = 101325 Pa)</dd>
+                    </dl>
+                    <button type="button" onclick="update()">Calculate</button>
+                    <button type="reset">Clear</button>
+                </fieldset>
+            </form>
+
+            <fieldset>
+                <legend><h2>Result</h2></legend>
+                <dl>
+                    <dt><h3>Relative Humidity</h3></dt>
+                    <dd><span id="humidity">-</span>%</dd>
+                    <dt>Correction Factor</dt>
+                    <dd><span id="factor">-</span></dd>
+                </dl>
+            </fieldset>
+
+            <pre>
+Dry Temp = 20 C
+Wet Temp = 10 C
+
+Should yield:
+Humidity Ratio = 0.0036 kg/kg
+Relative Humidity = 25 %
+Volume = 0.835 m<sup>3</sup>/kg
+Enthalpy = 29 kJ/kg
+            </pre>
+
+            <figure>
+                <img src="ashrae-chart.png">
+            </figure>
+
+            <a href="https://www.omnicalculator.com/physics/psychrometric">Calculator</a>
+        </article>
+    </main>
+    <script>
+        function update() {
+            humidityElement = document.getElementById("humidity");
+            factorElement = document.getElementById("factor");
+
+            dryTempElement = document.getElementById("dry-temp");
+            wetTempElement = document.getElementById("wet-temp");
+            airPressureElement = document.getElementById("air-pressure");
+            
+            humidityElement.innerText = "99.99";
+            factorElement.innerText = "1.000";
+        }
+
+        function calculateCorrectionFactor(dryTemp, wetTemp, airPressure) {
+            return 0;
+
+        }
+    </script>
+</body>
+</html>
