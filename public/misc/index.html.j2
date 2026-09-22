@@ -1,8 +1,9 @@
 {
-    "title": "Everything Else",
-    "description": "whatever strikes your fancy",
-    "date": "2000-01-01",
-    "tags": [ "Blender", "Unity" ]
+    "title": "My Documents",
+    "description": "everything else!",
+    "date": "2022-01-01",
+    "tags": [ "Art", "Blender", "Unity" ],
+    "image": "/img/windowsphotoviewer256.png",
 
 
 
@@ -11,12 +12,12 @@
 {% block content %}
 {{ super() }}
 <section class="gallery">
-    <figure><video class="contain" src="img/boneguy.webm" preload="none" poster="../img/mediaplayer48.png"></video></figure>
-    <figure><video src="img/ROBOTR.mp4" preload="none" poster="../img/mediaplayer48.png"></video></figure>
+    {{ macros.figure_video("img/boneguy.webm")}}
+    {{ macros.figure_video("img/ROBOTR.mp4")}}
     <figure><img src="img/spiderbot.gif" loading="lazy"></figure>
     <figure><img src="img/nxrig.gif" loading="lazy"></figure>
     <figure><img src="img/TEETH.gif" loading="lazy"></figure>
-    <figure><video src="img/kot.webm" preload="none" poster="../img/mediaplayer48.png"></video></figure>
+    {{ macros.figure_video("img/kot.webm")}}
     <figure><img src="img/yumyumyumyumyum.gif" loading="lazy"></figure>
     <figure><img src="img/die.gif" loading="lazy"></figure>
     <figure><img src="img/roborun.gif" loading="lazy"></figure>
@@ -45,8 +46,8 @@
     <figure><img src="img/foxspinnyHD.gif" loading="lazy"></figure>
     <!-- <figure class="card" data-bluesky-src="at://did:plc:ee5pxx436s7areoj4epw3voj/app.bsky.feed.post/3lrpxdf2p3225"></figure>                 -->
 
-    <figure><img src="img/roblox.jpg" loading="lazy"></figure>
-    <figure><img src="img/donate.png" loading="lazy"></figure>
+    {{ macros.figure_img("/img/roblox.jpg") }}
+    {{ macros.figure_img("img/donate.png") }}
 
 
 </section>

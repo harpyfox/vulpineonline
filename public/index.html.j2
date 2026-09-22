@@ -1,0 +1,424 @@
+{
+}
+{% import "macros.html.j2" as macros %}
+
+{% macro card(href, title, summary, img, date, class="") %}
+<article class="card {{ class }}">
+    <header>
+        <a href="{{ href }}">
+            {{ macros.figure_img(img) }}
+        </a>
+        
+        <h3>
+            <a href="{{ href }}">{{ title }}</a>
+        </h3>
+    </header>
+    <p>{{ summary }}</p>
+    {% if date %}
+    <footer>
+        <p><time>{{ date }}</time></p>
+    </footer>
+    {% endif %}
+</article>
+{% endmacro %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {{ macros.head() }}
+    <meta name="google-site-verification" content="RnHxkxpiUsAAxgsNO88zdwJHdz0ujVAJyqluj6EG-p8" />
+
+    <!-- win95 -->
+    <style>
+    @font-face {
+        font-family: "Pixelated MS Sans Serif";
+        src: url("/fonts/ms_sans_serif.woff2") format("woff2");
+        font-weight: normal;
+        font-style: normal;
+    }
+    @font-face {
+        font-family: "Pixelated MS Sans Serif";
+        src: url("/fonts/ms_sans_serif_bold.woff2") format("woff2");
+        font-weight: bold;
+        font-style: normal;
+    }
+    .win95 {
+        --win95-background: #cccccc;
+        --win95-border: solid 2px #000000;
+        --win95-outset: inset -2px -2px 0px 0px #000000, inset 2px 2px 0px 0px #FFFFFF, inset -4px -4px 0px 0px #808080, inset 4px 4px 0px 0px #DFDFDF;
+        --win95-inset: inset -2px -2px 0px 0px #FFFFFF, inset 2px 2px 0px 0px #000000, inset -4px -4px 0px 0px #DFDFDF, inset 4px 4px 0px 0px #808080;
+        
+        image-rendering: pixelated;
+        font-family: 'Pixelated MS Sans Serif', 'MS Sans Serif', 'Arial', sans-serif;
+        font-size: 11px;
+        line-height: normal;
+        color-scheme: light;
+        color: #000000;
+        cursor: default;
+        background-color: var(--win95-background);
+        border: none;
+        box-shadow: var(--win95-outset);
+        padding: 6px;
+        p {
+            margin: 1ch;
+            color: inherit;
+        }
+    }
+    button.win95, .win95 button {
+        cursor: pointer;
+        padding: 8px;
+        min-width: 32px;
+        min-height: 32px;
+        background-color: var(--win95-background);
+        border: var(--win95-border);
+        box-shadow: var(--win95-outset);
+        * {
+            position: relative;
+            top: -2px;
+            left: -1px;
+        }
+        &:hover, &button:hover {
+            background-color: var(--win95-background);
+        }
+        &:active {
+            box-shadow: var(--win95-inset);
+            * {
+                top: 0px;
+                left: 1px;
+            }
+        }
+    }
+    *.win95.titlebar, .win95 .titlebar {
+        font-weight: normal;
+        padding: 2px;
+        color: #ffffff;
+        background: linear-gradient(to right, #000080, #2e8ecd);
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        align-items: center;
+        gap: 2px;
+        + img {
+            display: inline flow-root;
+            vertical-align: middle;
+            width: 16px;
+            height: 16px;
+            object-fit: fill;
+            flex: 0 0 auto;
+        }
+        img + *:not(img) {
+            flex: 1 0 auto;
+            font-weight: bold;
+        }
+        button {
+            display: inline flow-root;
+            vertical-align: middle;
+            margin: 0;
+            padding: 0;
+            min-width: 16px;
+            min-height: 16px;
+            flex: 0 0 auto;
+            background-color: var(--win95-background);
+            border: none;
+        }
+    }
+    </style>
+
+</head>
+<body>
+    {{ macros.header() }}
+    {{ macros.nav() }}
+
+    <main>
+        {# <section id="reel" class="carousel">
+            <h2>Reel</h2>
+
+            <figure>
+                <iframe src="/404.html" width="640" height="360" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="hehbfrvgerhfe">
+                </iframe>
+            </figure>
+
+        </section> #}
+
+        {# <section>
+            <h2>Portfolio</h2>
+            <p>eh?</p>
+            <p>pick a selection of REALLY good stuff and lay them out nicely?</p>
+            <p>like best of the best. full power harperfox. </p>
+        
+        </section> #}
+
+        {% set _ = index.append({
+            "title": "ftx",
+            "description": "blender addon with my personal tools, scripts, and timesavers",
+            "date": "2025-06-01",
+            "tags": [],
+            "image": "/misc/img/autorender.webp",
+            "href": "https://github.com/harpyfox/ftx",
+        }) %}
+        {% set _ = index.append({
+            "title": "tinyfox",
+            "description": "my neocities website with lots of fun animations and some WebGL experiments &#x141b;",
+            "date": "2022-10-01",
+            "tags": [],
+            "image": "/img/neocities_512x273.jpg",
+            "href": "https://tinyfox.neocities.org/",
+        }) %}
+        {% set _ = index.append({
+            "title": "WebGPU Shader Editor",
+            "description": "shadertoy-like live shader editor built with WebGPU",
+            "date": "2025-07-01",
+            "tags": [],
+            "image": "/img/webgpu.jpg",
+            "href": "/webgpu/samples/lab-ts/",
+        }) %}
+
+        {% set new = [
+            "/tmosi/", 
+            "/inktober2025/", 
+            "/reptilian/"
+        ]%}
+        
+        <section id="artwork">
+            <h2>Artwork</h2>
+            <div class="cards">
+                {% for metadata in index|selectattr("date")|sort(reverse=True, attribute="date") if "Art" in metadata.tags %}
+                    {{ card(
+                        metadata.href, 
+                        metadata.title, 
+                        metadata.description, 
+                        metadata.href|pathjoin(metadata.image), 
+                        metadata.date,
+                        class="badge-new" if metadata.href in new else ""
+                    ) }}
+                {% endfor %}
+            
+                {# <article class="card">
+                    <a class="external" href="/misc/">
+                        <img src="/img/recyclebinfull32.png" class="icon96">
+                        <h3>Recycle Bin</h3>
+                        <p>?? GB</p>
+                    </a>
+                </article> #}
+            
+                {# <article class="card">
+                    <script>
+                        let s = 1;
+                    </script>
+                    <a href="/"
+                        onclick="event.preventDefault();let c=this.getAttribute('click')??0;c++;this.setAttribute('click', c);document.getElementById('here').style.fontSize=`${1+c/10}em`;">
+                        <img src="/thumbnail.webp">
+                        <img class="icon32 badge" src="img/ie-icon.svg">
+                        <h3>this website</h3>
+                    </a>
+                    <p id="here">you are here</p>
+                    <time>July 2025 - Present</time>
+                </article> #}
+            
+            
+                {# <div><img src="/misc/img/harper.webp" loading="lazy"></div> #}
+            </div>
+        </section>
+
+        <section id="programming">
+            <h2>Programming</h2>
+            <div class="cards">
+                {% for metadata in index|selectattr("date")|sort(reverse=True, attribute="date") if "Dev" in metadata.tags %}
+                    {{ card(
+                        metadata.href, 
+                        metadata.title, 
+                        metadata.description, 
+                        metadata.href|pathjoin(metadata.image), 
+                        metadata.date,
+                        class="badge-new" if metadata.href in new else ""
+                    ) }}
+                {% endfor %}
+
+                <div class="win95" style="display: flex; flex-flow: column; align-items: center;">
+                    <div class="titlebar">
+                        <img src="img/file16.png">
+                        <span>Iexplore</span>
+                        <button style="cursor: help; font-weight: bold;"><span>?</span></button>
+                        <button><span>&#x2716;</span></button>
+                    </div>
+                    <p>You are this website's</p>
+                    <p style="text-align: center;"><strong>1,000,000th</strong> visitor!</p>
+                    <img width="32" height="32" src="img/ladybug32.png">
+                    <p style="text-align: center; margin-top: auto;">There is no reward.</p>
+                    <button style="width: 128px; margin: 16px;"><span>OK</span></button>
+                </div>
+
+                <style>
+.monitor {
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    grid-template-rows: 2fr 1fr;
+
+    #ecg-waveform, #hr {
+        color: #00ff00;
+    }
+    #pleth-waveform, #spo2 {
+        color: #ffff00;
+    }
+    #bp-waveform, #bp {
+        color: #ff0000;
+    }
+    #etco2-waveform, #etco2 {
+        color: #ffffff;
+    }
+    
+}
+                </style>
+                <div class="monitor">
+                    <div id="ecg-waveform">
+                        <p>ecg-waveform</p>
+                    </div>
+                    <div id="hr">
+                        <p>hr</p>
+                    </div>
+                    <div id="pleth-waveform">
+                        <p>pleth-waveform</p>
+                    </div>
+                    <div id="spo2">
+                        <p>spo2</p>
+                    </div>
+                    <div id="bp-waveform">
+                        <p>bp-waveform</p>
+                    </div>
+                    <div id="bp">
+                        <p>bp</p>
+                    </div>
+                    <div id="etco2-waveform">
+                        <p>etco2-waveform</p>
+                    </div>
+                    <div id="etco2">
+                        <p>etco2</p>
+                    </div>
+
+
+                </div>
+            </div>
+        </section>
+
+        <section id="info">
+            <h2>Info</h2>
+            <figure>
+                <img src="/misc/img/harper.webp" loading="lazy">
+            </figure>
+            <section id="about">
+                <h3>About</h3>
+                <p>Harper is an animator and technical artist from Melbourne, Australia.</p>
+                <p>
+                    it is her belief that if there is a meaning to life, its to create things. the australian
+                    video games industry, however, doesn't agree.
+                </p>
+                <p>
+                    she misses the early 2010s internet and believes modern JavaScript was a mistake, as
+                    if it's <span style="position: relative; padding-right: 2ch;"><img src="/img/get_adobe_flash_player.png" style="position: absolute; left: 2em; top: -0.25em;">predecessor&nbsp;&nbsp;&nbsp;</span> was
+                    any better.
+                </p>
+                {{ macros.figure_img("/img/pepper.webp") }}
+            </section>
+            <section id="contact">
+                <h3>Contact</h3>
+                <div style="display: flex;">
+                    <a class="external" href="mailto:harper.iro@gmail.com">
+                        <img class="icon96" src="/img/email-favicon.ico">
+                        <p>Mail</p>
+                    </a>
+                    <a class="external" href="https://bsky.app/profile/vulpineonline.com">
+                        <img class="icon96" src="/img/bluesky-favicon.png">
+                        <p>Bluesky</p>
+                    </a>
+                    <a class="external" href="https://www.linkedin.com/in/vulpineonline/">
+                        <img class="icon96" src="/img/linkedin-favicon.ico">
+                        <p>LinkedIn</p>
+                    </a>
+                    <a style="display: none" class="external" href="/downloads/HarperFox_CV26.pdf/">
+                        <img class="icon96" src="/img/rtf32.png">
+                        <p>CV.pdf</p>
+                    </a>
+                </div>
+                <details>
+                    <summary>more</summary>
+                    <ul>
+                        {# <li>{{ navlink("mailto:[REDACTED]", "[REDACTED]", "img/email-favicon.ico") }}</li> #}
+                        <li><a href="https://github.com/harpyfox"><img class="favicon" src="img/github-favicon.ico"><span>GitHub</span></a></li>
+                        <li><a href="https://x.com/vulpineonline"><img class="favicon" src="img/twitter-favicon.png"><span>Twitter</span></a></li>
+                        <li><a href="https://tinyfox.neocities.org/"><img class="favicon" src="img/neocities-favicon.ico"><span>Neocities</span></a></li>
+                        <li><a href="https://harpyfox.itch.io/"><img class="favicon" src="img/itch-favicon.ico"><span>itch.io</span></a></li>
+                    </ul>
+                </details>
+                
+            </section>
+        
+        </section>
+
+        <section id="experience">
+            <h2>Experience</h2>
+            <section id="employment">
+                <h3>Employment</h3>
+                <ol reversed>
+                    <li>
+                        <p>
+                            <img class="favicon" src="img/creatureDOTlove-icon.svg" style="color: white"><span>creatureDOTlove</span><br>
+                            Programmer<br>
+                            <time>March 2026 - Present</time>
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <img class="favicon" src="img/dubious.webp"><span>Freelance</span><br>
+                            HELP ME<br>
+                            <time>June 2025 - Present</time>
+                        </p>
+                    </li>
+                    
+                    <li>
+                        <p>
+                            <img class="favicon" src="img/rc-icon.webp"><span>Robot Circus</span><br>
+                            Animator / Technical Artist / Programmer<br>
+                            <time>February 2023 - June 2025</time>
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <span>miscellaneous retail & kitchenhand jobs</span><br>
+                            <small style="text-transform: uppercase">i don't know who harvey norman is but i reckon he's a wanker</small><br>
+                            <time>January 2014 - April 2020</time>
+                        </p>
+                    </li>
+                </ol>
+            </section>
+            <section id="education">
+                <h3>Education</h3>
+                <ol reversed>
+                    <li>
+                        <p>
+                            <a href="https://www.swinburne.edu.au/corporate/feedback/"><img class="favicon" src="img/swin-favicon.ico"><span>Swinburne University</span></a><br>
+                            BSc Computer Science / Cybersecurity Major<br>
+                            <time>December 2022</time>
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <a href="https://www.rmit.edu.au/utilities/complaints/staff-complaints"><img class="favicon" src="img/rmit-favicon.ico"><span>RMIT University</span></a><br>
+                            BSc Computer Science<br>
+                            <small>(dropped out due to lack of course customization options)</small><br>
+                            <time>December 2017</time>
+                        </p>
+                    </li>
+                </ol>
+            </section>
+        </section>
+
+    </main>
+
+    {{ macros.footer() }}
+    
+    {# <script src="viewer.js"></script> #}
+
+    
+    
+</body>
+</html>

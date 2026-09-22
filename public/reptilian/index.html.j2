@@ -1,29 +1,31 @@
 {
     "title": "Reptilian Rising",
-    "description": "Tabletop-down strategy game",
-    "date": "2000-01-01",
-    "tags": [ "Blender", "Unity", "Maya" ],
+    "description": "tabletop-down strategy game",
+    "date": "2026-04-23",
+    "tags": [ "Dev", "Blender", "Unity", "Maya" ],
+    "image": "img/ss_75288f195eca66e31bef67d873ba2b3c935249cc.1920x1080.jpg",
+    "icon": "img/favicon.jpg",
 
     "client": "\"Greg\"",
-    "roles": [ "Technical Art", "UX Design" ],
+    "roles": [ "Programming", "Technical Art", "UX Design" ],
 }
-{% extends "post-project.html.j2" %}
+{% extends "post.html.j2" %}
 {% block content %}
 {{ super() }}
-<section class="gallery">
-    <figure><img src="img/reptilian-map.png" loading="lazy"></figure>
-</section>
-<section>
-    <aside>
-        <p>i want to show more, but the game hasn't released. in fact, since our final delivery milestone, 
-            the steam page has actually removed screenshots that were previously there. the game is somehow 
-            less released than last i worked on it.</p>
-    </aside>
-</section>
 
-<a class="biglink" href="https://store.steampowered.com/app/1625460/Reptilian_Rising/" target="_blank" rel="noreferrer">
-    <img class="icon96" src="../img/steam-favicon.ico">
-    <h4>Reptilian Rising</h4>
+{# {{ macros.figure_img("img/reptilian-map.png") }} #}
+<div class="big">
+{{ macros.figure_img("img/ss_3feca93f8979f12dd7512d2032e4c8f5cf141766.1920x1080.jpg") }}
+{{ macros.figure_img("img/ss_9a36b190375e8f0b36259293c1caf704724e4734.1920x1080.jpg") }}
+</div>
+
+{# {{ macros.figure_img("img/ss_75288f195eca66e31bef67d873ba2b3c935249cc.1920x1080.jpg") }} #}
+
+{{ macros.figure_img("img/reptilian-trauma.png") }}
+
+<a class="external" href="https://store.steampowered.com/app/1625460/Reptilian_Rising/" target="_blank" rel="noreferrer">
+    <img class="icon96" src="{{ icon }}">
+    <p>Reptilian Rising</p>
     <p>on Steam</p>
     <small style="position: absolute; background-color: #000; transform: rotate(10deg); width: 20ch;top:0px;right:-40px;">we were
         NOT involved with the trailer.</small>

@@ -1,0 +1,44 @@
+@font-face {
+    font-family: "Redaction 35";
+    src: url("/fonts/Redaction_35-Regular.woff2") format("woff2");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Redaction 50";
+    src: url("/fonts/Redaction_50-Regular.woff2") format("woff2");
+    font-weight: normal;
+    font-style: normal;
+}
+
+html {
+    image-rendering: pixelated;
+    font-family: "Redaction 35", Georgia, serif;
+
+    color: #000;
+    background-color: #fff;
+}
+h1,h2,h3,h4,h5,h6 {
+    font-family: "Redaction 50", Georgia, serif;
+}
+
+h2 {
+    border-bottom: 2px solid #000;
+}
+
+ul {
+    list-style-type: square;
+}
+
+nav {
+    display: none;
+}
+
+section#experience {
+    li {
+        > span {
+            font-weight: bold;
+        }
+    }
+}

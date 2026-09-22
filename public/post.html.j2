@@ -1,84 +1,63 @@
-{% import "macros.html.j2" as macros %}
+{% import "macros.html.j2" as macros with context %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     {% block head %}
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, viewport-fit=cover">
-    <meta name="color-scheme" content="light dark">
-
-    <link rel="stylesheet" href="../default.css" title="Default" type="text/css">
-    
-    <link rel="icon" href="../favicon.png" type="image/png" sizes="50x51">
-    <link rel="apple-touch-icon" href="../favicon.png" type="image/png" sizes="50x51">
-
-    <title>{{ title if title is defined else site.title }}</title>
-    <meta name="description" content="{{ description }}">
-    <meta name="author" content="{{ site.author }}"> <!-- this element is used for firefox reader author. -->
-    <link rel="canonical" href="https://www.vulpineonline.com/charachnid/">
-
-    <meta name="application-name" content="{{ site.title }}">
-    <meta name="theme-color" content="#ffa500">
-    <meta name="generator" content="Jinja2">
-    
-    <meta property="og:title" content="{{ title }}">
-    <meta property="og:description" content="{{ description}}">
-    <meta property="og:image" content="https://www.vulpineonline.com/thumbnail.webp">
-    <meta property="og:url" content="https://www.vulpineonline.com/">
-    <meta property="og:site_name" content="{{ site.title }}">
-    <meta property="og:type" content="article">
-    
-    <meta name="twitter:title" content="{{ title }}">
-    <meta name="twitter:description" content="{{ description }}">
-    <meta name="twitter:image" content="https://www.vulpineonline.com/thumbnail.png">
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:site" content="@vulpineonline">
-    <meta name="twitter:creator" content="@vulpineonline">
-    <meta name="twitter:domain" content="{{ site.domain }}">
-    <meta name="twitter:url" content="https://www.vulpineonline.com/">
+    {{ macros.head() }}
     {% endblock %}
 </head>
 <body>
-    <header>
-        {% block header %}
-        <h2><a href="../"><< {{ site.title }}</a></h2>
-        {% endblock header %}
-    </header>
 
-    <nav>
-        {% block nav %}
-        <ul>
-            <li><a href="#">todo</a></li>
-            <li><a href="#">todo</a></li>
-            <li><a href="#">todo</a></li>
-            <li><a href="#">todo</a></li>
-        </ul>
-        {% endblock nav %}
-    </nav>
-    
+    {{ macros.header() }}
+    {{ macros.nav() }}
+
     <main>
         <article>
-            {% block content %}
+
             <header>
-                <h1>{{ title }}</h1>
+            {{ macros.figure_img(image) }}
+            <h2>{{ title }}</h2>
+            <p>{{ description }}</p>
+            <p><time>{{ date }}</time></p>
+            
+            {% if tags %}
+            <dl class="tags">
+                <dt>Tags</dt>
+                {% for tag in tags %}
+                <dd>{{ tag }}</dd>
+                {% endfor %}
+            </dl>
+            {% endif %}
+            {% if roles %}
+            <dl class="tags">
+                <dt>Roles</dt>
+                {% for role in roles %}
+                <dd>{{ role }}</dd>
+                {% endfor %}
+            </dl>
+            {% endif %}
+            {% if client %}
+            <dl class="tags">
+                <dt>Client</dt>
+                <dd>{{ client }}</dd>
+            </dl>
+            {% endif %}
             </header>
-            <section>
-                <p>{{ description }}</p>
-                <time>{{ date }}</time>
-                <ul>
-                    {% for tag in tags %}
-                    <li>{{ tag }}</li>
-                    {% endfor %}
-                </ul>
-            </section>
+
+            {% block content required %}
             {% endblock %}
+
+            <footer>
+            {% block footer %}
+            <p>
+                &nbsp;
+            </p>
+            {% endblock %}
+            </footer>
         </article>
     </main>
-    <footer>
-        {% block footer %}
-        <p>copyright? &copy; {{ site.author }} current year</p>
-        {% endblock %}
-    </footer>
+
+    {{ macros.footer() }}
 
 </body>
 </html>

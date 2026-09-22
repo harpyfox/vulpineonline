@@ -1,83 +1,92 @@
-from jinja2 import Environment, select_autoescape, TemplateRuntimeError, TemplateNotFound, TemplateSyntaxError, TemplateError
-from jinja2.loaders import FileSystemLoader
-import logging
-from pathlib import Path
-from datetime import datetime
-import re
 import sys
+import logging
+from colour import ColourFormatter, ansi
+from frontmatter import AstFrontMatterHandler
+from jinja2 import Template, Environment, select_autoescape
+from jinja2.loaders import FileSystemLoader
+from pathlib import Path, PurePath
+from datetime import datetime
 
-import json
-import ast
+class TemplateMetadata(dict):
+    # required fields
+    title: str
+    description: str
+    date: datetime
+    tags: list[str]
 
-def ansi(text: str, code: int) -> str:
-    return f"\033[{code:03d}m{text}\033[000m"
+    # optional fields
+    image: str = "img/thumbnail.png"
+    icon: str = "img/icon.png"
+    roles: list[str] = None
+    client: str = None
 
-class ColourFormatter(logging.Formatter):
-    """Formats DEBUG messages as dim, WARNING as yellow, ERROR as red, and CRITICAL as reverse red"""
+    # generated fields
+    template_path: Path
+    output_path: Path
+    href: str
 
-    # format = "[%(asctime)s] [%(name)s] %(levelname)7s: %(message)s"
-    format = "%(message)s"
+def load(env: Environment, name: str, compiled_globals) -> (Template, dict):
+    """Load a template and its metadata by name."""
 
-    FORMATS = {
-        logging.DEBUG: ansi(format, 2),
-        logging.INFO: format,
-        logging.WARNING: ansi(format, 33),
-        logging.ERROR: ansi(format, 31),
-        logging.CRITICAL: ansi(format, 41),
-    }
+    # logger.debug(f"load {env}, {name}, {compiled_globals}")
+    
+    if not name.endswith(TEMPLATE_EXT):
+        # logger.debug(f"{name:36} -- not a template file\n")
+        return (None, None)
 
-    def format(self, record: logging.LogRecord):
-        fmt = self.FORMATS.get(record.levelno)
-        formatter = logging.Formatter(fmt, "%H:%M:%S")
-        return formatter.format(record)
+    logger.debug(f"\nload {name=}\n")
 
-class FrontMatterHandler:
-    """Splits and parses front matter in a template file"""
-    boundary: re.Pattern[str] | None = None
-    start_delimiter: str | None = None
-    end_delimiter: str | None = None
+    source, filename, uptodate = env.loader.get_source(env, name)
+    metadata_raw, content_raw = FRONTMATTER_HANDLER.split(source)
+    # logger.debug(f"{metadata_raw=}\n")
+    # logger.debug(f"{content_raw=}\n")
 
-    def split(self, text: str) -> tuple[str, str]:
-        # https://github.com/eyeseast/python-frontmatter/blob/main/frontmatter/default_handlers.py#L281
-        _, meta, content = self.boundary.split(text, maxsplit=2)  
-        return "{" + meta + "}", content
+    if metadata_raw == "":
+        logger.info(f"{filename!s:33} {ansi("no metadata, treating as abstract", 2)}\n")
+        return (None, None)
 
-    def parse(self, metadata: str) -> object:
-        raise NotImplementedError
+    metadata: dict = FRONTMATTER_HANDLER.parse(metadata_raw)
 
-class JSONHandler(FrontMatterHandler):
-    boundary = re.compile(r"^(?:{|})$", re.MULTILINE)
-    start_delimiter = ""
-    end_delimiter = ""
+    metadata.setdefault("image", TemplateMetadata.image)
+    metadata.setdefault("icon", TemplateMetadata.icon)
 
-    def parse(self, metadata: str) -> object:
-        metadict = json.loads(metadata)
-        return metadict
+    template_path = Path(filename)
+    output_path = Path(filename.removesuffix("." + TEMPLATE_EXT))
+    metadata["template_path"] = template_path
+    metadata["output_path"] = output_path
 
+    href = PurePath("/", output_path.relative_to(ROOT_DIR))
+    if output_path.name == "index.html":
+        href = href.parent
+    href_str = str(href)
+    if href.name != "":
+        href_str = href_str + "/" # add trailing slash to folder index files
+    metadata["href"] = href_str
+    
+    logger.debug(f"{metadata=!r}\n")
 
-class AstHandler(FrontMatterHandler):
-    boundary = re.compile(r"^(?:{|})$", re.MULTILINE)
-    start_delimiter = ""
-    end_delimiter = ""
+    code = env.compile(content_raw, name, filename)
+    template = env.template_class.from_code(env, code, compiled_globals, uptodate)
+    logger.debug(f"{template=}\n")
 
-    def parse(self, metadata: str) -> object:
-        metadict = ast.literal_eval(metadata)
-        return metadict
+    return template, metadata
 
 
-# example filter
-def filter_datetime_format(value: datetime, format="%H:%M %y-%m-%d"):
-    return value.strftime(format)
+def render(template: Template, path: Path, args: dict):
+    """Render template and write it to path."""
+
+    logger.debug(f"render {template=} {path=} \n")
+    rendered = template.render(args)
+    path.parent.mkdir(exist_ok=True, parents=True)
+    with open(path, "w") as output:
+        output.write(rendered)
+
+
 
 def main() -> int:
-    loader = FileSystemLoader(TEMPLATE_DIR)
-    logger.debug(
-f'''initialised FileSystemLoader
-    searchpath={TEMPLATE_DIR!r}'''
-    )
-    
+
     env = Environment(
-        loader=loader,
+        loader= FileSystemLoader(TEMPLATE_DIR),
         autoescape=select_autoescape(
             enabled_extensions=("html"),
             default_for_string=True,
@@ -88,93 +97,54 @@ f'''initialised FileSystemLoader
     )
     env.globals = GLOBALS
     compiled_globals = env.make_globals(None)
-    env.filters = {
-        "datetime_format": filter_datetime_format,
-    }
+    env.filters.update(custom_filters)
+    env.tests.update(custom_tests)
+
     logger.debug(
-f'''initialised Environment
-    globals={env.globals}
-    filters={list(env.filters.keys())}'''
-    )
+f"""initialised Environment
+    {env.loader=}
+    {env.globals=}
+    {list(env.filters.keys())=}
+    {list(env.tests.keys())=}\n""")
 
-    template_names = loader.list_templates()
-    logger.debug(f"{template_names}")
-    # logger.info(f"writing {len(template_names)} templates from {TEMPLATE_DIR!r} to {OUTPUT_DIR!r}...")
+    template_names: list[str] = env.loader.list_templates()
+    logger.debug(f"{template_names=}\n")
 
+    index: dict[Template, dict] = {}
     success_count = 0
     skip_count = 0
     error_count = 0
-    for name in template_names:
-        logger.debug(f"parsing {name}")
-        if not name.endswith(TEMPLATE_EXT):
-            logger.debug(ansi(
-                f"{name:36} x---- not a template file", 2))
-            skip_count += 1
-            continue
 
+    logger.info(f"{"template_path"!s:33} {ansi(f"{"output_path"!s:30}", 32)}  {ansi("href", 36)}\n")
+    for template_name in template_names:
         try:
-            source, path, uptodate = loader.get_source(env, name)
-        except UnicodeDecodeError as error:
-            logger.error(
-                f"{name:36} x---- {error}")
-            error_count += 1
-            continue
-        
-        try:
-            metadata, content = FRONTMATTER_HANDLER.split(source)
-        except ValueError as error:
-            logger.info(ansi(
-                f"{path:36} =x--- no metadata, treating as abstract", 2))
-            skip_count += 1
-            continue
+            template, metadata = load(env, template_name, compiled_globals)
+            if template is None or metadata is None:
+                skip_count += 1
+            else:
+                index[template] = metadata
         except Exception as error:
-            logger.error(
-                f"{path:36} =x--- {error} ({type(error)})")
+            logger.error(f"{template_name!s} parsing error {error}", exc_info=True)
             error_count += 1
-            continue
-        logger.debug(f"    metadata={metadata}")
-        logger.debug(f"    content={content}")
+    # logger.debug(f"{index=}\n")
 
+    index_values = []
+    for k, v in index.items():
+        index_values.append(v)
+    
+    for (template, metadata) in index.items():
         try:
-            metadict = FRONTMATTER_HANDLER.parse(metadata)
+            source = metadata["template_path"]
+            dest = metadata["output_path"]
+            render(template, dest, metadata | {"index":index_values})
+            href = metadata["href"]
+            logger.info(f"{source!s:33} {ansi(f"{dest!s:30} ", 32)} {ansi(f"{href!s}", 36)}\n")
+            success_count += 1
         except Exception as error:
-            logger.error(
-                f"{path:36} ==x-- {error} ({type(error)})")
+            logger.error(f"{source!s:33} rendering error {error}", exc_info=True)
             error_count += 1
-            continue
-        logger.debug(f"    metadict={metadict}")
-        
 
-        try:
-            code = env.compile(content, name, path)
-            template = env.template_class.from_code(env, code, compiled_globals, uptodate)
-        except Exception as error:
-            logger.error(
-                f"{path:36} ===x- {error} ({type(error)})")
-            error_count += 1
-            continue
-
-        try:
-            rendered = template.render(metadict)
-        except Exception as error:
-            logger.error(
-                f"{path:36} ====x {error} ({type(error)})")
-            error_count += 1
-            continue
-        
-        output_name, ext = name.rsplit(".", 1)
-        output_path = Path(OUTPUT_DIR, output_name)
-        output_path.parent.mkdir(exist_ok=True, parents=True)
-        with open(output_path, "w") as output:
-            output.write(rendered)
-
-        logger.info(f"{path:36} ====> {output_path!s}")
-        success_count += 1
-
-    written = f"{success_count} written"
-    skipped = f"{skip_count} skipped"
-    errored = f"{error_count} errors"
-    logger.info(f"{written:12} {skipped:12} {errored:12}\n")
+    logger.info(f"{success_count:4} written {error_count:4} errors {ansi(f"{skip_count:4} skipped", 2)}\n")
 
     if error_count > 0:
         return 1
@@ -183,36 +153,75 @@ f'''initialised Environment
 
 
 LOG_LEVEL = logging.INFO
-TEMPLATE_DIR = "public"
-TEMPLATE_EXT = "j2"
-OUTPUT_DIR = "public"
-GLOBALS = {
+# LOG_LEVEL = logging.DEBUG
+
+GLOBALS: dict = {
     "site": {
         "title": "VULPINE ONLINE",
         "author": "harper fox",
         "domain": "vulpineonline.com",
+        "canonical": "https://www.vulpineonline.com",
+        "version": (2, 0, 0),
+    },
+    "renderer": {
+        "root_dir": "public/", 
+        "template_dir": "public/", 
+        "template_ext": "j2",
+        "timestamp": -1 
     }
 }
-FRONTMATTER_HANDLER: FrontMatterHandler = AstHandler()
+ROOT_DIR: str = GLOBALS["renderer"]["root_dir"]
+"""Root directory of the site. Rendered templates are placed here."""
+TEMPLATE_DIR: str = GLOBALS["renderer"]["template_dir"]
+"""Renderer will look here for template files. Can be the same as ROOT_DIR."""
+TEMPLATE_EXT: str = GLOBALS["renderer"]["template_ext"]
+"""Ignore files that don't have this extension when searching for templates."""
+
+def filter_pathjoin(s, b):
+    p = Path(s, b)
+    return p
+
+
+
+custom_filters = {
+    "pathjoin": filter_pathjoin,
+}
+
+def test_has_tag(value: list[str], tag: str):
+    return tag in value
+
+
+custom_tests = {
+    "hastag": test_has_tag,
+}
+
+
+
+FRONTMATTER_HANDLER = AstFrontMatterHandler()
 
 logger = logging.getLogger(__name__)
 logger.setLevel(LOG_LEVEL)
 handler = logging.StreamHandler()
 handler.setLevel(LOG_LEVEL)
-handler.setFormatter(ColourFormatter())
+formatter = ColourFormatter(fmt="%(message)s", datefmt="%H:%M:%S")
+handler.setFormatter(formatter)
+handler.terminator = ''
 logger.addHandler(handler)
 
-
 if __name__ == "__main__":
+
+    now = datetime.now()
+    timestamp = int(now.timestamp())
+    GLOBALS["renderer"]["timestamp"] = timestamp
+
     logger.debug(
-f'''vulpineonline page renderer
-    LOG_LEVEL={LOG_LEVEL}
-    TEMPLATE_DIR={TEMPLATE_DIR}
-    TEMPLATE_EXT={TEMPLATE_EXT}
-    OUTPUT_DIR={OUTPUT_DIR}
-    GLOBALS={GLOBALS}
-    FRONTMATTER_HANDLER={FRONTMATTER_HANDLER}'''
-    )
+        f"""vulpineonline page renderer
+    {LOG_LEVEL=}
+    {ROOT_DIR=}
+    {TEMPLATE_DIR=}
+    {TEMPLATE_EXT=}
+    {GLOBALS=}
+    {FRONTMATTER_HANDLER=}\n""")
 
     status = main()
     sys.exit(status)

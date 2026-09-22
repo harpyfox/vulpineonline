@@ -1,8 +1,10 @@
 {
     "title": "Rune Witch Academy",
-    "description": "Commissioned project for Google's Fitbit Ace LTE smartwatch",
-    "date": "2000-01-01",
-    "tags": [ "Blender", "Unity", "Android" ],
+    "description": "spellcasting RPG adventure for Google's Fitbit Ace LTE",
+    "date": "2023-12-01",
+    "tags": [ "Art", "Blender", "Unity", "Android" ],
+    "image": "img/witch-dialogue.png",
+    "icon": "img/game_icon.png",
 
     "client": "Google",
     "roles": [ "Technical Art", "VFX Art", "Programming" ],
@@ -10,21 +12,153 @@
 {% extends "post-project.html.j2" %}
 {% block content %}
 {{ super() }}
-<section class="gallery">
-    <figure><video class="squircle" src="img/witch-grimoire.webm" preload="none" poster="../img/mediaplayer48.png"></video></figure>
-    <figure><video class="squircle" src="img/witch-palettes.webm" preload="none" style="object-position: top;"></video><figcaption>runtime vector sprite recolouring</figcaption></figure>
-    <figure><img class="squircle" src="img/witch-biomes.gif" loading="lazy"></figure>
-    <figure><img class="squircle" src="img/witch-ambermeadows.gif" loading="lazy"><figcaption>dynamic weather effects</figcaption></figure>
-    <figure><video class="squircle" src="img/witch-door.webm" preload="none" poster="../img/mediaplayer48.png"></video></figure>
-    <figure><img src="img/witch-portraitsystem.png" loading="lazy"></figure>
-    <figure><video class="squircle" src="img/witch-portraitvid.webm" preload="none" poster="../img/mediaplayer48.png"></video></figure>
-    <figure><img class="squircle" src="img/witch-dialogue.png" loading="lazy"></figure>
-    <figure><img class="squircle" src="img/witch-pann.gif" loading="lazy"><figcaption>character portrait effects</figcaption></figure>
-    <figure><img src="img/witch-portraitfx.png" loading="lazy"></figure>
-    <figure><img class="squircle" src="img/witch-repair.gif" loading="lazy"><figcaption>spell VFX: Repair</figcaption></figure>
-    <figure><img class="squircle" src="img/witch-growshrink.gif" loading="lazy"><figcaption>spell VFX: Grow/Shrink</figcaption></figure>
-    <figure><img class="squircle" src="img/witch-translate.gif" loading="lazy"><figcaption>spell VFX: Translate</figcaption></figure>
-    <figure><img src="img/witch-gameflows.png" loading="lazy"></figure>
-    <figure><img src="img/witch-wakeuppann.png" loading="lazy"></figure>
+<style>
+body {
+    background: top / contain no-repeat url("img/witch-background.webp") #361637;
+}
+main {
+    background: #361637aa;
+}
+</style>
+
+{{ macros.figure_video("img/witch-door.webm")}}
+<section>
+    <h3>Character</h3>
+    <section>
+        <h4>Portrait System</h4>
+        <p>
+            2D visual-novel-style character portrait system with editor tools to build expressions with animated eyes, mouth, and
+            particle effects
+        </p>
+        <div class="big">
+            {{ macros.figure_img("img/witch-portraitsystem.png" )}}
+            {{ macros.figure_video("img/witch-portraitvid.webm" )}}
+        </div>
+        {# {{ macros.figure_img("img/witch-dialogue.png" )}} #}
+        <div class="big">
+            {{ macros.figure_img("img/witch-pann.gif")}}
+            {{ macros.figure_img("img/witch-portraitfx.png" )}}
+        </div>
+    </section>
 </section>
+
+<section>
+    <h3>Environment</h3>
+    <section>
+        <h4>Palette Controller</h4>
+        <p>
+            A game-wide vector sprite recolouring system that replaced authored colours of a sprite
+            with new colours based on <abbr>LUTs</abbr> (lookup textures) authored by the game's artists
+        </p>
+        <div class="big">
+            {{ macros.figure_video("img/witch-palettes.webm")}}
+        </div>
+        <p>
+            Along with runtime blending between colour palettes, this system avoided artists
+            manually authoring 8+ variants of every sprite in the game. This not only saved time, but also reduced the
+            filesize of the game, which was strictly limited due to targeting smartwatches.
+        </p>
+        
+        <p>
+            The system comprised multiple parts (simplified here for the sake of brevity):
+        </p>
+        <table><tbody>
+            <tr>
+                <th>LUT authoring tool</th>
+                {# <td>Editor</td> #}
+                <td>Editor scripts for creating LUTs and saving them to Unity <code>ScriptableObject</code>s</td>
+            </tr>
+            <tr>
+                <th>Sprite shader</th>
+                {# <td>Runtime</td> #}
+                <td>HLSL shader for vector sprites with support for LUT tonemapping</td>
+            </tr>
+            <tr>
+                <th>Blend shader</th>
+                {# <td>Runtime</td> #}
+                <td>
+                    HLSL shader that took two LUTs and blended them into one LUT (mix, multiply, add etc.)
+                    <aside>
+                        <p>
+                            The blending method used at the time, essentially a <abbr title="linear interpolation">lerp</abbr>,
+                            produced an unfortunate washed-out tone in the middle of each blend.
+                        </p>
+                        <p>
+                            A nicer blend could have been produced by converting to OKLCH for the interpolation step and back to sRGB for the output.
+                        </p>
+                    </aside>
+                </td>
+            </tr>
+            <tr>
+                <th>LUT blender</th>
+                {# <td>Runtime</td> #}
+                <td>C# Script that took two LUTs (from <strong>LUT authoring tool</strong>) and blended them into one LUT (with <strong>Blend shader</strong>)</td>
+            </tr>
+            <tr>
+                <th>Palette controller</th>
+                {# <td>Runtime</td> #}
+                <td>C# Script that took a LUT (from <strong>LUT blender</strong>) and supplied it to the <strong>Sprite shader</strong></td>
+            </tr>
+        </tbody></table>
+        <p>
+            With it, I was able to create...
+        </p>
+        <ul>
+            <div class="big">
+                <li>
+                    <p>a time-of-day system,</p>
+                    {{ macros.figure_img("img/8_times_of_day_yeaaaaaaaaaaaaa-1.gif") }}
+                </li>
+                <li>
+                    <p>a weather system,</p>
+                    {{ macros.figure_img("img/witch-ambermeadows.gif")}}
+                </li>
+            </div>
+            <div class="big">
+                <li>
+                    <p>the opportunity for more immersive environmental storytelling,</p>
+                    {{ macros.figure_img("img/witch-timeofday.gif")}}
+                </li>
+                <li>
+                    <p>and the ability for artists to adjust colours in-engine without a re-export round trip.</p>
+                    {{ macros.figure_img("img/Screenshot 2026-08-31 at 17.57.28.png") }}
+                </li>
+            </div>
+        </ul>
+        
+    </section>
+    
+    <div class="big">
+        {{ macros.figure_video(
+            "img/witch-grimoire.webm",
+            caption="Animated book with deformation-based page turning (a technical artist's rite of passage)" 
+        )}}
+
+        
+        {{ macros.figure_img(
+            "img/witch-biomes.gif",
+            caption="Animated sequences to mask loading times between scenes"    
+        )}}
+    </div>
+    
+</section>
+
+<section>
+    <h3>VFX</h3>
+    <div class="big">
+        {{ macros.figure_img("img/witch-repair.gif",caption="spell VFX: Repair")}}
+        {{ macros.figure_img("img/witch-growshrink.gif",caption="spell VFX: Grow/Shrink")}}
+        {{ macros.figure_img("img/witch-translate.gif",caption="spell VFX: Translate")}}
+    </div>
+    <p>
+        Spell visual effects were inspired by the Mother series due to the first-person
+        perspective and, in the case of Mother 3, the small-screened nature of the games,
+        lending to a focus on visual effects with clear and decisive feedback.
+    </p>
+    
+</section>
+
+{{ macros.figure_img("img/witch-flow1.png" )}}
+{{ macros.figure_img("img/witch-flow2.png" )}}
+{{ macros.figure_img("img/witch-wakeuppann.png" )}}
 {% endblock %}

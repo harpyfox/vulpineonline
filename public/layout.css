@@ -1,0 +1,326 @@
+/* reset */
+/* https://www.joshwcomeau.com/css/custom-css-reset/ */
+*, 
+*::before, 
+*::after {
+    box-sizing: border-box;
+}
+*:not(dialog) {
+    margin: 0;
+}
+body {
+    -webkit-font-smoothing: antialiased;
+    font-optical-sizing: none;
+}
+img, 
+picture, 
+video, 
+canvas, 
+svg {
+    display: block flow;
+    max-width: 100%;
+}
+svg {
+    width: auto;
+    height: auto;
+
+    fill: currentColor;
+}
+use {
+    display: contents;
+}
+input, 
+button, 
+textarea, 
+select {
+    font: inherit;
+}
+p, 
+h1, 
+h2, 
+h3, 
+h4, 
+h5, 
+h6 {
+    overflow-wrap: break-word;
+}
+/* */
+
+:root {
+
+}
+
+html {
+    
+}
+
+article {
+    position: relative;
+
+    padding-inline: 1em;
+}
+section#info {
+    figure > img {
+        max-height: 256px;
+    }
+}
+figure {
+    position: relative;
+
+    width: fit-content;
+    margin-block: 0.75em;
+    margin-inline: auto;
+
+    display: block grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+
+    > * {
+        max-height: 360px;
+    }
+}
+figcaption {
+    width: 0;
+    min-width: 100%;
+    margin-block: 0.25em 0;
+}
+blockquote {
+    
+}
+q::before, blockquote::before {
+    content: "\"";
+}
+q::after, blockquote::after {
+    content: "\"";
+}
+cite {
+    font-style: italic;
+}
+cite::before {
+    content: "—";
+}
+code, pre {
+    font-family: monospace;
+}
+pre {
+    overflow-y: auto;
+    max-height: 10lh;
+}
+iframe {
+    display: block;
+}
+table {
+    border-collapse: collapse;
+}
+th, td {
+    border: 1px solid currentColor;
+}
+
+#viewer {
+    position: fixed;
+    z-index: 100;
+    width: 100%;
+    height: 100%;
+    padding: 5%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: zoom-out;
+
+    img,
+    video {
+        max-width: 100%;
+        max-height: 100%;
+        min-width: 0px;
+        min-height: 0px;
+        object-fit: contain;
+    }
+
+    figcaption {
+        position: initial;
+        width: initial;
+        background-color: initial;
+    }
+}
+
+
+dl.tags {
+    display: block flex;
+    align-items: center;
+    gap: 4px;
+}
+.cards {
+    display: block grid;
+    grid-template-columns: repeat(auto-fill, minmax(20ch, 1fr));
+    gap: 0.5em;
+}
+.card {
+    padding: 0;
+
+    display: block grid;
+    grid-template-rows: auto 1fr auto;
+    gap: 0;
+
+    figure {
+        margin-block: 0;
+    }
+    h3, p {
+        margin-inline: 0.5em;
+    }
+    p {
+        margin-block: 0;
+    }
+    footer {
+        text-align: right;
+    }
+}
+.big {
+    
+    /* black magic */
+    /* margin-right: -256px; */
+    /* transform: translateX(-128px); */
+
+    width: fit-content;
+    margin-inline: auto;
+
+    display: block flex;
+    flex-flow: row nowrap;
+    align-items: baseline;
+    gap: 1em;
+}
+.logo {
+    height: 64px;
+}
+
+
+/* utilities - display */
+.inline {
+    display: inline;
+}
+.block {
+    display: block flow;
+}
+.row {
+    display: block flex;
+    flex-direction: row;
+    column-gap: 0.25em;
+}
+.column {
+    display: block flex;
+    flex-direction: column;
+    row-gap: 0.25em;
+}
+
+
+
+[class*="icon"] {
+    display: inline flow-root;
+    vertical-align: middle;
+
+    object-fit: contain;
+
+    &[class="favicon"] {
+        width: 1.5rem;
+        height: 1.5rem;
+        margin-right: 4px;
+
+        + * {
+            display: inline;
+        }
+    }
+    &[class*="16"] {
+        width: 16px;
+        height: 16px;
+    }
+    &[class*=24] {
+        width: 24px;
+        height: 24px;
+    }
+    &[class*="32"] {
+        width: 32px;
+        height: 32px;
+    }
+    &[class*="64"] {
+        width: 64px;
+        height: 64px;
+    }
+    &[class*="96"] {
+        width: 96px;
+        height: 96px;
+    }
+}
+.button {
+    image-rendering: pixelated;
+    border: none;
+    width: 88px;
+    height: 31px;
+}
+
+/* utilities - object fit */
+.contain {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+.cover {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+
+.badge-new::before {
+    display: block;
+
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    z-index: 1;
+
+    content: "NEW!";
+    font-weight: bold;
+
+    color: white;
+    background-color: red;
+}
+.badge-sound::before {
+    display: block;
+
+    position: absolute;
+    top: 0px;
+    right: 0px;
+
+    content: "🔊 sound warning";
+    font-weight: bold;
+
+    color: white;
+    background-color: black;
+}
+
+.sticker {
+    padding: 0.3em;
+
+    border-radius: 2px;
+    color: black;
+    background-color: white;
+}
+
+.overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    object-fit: cover;
+    pointer-events: none;
+}
+
+.inverted {
+    filter: invert(100%);
+}
+
+/* utilities - accessibility */
+

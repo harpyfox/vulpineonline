@@ -1,8 +1,9 @@
 {
     "title": "Pollo 13: Space Race",
-    "description": "Commissioned project for Google's Fitbit Ace LTE smartwatch",
-    "date": "2000-01-01",
-    "tags": [ "Blender", "Unity", "Android" ],
+    "description": "motion controlled racer for Google's Fitbit Ace LTE",
+    "date": "2023-02-13",
+    "tags": [ "Art", "Blender", "Unity", "Android" ],
+    "image": "img/pollo-background.png",
 
     "client": "Google",
     "roles": [ "Animation Lead", "Technical Art", "Programming" ],
@@ -10,18 +11,68 @@
 {% extends "post-project.html.j2" %}
 {% block content %}
 {{ super() }}
-<section class="gallery">
-    <figure><video class="squircle" src="img/pollo-showcase.mp4" preload="none" poster="../img/mediaplayer48.png"></video></figure>
-    <figure><video class="squircle" src="img/pollo-chickenselect.mp4" preload="none" poster="../img/mediaplayer48.png"></video></figure>
-    <figure><video class="squircle" src="img/pollo-anims.webm" preload="none" poster="../img/mediaplayer48.png"></video></figure>
-    <figure><video class="squircle" src="img/pollo-blendtree.webm" preload="none" poster="../img/mediaplayer48.png"></video></figure>
-    <figure><img class="squircle" src="img/pollo-tubbe.gif" loading="lazy"></figure>
-    <figure><video class="squircle" src="img/pollo-tub.mp4" preload="none" poster="../img/mediaplayer48.png"></video></figure>
-    <figure><video class="squircle" src="img/pollo-foxytut.mp4" preload="none" poster="../img/mediaplayer48.png"></video></figure>
-    <figure><img class="squircle" src="img/pollo-foxypot.png" loading="lazy"></figure>
-    <figure><video class="squircle" src="img/pollo-dither.webm" preload="none" poster="../img/mediaplayer48.png"></video></figure>
-    <figure><video class="squircle" src="img/pollo-ship.mp4" preload="none" poster="../img/mediaplayer48.png"></video></figure>
-    <figure><img class="squircle" src="img/pollo-foxyalert.gif" loading="lazy"></figure>
-    <figure><video class="squircle" src="img/pollo-liftoff.webm" preload="none" poster="../img/mediaplayer48.png"></video></figure>      
+<style>
+body {
+    background-image: url("img/pollo-starscape.png");
+}
+</style>
+<aside style="display: none">
+    <nav>
+        <h3>Table of Contents</h3>
+        <ol>
+            <li><a href="#character">Character</a></li>
+            <li><a href="#environment">Environment</a></li>
+        </ol>
+    </nav>
+</aside>
+{{ macros.figure_video("img/pollo-showcase.mp4")      }}
+
+<section>
+    <h3 id="character">Character</h3>
+    <div class="big">
+        {{ macros.figure_video("img/pollo-foxytut.mp4" )}}
+        {{ macros.figure_video("img/pollo-tub.mp4"     )}}
+    </div>
+    {{ macros.figure_video("img/pollo-chickenselect.mp4") }}
+
+    {{ macros.figure_video("img/pollo-anims.webm" ) }}
+    {{ macros.figure_video(
+        "img/pollo-blendtree.webm",
+        caption="From a set of base animations making up 3 directions (left, forwards, and right) and 2 speeds (idle speed and maximum speed), the continuous in-between values were procedurally blended in Unity."
+    ) }}
+
+    <div class="big">
+        {{ macros.figure_img("img/pollo-foxypot.png") }}
+        {{ macros.figure_img("img/pollo-foxyalert.gif")}}
+    </div>
+
+    {{ macros.figure_img("img/pollo-rigs.png") }}
+    <p>
+        2 rigs were shared across 5 characters, each with two root bones 
+        (one for the character, and one for the vehicle).<br>
+        During dialogue and hub world situations, the vehicle was hidden by simply
+        scaling its root bone to zero.
+    </p>
+
+    {{ macros.figure_img(
+        "img/pollo-tubbe.gif",
+        caption="3 bones and some unique weight painting achieved a squishy feel for the bathtubs."
+    ) }}
+    {{ macros.figure_img(
+        "img/pollo-faces.png",
+        caption="Each character model was modified slightly to allow for mouth movements."
+    ) }}
 </section>
+
+<section>
+    <h3 id="environment">Environment</h3>
+    <div class="big">
+        {{ macros.figure_video("img/pollo-ship.mp4"    )}}
+        {{ macros.figure_video("img/pollo-dither.webm" )}}
+    </div>
+    {{ macros.figure_video("img/pollo-liftoff.webm" ) }}
+</section>
+
+{{ macros.figure_img("img/pollo-foxyalcoholic.png") }}
+
 {% endblock %}
