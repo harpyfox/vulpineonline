@@ -1,0 +1,194 @@
+{
+    "title": "TMOSI",
+    "description": "point-and-click adventure for the New South Wales school curriculum",
+    "date": "2026-06-05",
+    "tags": [ "Art", "Spine 2D" ],
+    "image": "img/logo.webp",
+
+    "client": "\"j\"",
+    "roles": [ "Lead Animation" ],
+}
+{% extends "post.html.j2" %}
+{% block content %}
+{{ super() }}
+{# <bg-image> <bg-position> / <bg-size> <repeat-style> <attachment> <bg-clip> <bg-origin> <'background-color'> #}
+{# none 0% 0% / auto auto repeat scroll border-box padding-box transparent; #}
+<style>
+body {
+    background: 
+        url("img/bushes-left.png") 0% 100% / 25% auto no-repeat fixed,
+        url("img/bushes-right.png") 100% 100% / 25% auto no-repeat fixed,
+        url("img/sky.png") 0% 0% / cover no-repeat fixed;
+
+}
+</style>
+
+
+<p>
+    TODO
+    <ul>
+        <li>some footage from the finished game w/ backgrounds n stuff</li>
+        <li>link to this https://campaignbrief.com/marketforce-gamelab-launches-with-life-saving-allergy-game-for-national-allergy-council/</li>
+    </ul>
+</p>
+
+
+<section>
+    <h3>Character</h3>
+    <div class="big">
+        {{ macros.figure_img("img/cook.gif") }}
+        {{ macros.figure_img(
+            "img/healthloop.gif",
+            caption=None
+        ) }}
+        {{ macros.figure_img("img/muffinidle.gif") }}
+
+    </div>
+
+    <div class="big">
+        {{ macros.figure_img("img/walk5.gif") }}
+        {{ macros.figure_img("img/run5.gif") }}
+    </div>
+
+    {{ macros.figure_img("img/muffin.gif") }}
+
+    <div class="big">
+        {{ macros.figure_img("img/muffintalk.gif") }}
+        {{ macros.figure_img(
+            "img/gardenerrake.gif",
+            caption="upside-down rake was corrected by the artist before release"
+        ) }}
+    </div>
+
+    <p>
+        Using Spine 2D's Skins feature and per-Skin transform constraints, differently proportioned
+        characters could use the same rig. <small>Except for Professor Pounce.</small>
+    </p>
+    <div class="big">
+        {{ macros.figure_video("img/rigs.mp4") }}
+        {{ macros.figure_img(
+            "img/yrhgtefsd.gif",
+            caption="of course the cat requires special treatment"
+        ) }}
+    </div>
+    <div class="big">
+        
+        {# {{ macros.figure_img("img/catlaugh.gif") }} #}
+    
+        {{ macros.figure_img("img/yumyfish.gif") }}
+        {{ macros.figure_img(
+                "img/yumyfish2.gif",
+                caption="revised version with more expressive curvature of the back"    
+            ) }}
+    </div>
+    
+    <p>
+        Kid Detective, the player character, could earn clothing items throughout the game that could be
+        worn together to create unique costumes. Skins were used here too.
+    </p>
+    {{ macros.figure_img("img/costums.gif") }}
+
+    <div class="big">
+        {{ macros.figure_img("img/scrath.gif") }}
+        {{ macros.figure_img("img/shjrugnewe.gif") }}
+        {{ macros.figure_img("img/proud.gif") }}
+        {{ macros.figure_img("img/grabobject.gif") }}
+    </div>
+    {{ macros.figure_video("img/Screen Recording 2026-04-29 at 15.33.17.mp4") }}
+
+
+
+    
+
+    
+
+    <p>
+        Some characters had to be seen from behind, or only from behind. A layered approach made
+        creating back-facing animations easier.
+    </p>
+    {{ macros.figure_video("img/Screen Recording 2026-09-15 at 16.07.27.mp4") }}
+    <div class="big">
+        {{ macros.figure_img("img/fishing.gif") }}
+        {{ macros.figure_img("img/talksifshrm.gif") }}
+        {{ macros.figure_img("img/doorlocked.gif") }}
+    </div>
+    
+    <aside>
+        <p>
+            Every costume item had to support being viewed from the back, too.
+        </p>
+        <div class="big">
+            {{ macros.figure_img("img/layeredfront.png") }}
+            {{ macros.figure_img("img/layeredback.png") }}
+                        {{ macros.figure_img("img/layere2front.png") }}
+            {{ macros.figure_img("img/layer2back.png") }}
+
+        </div>
+    </aside>
+
+    <div class="big">
+        {{ macros.figure_img("img/concernedidle.gif") }}
+        {{ macros.figure_img("img/concernedtalk.gif") }}
+        {{ macros.figure_img("img/wheelchairhappy.gif") }}
+        {{ macros.figure_img("img/wheelchairwheelies.gif") }}
+    </div>
+    <aside>
+        <p>
+            I consulted YouTube for wheelchair usage tutorials to ensure the Concerned Girl's locomotion
+            was accurate. My algorithm is now recommending more tutorials that I watch out of curiousity, and I'm often
+            reminded how unaccommodating our world is for wheelchair users. We really fucked up making doors require an entire free hand to open.
+        </p>
+    </aside>
+
+</section>
+
+
+
+<section>
+    <h3>Environment</h3>
+    
+    <div class="big">
+        {{ macros.figure_video("img/Screen Recording 2026-05-03 at 21.37.44.mp4") }}
+        {{ macros.figure_video("img/Screen Recording 2026-05-03 at 21.58.22.mp4") }}
+    </div>
+
+    <div class="big">
+        {{ macros.figure_img("img/Untitledasdfgh.gif") }}
+        {{ macros.figure_img("img/kkjhhgfd.gif") }}
+    </div>
+    
+
+    <div class="big">
+        {{ macros.figure_video("img/Screen Recording 2026-03-27 at 13.26.28.mp4") }}
+        {{ macros.figure_video("img/Screen Recording 2026-03-27 at 13.35.03.mp4") }}
+        {{ macros.figure_img("img/lunchboxkai.gif") }}
+    </div>
+    
+
+</section>
+<aside>
+    <p>
+        Remote, asynchronous contract work can feel isolating and depressing.
+        I liked making revision requests for assets fun and humorous to remind myself to stay
+        positive. Hopefully, artists receiving the requests felt a similar way.
+    </p>
+    <div class="big">
+        {{ macros.figure_img("img/Tyreswing.png") }}
+        {{ macros.figure_img("img/Jetski.png") }}
+    </div>
+    {{ macros.figure_img(
+        "img/LIBRYAERY.png",
+        caption="Grand plans for the Library fell through due to... unforeseen timeline adjustments."
+    ) }}
+
+    {# {{ macros.figure_img("img/Eyes.png") }} #}
+</aside>
+
+
+
+
+{{ macros.figure_video("img/Screen Recording 2026-03-19 at 16.49.58.mp4") }}
+
+
+
+{% endblock %}

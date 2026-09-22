@@ -1,0 +1,63 @@
+{% import "macros.html.j2" as macros with context %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block head %}
+    {{ macros.head() }}
+    {% endblock %}
+</head>
+<body>
+
+    {{ macros.header() }}
+    {{ macros.nav() }}
+
+    <main>
+        <article>
+
+            <header>
+            {{ macros.figure_img(image) }}
+            <h2>{{ title }}</h2>
+            <p>{{ description }}</p>
+            <p><time>{{ date }}</time></p>
+            
+            {% if tags %}
+            <dl class="tags">
+                <dt>Tags</dt>
+                {% for tag in tags %}
+                <dd>{{ tag }}</dd>
+                {% endfor %}
+            </dl>
+            {% endif %}
+            {% if roles %}
+            <dl class="tags">
+                <dt>Roles</dt>
+                {% for role in roles %}
+                <dd>{{ role }}</dd>
+                {% endfor %}
+            </dl>
+            {% endif %}
+            {% if client %}
+            <dl class="tags">
+                <dt>Client</dt>
+                <dd>{{ client }}</dd>
+            </dl>
+            {% endif %}
+            </header>
+
+            {% block content required %}
+            {% endblock %}
+
+            <footer>
+            {% block footer %}
+            <p>
+                &nbsp;
+            </p>
+            {% endblock %}
+            </footer>
+        </article>
+    </main>
+
+    {{ macros.footer() }}
+
+</body>
+</html>

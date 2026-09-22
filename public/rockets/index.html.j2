@@ -1,0 +1,24 @@
+{
+    "title": "Math Rockets",
+    "description": "capture-the-flag mathletic competition",
+    "date": "2025-01-01",
+    "tags": [ "Dev", "Roblox", "Luau", "TypeScript" ],
+    "image": "img/rockets-1.png",
+
+    "client": "Roblox Education",
+    "roles": [ "3D Art", "VFX Art", "Programming" ],
+}
+{% extends "post-project.html.j2" %}
+{% block content %}
+{{ super() }}
+<section>
+    {# <figure><img class="cover" src="img/rockets-1.png" loading="lazy"></figure> #}
+    {{ macros.figure_img("img/rockets-2.png")}} 
+    <!-- <figure><img src="img/roblox-spectacular.png" loading="lazy"></figure> -->
+</section>
+<a class="external" href="https://www.roblox.com/games/93946346542137/Math-Rockets" target="_blank" rel="noreferrer">
+    <img class="icon96" src="../img/roblox-favicon.png">
+    <p>Math Rockets</p>
+    <p>on Roblox</p>
+</a>
+{% endblock %}

@@ -1,0 +1,21 @@
+{
+    "title": "Kaiju Golf",
+    "description": "motion-controlled golf tournament for Google's Fitbit Ace LTE",
+    "date": "2023-06-01",
+    "tags": [ "Dev", "Blender", "Unity", "Android" ],
+    "image": "img/kaiju-background.png",
+
+
+    "client": "Google",
+    "roles": [ "Animation", "Technical Art", "Programming" ],
+}
+{% extends "post-project.html.j2" %}
+{% block content %}
+{{ super() }}
+<section class="gallery" >
+    {{ macros.figure_video("img/kaiju-showcase.mp4") }}
+    <figure class="card">
+        <p>[TODO] more footage than a single lonely video</p>
+    </figure>
+</section>
+{% endblock %}

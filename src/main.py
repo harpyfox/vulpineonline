@@ -1,4 +1,4 @@
-from workers import WorkerEntrypoint, Response
+from workers import WorkerEntrypoint, Response, Request
 from pyodide.ffi import to_js
 
  # stdlib
@@ -18,7 +18,7 @@ class Default(WorkerEntrypoint):
         self.ctx = ctx
         self.env = env
 
-    async def fetch(self, request):
+    async def fetch(self, request: Request):
         logger = logging.getLogger(__name__)
         logging.basicConfig(level=logging.INFO)
 
@@ -39,7 +39,24 @@ class Default(WorkerEntrypoint):
                 blobs=to_js([ ua, timestamp ]),
             )
         
-        return await self.env.ASSETS.fetch(request)
+        return await self.env.ASSETS.fetch(request) # type: ignore
     
     async def api(self, request):
         return Response("API call yipee", status=418)
+
+# https://blog.cloudflare.com/introducing-socket-workers/
+# proposed structure of an incoming TCP request in JavaScript:
+# addEventListener('connect', (event) => {
+#   const enc = new TextEncoder();
+#   const writer = event.socket.writable.getWriter(); # WritableStream
+#   writer.write(enc.encode('Hello World'));
+#   writer.close();
+# });
+# https://developers.cloudflare.com/workers/runtime-apis/tcp-sockets/
+# WritableStream: https://developers.cloudflare.com/workers/runtime-apis/streams/writablestream/
+    async def connect(self, socket):
+        data: str = "hello world!"
+        encoded: bytes = data.encode(encoding="utf-8", errors="strict")
+        writer = socket.writable.getWriter()
+        writer.write(encoded)
+        writer.close()

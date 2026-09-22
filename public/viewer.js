@@ -1,8 +1,25 @@
+
+let scripts = document.getElementsByTagName('script');
+const viewerScript = scripts[scripts.length - 1]; // remember where this script is in the DOM so we can insert the viewer element directly after it.
+
 let viewer, viewerImage, viewerVideo, viewerCaption;
+const viewerElementString = `
+<figure id="viewer" onclick="this.style.display = 'none'" style="display: none">
+    <img style="display: none">
+    <video autoplay controls style="display:none"></video>
+    <figcaption>-</figcaption>
+</figure>
+`
 document.addEventListener('DOMContentLoaded', (event) => {
+    init()
+});
+
+function init() {
+    viewerScript.insertAdjacentHTML('afterend', viewerElementString);
+
     viewer = document.getElementById('viewer');
-    viewerImage = viewer.querySelector("img");
-    viewerVideo = viewer.querySelector("video");
+    viewerImage = viewer.querySelector('img');
+    viewerVideo = viewer.querySelector('video');
     viewerCaption = viewer.querySelector('figcaption');
     viewer.style.display = "none";
     console.debug(`viewer`, viewer);
@@ -10,7 +27,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     for (const image of document.querySelectorAll('article > img')) { addViewerListener(image); }
     for (const video of document.querySelectorAll('article > video')) { addViewerListener(video); }
     for (const figure of document.querySelectorAll('figure:not(#viewer)')) { addViewerListener(figure); }
-});
+}
 
 function addViewerListener(element) {
     console.debug(`addViewerListener`, element);
@@ -22,7 +39,7 @@ function showViewer(event) {
     const element = event.target;
     // I WISH SOMEONE TOLD ME ABOUT THE POPOVER API BEFORE I MADE THIS
     console.debug(`showViewer ${element?.tagName}`, element);
-    viewer.style.display = "flex";
+    viewer.style.display = 'flex';
     viewerImage.style.display = 'none';
     viewerVideo.style.display = 'none';
     viewerCaption.innerText = element.src;

@@ -1,0 +1,35 @@
+{
+    "title": "untitled.umap",
+    "description": "top-down testing ground to practice Spine 2D and Unreal Engine",
+    "date": "2025-10-17",
+    "tags": [ "Art", "Unreal Engine", "Spine 2D" ],
+    "image": "img/Screenshot 2026-09-04 at 14.44.08.png",
+
+
+
+}
+{% extends "post.html.j2" %}
+{% block content %}
+{{ super() }}
+{{ macros.figure_video("img/spine-cannonsmaller.webm") }}
+
+<div class="big">
+    {{ macros.figure_video("img/spine-debugdog.mp4") }}
+    {{ macros.figure_video("img/spine-clip.mp4") }}
+</div>
+{{ macros.figure_img("img/spine-runloop.gif") }}
+<aside>
+    <p>
+        fun fact: i primarily made this for a job attempt to show that i can use Unreal Engine
+        and Spine 2D.
+    </p>
+    <p>
+        they held 2 interviews with me that were <q>very promising</q>,
+        then waited 4 months to tell me i didn't get the job.
+    </p>
+</aside>
+{# {{ macros.figure_img("img/spine-runloop.gif", caption="on my way to smack a fool." )}} #}
+
+
+
+{% endblock %}

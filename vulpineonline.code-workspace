@@ -5,6 +5,15 @@
 		}
 	],
 	"settings": {
-		"typescript.tsdk": "node_modules\\typescript\\lib"
+		"typescript.tsdk": "node_modules\\typescript\\lib",
+		"explorer.fileNesting.enabled": true,
+		"explorer.fileNesting.patterns": {
+			"*.j2": "${capture}"
+		},
+		"files.associations": {
+			"*.html.j2": "jinja-html",
+		},
+		"htmlhint.documentSelector": [ "html", "jinja-html" ],
+		"htmlhint.ignoreGitignore": true
 	}
 }

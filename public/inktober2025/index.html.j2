@@ -1,0 +1,61 @@
+{
+"title": "Inktober 2025",
+"description": "animation shorts made during inktober 2025",
+"date": "2025-10-31",
+"tags": [ "Art", "Blender" ],
+
+
+}
+{% extends "post.html.j2" %}
+{% block content %}
+{{ super() }}
+<style>
+body {
+    background: center / cover no-repeat fixed url("img/background.png");
+}
+</style>
+
+<p>hehehe</p>
+{{ macros.figure_video("img/RECKLESS.mp4", "RECKLESS") }}
+{{ macros.figure_video("img/STARFISH.webm", "STARFISH") }}
+
+
+<div class="big">
+    {{ macros.figure_video("img/SWEEP.mp4", "SWEEP") }}
+    {{ macros.figure_video("img/SWEEP-original-revision.mp4", "SWEEP (revised)") }}
+</div>
+{{ macros.figure_video("img/kicky.mp4") }}
+
+<div class="big">
+    {{ macros.figure_video("img/CROWN.webm", "CROWN") }}
+    {{ macros.figure_video("img/DEER.webm", "DEER") }}
+    {{ macros.figure_video("img/MOUSTACHE.webm", "MOUSTACHE") }}
+</div>
+
+{{ macros.figure_video("img/BIG BILL HELLS.webm", class="badge-sound") }}
+
+
+
+<div class="big">
+
+
+    {{ macros.figure_img("img/GUN.png") }}
+    {{ macros.figure_img("img/icecrem.png") }}
+</div>
+
+{{ macros.figure_img("img/iro-eevee.jpg") }}
+{{ macros.figure_img("img/KILL.jpg") }}
+
+
+
+<div class="big">
+    {{ macros.figure_video("img/rig-viewport.mp4") }}
+    {{ macros.figure_video("img/rig-face.mp4") }}
+</div>
+{{ macros.figure_img("img/Screenshot 2025-10-26 at 11.24.32 pm.png") }}
+<div class="big">
+    {{ macros.figure_img("img/Screenshot 2025-12-16 at 17.39.38.png") }}
+    {{ macros.figure_img("img/Screenshot 2026-01-06 at 22.39.17.png") }}
+</div>
+
+{% endblock %}

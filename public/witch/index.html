@@ -1,0 +1,522 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+
+<link rel="stylesheet" href="/layout.css" type="text/css">
+
+<link rel="stylesheet" href="/default.css" title="Default" type="text/css">
+<link rel="alternate stylesheet" href="" title="Classic" type="text/css">
+
+<link rel="icon" href="img/game_icon.png" type="image/png" sizes="50x51">
+<link rel="apple-touch-icon" href="img/game_icon.png" type="image/png" sizes="50x51">
+<!-- https://evilmartians.com/chronicles/how-to-favicon-in-2021-six-files-that-fit-most-needs -->
+
+<title>Rune Witch Academy :: VULPINE ONLINE</title>
+<meta name="description" content="spellcasting RPG adventure for Google's Fitbit Ace LTE">
+<meta name="author" content="harper fox"> <!-- this element is used for firefox reader author. -->
+<link rel="canonical" href="https://www.vulpineonline.com/witch/">
+
+<meta name="application-name" content="VULPINE ONLINE">
+<meta name="theme-color" content="#ffa500">
+<meta name="generator" content="Jinja2">
+
+<meta property="og:title" content="Rune Witch Academy">
+<meta property="og:description" content="spellcasting RPG adventure for Google's Fitbit Ace LTE">
+<meta property="og:image" content="/thumbnail.webp">
+<meta property="og:url" content="https://www.vulpineonline.com/">
+<meta property="og:site_name" content="VULPINE ONLINE">
+<meta property="og:type" content="article">
+
+<meta name="twitter:title" content="Rune Witch Academy">
+<meta name="twitter:description" content="spellcasting RPG adventure for Google's Fitbit Ace LTE">
+<meta name="twitter:image" content="/thumbnail.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@vulpineonline">
+<meta name="twitter:creator" content="@vulpineonline">
+<meta name="twitter:domain" content="vulpineonline.com">
+<meta name="twitter:url" content="https://www.vulpineonline.com/">
+
+<!-- Cloudflare Web Analytics -->
+<script defer src="beacon.min.js" data-cf-beacon="{'token': '40db039c866c4d49a7ca87ce6723db6e'}"></script>
+<!-- End Cloudflare Web Analytics -->
+
+</head>
+<body>
+
+    <header role="banner">
+    <a href="/#">
+        <h1>
+            <svg class="logo" xmlns="http://www.w3.org/2000/svg"
+    width="256"
+    height="104">
+    <use href="/logo.svg#cunt"></use>
+</svg>
+
+        </h1>
+    </a>
+    <p>harper fox's portfolio</p>
+</header>
+
+    <nav>
+    <h2>Navigation</h2>
+    <ul>
+        <li><a href="/#artwork">Art</a></li>
+        <li><a href="/#programming">Dev</a></li>
+        <li><a href="/#info">Info</a></li>
+    </ul>
+</nav>
+
+
+    <main>
+        <article>
+
+            <header>
+            <figure>
+    <img src="img/witch-dialogue.png"></img>
+</figure>
+
+            <h2>Rune Witch Academy</h2>
+            <p>spellcasting RPG adventure for Google's Fitbit Ace LTE</p>
+            <p><time>2023-12-01</time></p>
+            
+            <dl class="tags">
+                <dt>Tags</dt>
+                <dd>Art</dd>
+                <dd>Blender</dd>
+                <dd>Unity</dd>
+                <dd>Android</dd>
+            </dl>
+            <dl class="tags">
+                <dt>Roles</dt>
+                <dd>Technical Art</dd>
+                <dd>VFX Art</dd>
+                <dd>Programming</dd>
+            </dl>
+            <dl class="tags">
+                <dt>Client</dt>
+                <dd>Google</dd>
+            </dl>
+            </header>
+
+
+<style>
+body {
+    background: top / contain no-repeat url("img/witch-background.webp") #361637;
+}
+main {
+    background: #361637aa;
+}
+</style>
+
+<figure class="">
+    
+    <video 
+    src="img/witch-door.webm" 
+     
+    loading="lazy" 
+    autoplay 
+    muted
+    controls 
+    loop 
+    playsinline
+    disablepictureinpicture></video>
+
+
+</figure>
+
+<section>
+    <h3>Character</h3>
+    <section>
+        <h4>Portrait System</h4>
+        <p>
+            2D visual-novel-style character portrait system with editor tools to build expressions with animated eyes, mouth, and
+            particle effects
+        </p>
+        <div class="big">
+            <figure>
+    <img src="img/witch-portraitsystem.png"></img>
+</figure>
+
+            <figure class="">
+    
+    <video 
+    src="img/witch-portraitvid.webm" 
+     
+    loading="lazy" 
+    autoplay 
+    muted
+    controls 
+    loop 
+    playsinline
+    disablepictureinpicture></video>
+
+
+</figure>
+
+        </div>
+        <div class="big">
+            <figure>
+    <img src="img/witch-pann.gif"></img>
+</figure>
+
+            <figure>
+    <img src="img/witch-portraitfx.png"></img>
+</figure>
+
+        </div>
+    </section>
+</section>
+
+<section>
+    <h3>Environment</h3>
+    <section>
+        <h4>Palette Controller</h4>
+        <p>
+            A game-wide vector sprite recolouring system that replaced authored colours of a sprite
+            with new colours based on <abbr>LUTs</abbr> (lookup textures) authored by the game's artists
+        </p>
+        <div class="big">
+            <figure class="">
+    
+    <video 
+    src="img/witch-palettes.webm" 
+     
+    loading="lazy" 
+    autoplay 
+    muted
+    controls 
+    loop 
+    playsinline
+    disablepictureinpicture></video>
+
+
+</figure>
+
+        </div>
+        <p>
+            Along with runtime blending between colour palettes, this system avoided artists
+            manually authoring 8+ variants of every sprite in the game. This not only saved time, but also reduced the
+            filesize of the game, which was strictly limited due to targeting smartwatches.
+        </p>
+        
+        <p>
+            The system comprised multiple parts (simplified here for the sake of brevity):
+        </p>
+        <table><tbody>
+            <tr>
+                <th>LUT authoring tool</th>
+                <td>Editor scripts for creating LUTs and saving them to Unity <code>ScriptableObject</code>s</td>
+            </tr>
+            <tr>
+                <th>Sprite shader</th>
+                <td>HLSL shader for vector sprites with support for LUT tonemapping</td>
+            </tr>
+            <tr>
+                <th>Blend shader</th>
+                <td>
+                    HLSL shader that took two LUTs and blended them into one LUT (mix, multiply, add etc.)
+                    <aside>
+                        <p>
+                            The blending method used at the time, essentially a <abbr title="linear interpolation">lerp</abbr>,
+                            produced an unfortunate washed-out tone in the middle of each blend.
+                        </p>
+                        <p>
+                            A nicer blend could have been produced by converting to OKLCH for the interpolation step and back to sRGB for the output.
+                        </p>
+                    </aside>
+                </td>
+            </tr>
+            <tr>
+                <th>LUT blender</th>
+                <td>C# Script that took two LUTs (from <strong>LUT authoring tool</strong>) and blended them into one LUT (with <strong>Blend shader</strong>)</td>
+            </tr>
+            <tr>
+                <th>Palette controller</th>
+                <td>C# Script that took a LUT (from <strong>LUT blender</strong>) and supplied it to the <strong>Sprite shader</strong></td>
+            </tr>
+        </tbody></table>
+        <p>
+            With it, I was able to create...
+        </p>
+        <ul>
+            <div class="big">
+                <li>
+                    <p>a time-of-day system,</p>
+                    <figure>
+    <img src="img/8_times_of_day_yeaaaaaaaaaaaaa-1.gif"></img>
+</figure>
+
+                </li>
+                <li>
+                    <p>a weather system,</p>
+                    <figure>
+    <img src="img/witch-ambermeadows.gif"></img>
+</figure>
+
+                </li>
+            </div>
+            <div class="big">
+                <li>
+                    <p>the opportunity for more immersive environmental storytelling,</p>
+                    <figure>
+    <img src="img/witch-timeofday.gif"></img>
+</figure>
+
+                </li>
+                <li>
+                    <p>and the ability for artists to adjust colours in-engine without a re-export round trip.</p>
+                    <figure>
+    <img src="img/Screenshot 2026-08-31 at 17.57.28.png"></img>
+</figure>
+
+                </li>
+            </div>
+        </ul>
+        
+    </section>
+    
+    <div class="big">
+        <figure class="">
+    
+    <video 
+    src="img/witch-grimoire.webm" 
+     
+    loading="lazy" 
+    autoplay 
+    muted
+    controls 
+    loop 
+    playsinline
+    disablepictureinpicture></video>
+
+
+    <figcaption>Animated book with deformation-based page turning (a technical artist's rite of passage)</figcaption>
+</figure>
+
+
+        
+        <figure>
+    <img src="img/witch-biomes.gif"></img>
+    <figcaption>Animated sequences to mask loading times between scenes</figcaption>
+</figure>
+
+    </div>
+    
+</section>
+
+<section>
+    <h3>VFX</h3>
+    <div class="big">
+        <figure>
+    <img src="img/witch-repair.gif"></img>
+    <figcaption>spell VFX: Repair</figcaption>
+</figure>
+
+        <figure>
+    <img src="img/witch-growshrink.gif"></img>
+    <figcaption>spell VFX: Grow/Shrink</figcaption>
+</figure>
+
+        <figure>
+    <img src="img/witch-translate.gif"></img>
+    <figcaption>spell VFX: Translate</figcaption>
+</figure>
+
+    </div>
+    <p>
+        Spell visual effects were inspired by the Mother series due to the first-person
+        perspective and, in the case of Mother 3, the small-screened nature of the games,
+        lending to a focus on visual effects with clear and decisive feedback.
+    </p>
+    
+</section>
+
+<figure>
+    <img src="img/witch-flow1.png"></img>
+</figure>
+
+<figure>
+    <img src="img/witch-flow2.png"></img>
+</figure>
+
+<figure>
+    <img src="img/witch-wakeuppann.png"></img>
+</figure>
+
+
+            <footer>
+            <p>
+                &nbsp;
+            </p>
+            </footer>
+        </article>
+    </main>
+
+    <footer>
+<style>
+.label {
+    font-family: "National Park", sans-serif;
+    font-size: 16px;
+    text-align: left;
+
+    width: fit-content;
+
+    transform: rotate(-2deg);
+    margin-inline-start: auto;
+    margin-inline-end: 1em;
+    padding: 0.5em;
+
+    display: block grid;
+    grid-template-columns: 1fr auto;
+    gap: 0.25em;
+
+    text-transform: uppercase;
+
+    color: #c2c2c2;
+    background-color: #171717;
+
+    border-style: outset;
+    border-width: 0.125em;
+    border-color: currentColor;
+    border-radius: 0.5em;
+
+    .logo {
+        font-size: 3em;
+        height: 1em;
+    }
+
+    .modelno-container {
+        font-size: 1.125em;
+        text-align: end;
+    }
+    .modelno {
+        font-weight: bold;
+    }
+
+    > :nth-child(1) {
+        font-size: 3em;
+    }
+
+    > :nth-child(3), :nth-child(6), :nth-child(7) {
+        grid-column: 1 / -1;
+    }
+
+    .mark-container {
+        display: block flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-around;
+    }
+    .mark, .icon32 {
+        display: inline flow-root;
+        object-fit: contain;
+
+        width: 2em;
+        height: 2em;
+    }
+
+    .origin-container {
+        text-align: end;
+    }
+
+    .serialno-container {
+        grid-column: 1 / -1;
+
+        margin-inline-start: 2.5em;
+    }
+    .serialno {
+        font-family: sans-serif;
+        font-weight: bold;
+    }
+
+    .barcode {
+        grid-column: 1 / -1;
+
+        width: 16em;
+        height: 2em;
+        padding: 0.3em;
+
+        border-radius: 2px;
+
+        color: black;
+        background-color: white;
+    }
+
+}
+</style>
+    <div class="label">
+
+        <svg class="logo" xmlns="http://www.w3.org/2000/svg"
+    width="256"
+    height="104">
+    <use href="/logo.svg#cunt"></use>
+</svg>
+
+
+        <div class="modelno-container">
+            Model <span class="modelno">P200</span>
+        </div>
+        
+        <div>
+            <span style="font-weight: bold">&copy;</span> 2026 harper fox<br>
+            Input: 3,000V&#9107;??A, 131W<br>
+            Output: 71W, &infin;W
+            <p style="display: none; font-size: 0.5em;">
+                1 kcal/day = 0.01157407407 cal/sec<br>
+                1 cal/sec = 4.184 J/sec<br>
+                <br>
+                input<br>
+                daily energy requirements for 26yo 81kg female = 2700kcal. (https://www.eatforhealth.gov.au/nutrition-calculators/daily-energy-requirements-calculator)<br>
+                2700 kcal/day<br>
+                112.5 kcal/hr<br>
+                0.03125 kcal/sec<br>
+                31.25 cal/sec<br>
+                130.75 J/sec<br>
+                131 W<br>
+                <br>
+                output<br>
+                harper's basal metabolic rate @ 2026/08/27 = 1464 kcal.<br>
+                1464 kcal/day<br>
+                61 kcal/hr<br>
+                0.01694 kcal/sec<br>
+                16.94 cal/sec<br>
+                70.88 J/sec<br>
+                71 W<br>
+            </p>
+        </div>
+
+        <div class="mark-container">
+            <img src="/img/ce-mark_210x150.png" class="icon32 inverted" alt="CE mark">
+            <img src="/img/RCM_0.png" class="icon32 inverted" alt="Regulatory Compliance Mark">
+            <img src="/img/WEEE_symbol.svg" class="icon32 inverted" alt="WEEE mark">
+        </div>
+        
+        <div class="origin-container">
+            <span style="text-align: end;">
+                Made in<br>
+                Australia
+            </span>
+        </div>
+
+        <div class="serialno-container">
+            S/N <span class="serialno">P200T1790064937</span>
+        </div>
+
+        <img src="/img/barcode.png" class="barcode sticker">
+
+    </div>
+    
+ 
+</footer>
+
+<!-- Cloudflare Web Analytics -->
+<script defer src="beacon.min.js" data-cf-beacon="{'token': '40db039c866c4d49a7ca87ce6723db6e'}"></script>
+<!-- End Cloudflare Web Analytics -->
+
+
+</body>
+</html>

@@ -1,0 +1,284 @@
+{% macro svg_logo() %}
+<svg class="logo" xmlns="http://www.w3.org/2000/svg"
+    width="256"
+    height="104">
+    <use href="/logo.svg#cunt"></use>
+</svg>
+{% endmacro %}
+
+{% macro head() %}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+
+<link rel="stylesheet" href="/layout.css" type="text/css">
+
+<link rel="stylesheet" href="/default.css" title="Default" type="text/css">
+<link rel="alternate stylesheet" href="" title="Classic" type="text/css">
+{# <link rel="alternate stylesheet" href="/print.css" title="Print Friendly" type="text/css"> #}
+
+{% if icon is defined %}
+{% set favicon = icon %}
+{% else %}
+{% set favicon = "/favicon.png" %}
+{% endif %}
+<link rel="icon" href="{{ favicon }}" type="image/png" sizes="50x51">
+<link rel="apple-touch-icon" href="{{ favicon }}" type="image/png" sizes="50x51">
+<!-- https://evilmartians.com/chronicles/how-to-favicon-in-2021-six-files-that-fit-most-needs -->
+
+{% if title is defined %}
+<title>{{ title }} :: {{ site.title }}</title>
+{% else %}
+<title>{{ site.title }}</title>
+{% endif %}
+<meta name="description" content="{{ description }}">
+<meta name="author" content="{{ site.author }}"> <!-- this element is used for firefox reader author. -->
+{% if href is defined %}
+{% set canonical = site.canonical + href %}
+{% else %}
+{% set canonical = site.canonical %}
+{% endif %}
+<link rel="canonical" href="{{ canonical }}">
+
+<meta name="application-name" content="{{ site.title }}">
+<meta name="theme-color" content="#ffa500">
+<meta name="generator" content="Jinja2">
+
+<meta property="og:title" content="{{ title }}">
+<meta property="og:description" content="{{ description }}">
+<meta property="og:image" content="/thumbnail.webp">
+<meta property="og:url" content="https://www.vulpineonline.com/">
+<meta property="og:site_name" content="{{ site.title }}">
+<meta property="og:type" content="article">
+
+<meta name="twitter:title" content="{{ title }}">
+<meta name="twitter:description" content="{{ description }}">
+<meta name="twitter:image" content="/thumbnail.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@vulpineonline">
+<meta name="twitter:creator" content="@vulpineonline">
+<meta name="twitter:domain" content="{{ site.domain }}">
+<meta name="twitter:url" content="https://www.vulpineonline.com/">
+
+<!-- Cloudflare Web Analytics -->
+<script defer src="beacon.min.js" data-cf-beacon="{'token': '40db039c866c4d49a7ca87ce6723db6e'}"></script>
+<!-- End Cloudflare Web Analytics -->
+{% endmacro %}
+
+{% macro header() %}
+<header role="banner">
+    <a href="/#">
+        <h1>
+            {{ svg_logo() }}
+        </h1>
+    </a>
+    <p>{{ site.author }}'s portfolio</p>
+</header>
+{% endmacro %}
+
+{% macro nav() %}
+<nav>
+    <h2>Navigation</h2>
+    <ul>
+        {# <li><a href="/#reel">Reel</a></li> #}
+        <li><a href="/#artwork">Art</a></li>
+        <li><a href="/#programming">Dev</a></li>
+        <li><a href="/#info">Info</a></li>
+    </ul>
+</nav>
+{% endmacro %}
+
+{% macro footer() %}
+<footer>
+<style>
+.label {
+    font-family: "National Park", sans-serif;
+    font-size: 16px;
+    text-align: left;
+
+    width: fit-content;
+
+    transform: rotate(-2deg);
+    margin-inline-start: auto;
+    margin-inline-end: 1em;
+    padding: 0.5em;
+
+    display: block grid;
+    grid-template-columns: 1fr auto;
+    gap: 0.25em;
+
+    text-transform: uppercase;
+
+    color: #c2c2c2;
+    background-color: #171717;
+
+    border-style: outset;
+    border-width: 0.125em;
+    border-color: currentColor;
+    border-radius: 0.5em;
+
+    .logo {
+        font-size: 3em;
+        height: 1em;
+    }
+
+    .modelno-container {
+        font-size: 1.125em;
+        text-align: end;
+    }
+    .modelno {
+        font-weight: bold;
+    }
+
+    > :nth-child(1) {
+        font-size: 3em;
+    }
+
+    > :nth-child(3), :nth-child(6), :nth-child(7) {
+        grid-column: 1 / -1;
+    }
+
+    .mark-container {
+        display: block flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-around;
+    }
+    .mark, .icon32 {
+        display: inline flow-root;
+        object-fit: contain;
+
+        width: 2em;
+        height: 2em;
+    }
+
+    .origin-container {
+        text-align: end;
+    }
+
+    .serialno-container {
+        grid-column: 1 / -1;
+
+        margin-inline-start: 2.5em;
+    }
+    .serialno {
+        font-family: sans-serif;
+        font-weight: bold;
+    }
+
+    .barcode {
+        grid-column: 1 / -1;
+
+        width: 16em;
+        height: 2em;
+        padding: 0.3em;
+
+        border-radius: 2px;
+
+        color: black;
+        background-color: white;
+    }
+
+}
+</style>
+    <div class="label">
+
+        {{ svg_logo() }}
+
+        <div class="modelno-container">
+            Model <span class="modelno">P{{site.version|join}}</span>
+        </div>
+        
+        <div>
+            <span style="font-weight: bold">&copy;</span> 2026 {{ site.author }}<br>
+            Input: 3,000V&#9107;??A, 131W<br>
+            Output: 71W, &infin;W
+            <p style="display: none; font-size: 0.5em;">
+                1 kcal/day = 0.01157407407 cal/sec<br>
+                1 cal/sec = 4.184 J/sec<br>
+                <br>
+                input<br>
+                daily energy requirements for 26yo 81kg female = 2700kcal. (https://www.eatforhealth.gov.au/nutrition-calculators/daily-energy-requirements-calculator)<br>
+                2700 kcal/day<br>
+                112.5 kcal/hr<br>
+                0.03125 kcal/sec<br>
+                31.25 cal/sec<br>
+                130.75 J/sec<br>
+                131 W<br>
+                <br>
+                output<br>
+                harper's basal metabolic rate @ 2026/08/27 = 1464 kcal.<br>
+                1464 kcal/day<br>
+                61 kcal/hr<br>
+                0.01694 kcal/sec<br>
+                16.94 cal/sec<br>
+                70.88 J/sec<br>
+                71 W<br>
+            </p>
+        </div>
+
+        <div class="mark-container">
+            <img src="/img/ce-mark_210x150.png" class="icon32 inverted" alt="CE mark">
+            {# <img src="/img/UKCA_filled.svg" class="icon32 inverted" alt="UK Conformity Assessed"> #}
+            <img src="/img/RCM_0.png" class="icon32 inverted" alt="Regulatory Compliance Mark">
+            <img src="/img/WEEE_symbol.svg" class="icon32 inverted" alt="WEEE mark">
+        </div>
+        
+        <div class="origin-container">
+            {# <img src="/img/am-logo.webp" class="icon32"> #}
+            <span style="text-align: end;">
+                Made in<br>
+                Australia
+            </span>
+        </div>
+
+        <div class="serialno-container">
+            S/N <span class="serialno">P{{site.version|join}}T{{renderer.timestamp}}</span>
+        </div>
+
+        <img src="/img/barcode.png" class="barcode sticker">
+
+    </div>
+    
+ 
+</footer>
+
+<!-- Cloudflare Web Analytics -->
+<script defer src="beacon.min.js" data-cf-beacon="{'token': '40db039c866c4d49a7ca87ce6723db6e'}"></script>
+<!-- End Cloudflare Web Analytics -->
+{% endmacro %}
+
+{% macro figure_img(url, caption) %}
+<figure>
+    <img src="{{ url }}"></img>
+    {% if caption %}
+    <figcaption>{{ caption }}</figcaption>
+    {% endif %}
+</figure>
+{% endmacro %}
+
+{% macro figure_video(url, caption, poster, class="") %}
+<figure class="{{ class }}">
+    {% set poster_block %}
+        {% if poster %}
+        "poster=\"{{ poster }}\"""
+        {% endif %}
+    {% endset %}
+    
+    <video 
+    src="{{ url }}" 
+    {{ poster_block }} 
+    loading="lazy" 
+    autoplay 
+    muted
+    controls 
+    loop 
+    playsinline
+    disablepictureinpicture></video>
+
+
+    {% if caption %}
+    <figcaption>{{ caption }}</figcaption>
+    {% endif %}
+</figure>
+{% endmacro %}
