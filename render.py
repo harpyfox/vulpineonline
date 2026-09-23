@@ -161,7 +161,7 @@ GLOBALS: dict = {
         "author": "harper fox",
         "domain": "vulpineonline.com",
         "canonical": "https://www.vulpineonline.com",
-        "version": (2, 0, 0),
+        "version": (2, 0, 1),
     },
     "renderer": {
         "root_dir": "public/", 

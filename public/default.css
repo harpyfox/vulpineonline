@@ -275,6 +275,9 @@ p {
 time { 
     color: var(--muted-foreground);
 }
+a {
+    position: relative;
+}
 :any-link {
     text-decoration-line: none;
     text-decoration-thickness: 2px;
@@ -335,7 +338,7 @@ dl.tags {
 
     figure > * {
         width: 100%;
-        aspect-ratio: 4/3;
+        /* aspect-ratio: 4/3; */
         object-fit: cover;
     }
 }
@@ -358,42 +361,64 @@ dl.tags {
 
 
 
-
-
-/* a[href^="http://"], 
-a[href^="https://"] {
-    background: url(/img/ie-search.png) center right no-repeat;
-    background-size: auto;
+.external::before,
+a[href^="http://"]::before, 
+a[href^="https://"]::before {
+    /* background: url(/img/ie-search.png) center right no-repeat;
     padding-right: 1em;
-    background-size: 1em;
-} */
-a.external {
+    background-size: 1em; */
+
+    width: 32px;
+    height: 32px;
+
+    position: absolute;
+    inset: -22px -33px auto auto;
+
+    content: "";
+
+    background: center / cover no-repeat scroll url("/img/shortcut32.png");
+
     image-rendering: pixelated;
-    font-family: "Tahoma", sans-serif;
+
+    pointer-events: none;
+
+    &.big {
+        
+    }
+}
+.external.big::before,
+a.big[href^="http://"]::before,
+a.big[href^="https://"]::before {
+    width: 6rem;
+    height: 6rem;
+
+    inset: revert;
+}
+
+a.big {
     position: relative;
+    width: fit-content;
+    height: auto;
+    margin-inline: auto;
+    margin-block: 0.5em;
 
     display: block flex;
     flex-direction: column;
-    place-items: center;
-    margin: auto;
-    width: fit-content;
-    padding: 8px;
+    align-items: center;
 
-    p {
-        margin: 0;
+    font-family: "Tahoma", "Arial", sans-serif;
+    text-align: center;
+
+    .favicon {
+        width: 6rem;
+        height: 6rem;
     }
-    p:first-of-type {
+
+
+    span:first-of-type {
         font-weight: bold;
         text-shadow: 2px 2px 1px #000000;
     }
-}
-a.external::before {
-    image-rendering: pixelated;
-    content: url("/img/shortcut32.png");
-    display: flex;
-    position: absolute;
-    width: 96px;
-    height: 96px;
 }
 
 @media (max-width: 640px) {
