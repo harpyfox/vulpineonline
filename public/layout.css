@@ -26,9 +26,6 @@ svg {
 
     fill: currentColor;
 }
-use {
-    display: contents;
-}
 input, 
 button, 
 textarea, 
@@ -176,7 +173,12 @@ dl.tags {
         text-align: right;
     }
 }
-.big {
+
+.logo {
+    height: 64px;
+}
+
+div.big {
     
     /* black magic */
     /* margin-right: -256px; */
@@ -189,9 +191,6 @@ dl.tags {
     flex-flow: row nowrap;
     align-items: baseline;
     gap: 1em;
-}
-.logo {
-    height: 64px;
 }
 
 
@@ -216,39 +215,19 @@ dl.tags {
 
 
 [class*="icon"] {
-    display: inline flow-root;
-    vertical-align: middle;
+    width: 1em;
+    height: 1em;
 
     object-fit: contain;
 
-    &[class="favicon"] {
+    &.favicon {
         width: 1.5rem;
         height: 1.5rem;
-        margin-right: 4px;
 
-        + * {
-            display: inline;
-        }
-    }
-    &[class*="16"] {
-        width: 16px;
-        height: 16px;
-    }
-    &[class*=24] {
-        width: 24px;
-        height: 24px;
-    }
-    &[class*="32"] {
-        width: 32px;
-        height: 32px;
-    }
-    &[class*="64"] {
-        width: 64px;
-        height: 64px;
-    }
-    &[class*="96"] {
-        width: 96px;
-        height: 96px;
+        display: inline flow-root;
+        vertical-align: middle; /* safari wants this */
+        alignment-baseline: central; /* firefox wants this */
+
     }
 }
 .button {

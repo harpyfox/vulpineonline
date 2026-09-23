@@ -194,7 +194,7 @@
                 {% endfor %}
             
                 {# <article class="card">
-                    <a class="external" href="/misc/">
+                    <a class="big" href="/misc/">
                         <img src="/img/recyclebinfull32.png" class="icon96">
                         <h3>Recycle Bin</h3>
                         <p>?? GB</p>
@@ -208,7 +208,7 @@
                     <a href="/"
                         onclick="event.preventDefault();let c=this.getAttribute('click')??0;c++;this.setAttribute('click', c);document.getElementById('here').style.fontSize=`${1+c/10}em`;">
                         <img src="/thumbnail.webp">
-                        <img class="icon32 badge" src="img/ie-icon.svg">
+                        <img class="icon badge" src="img/ie-icon.svg">
                         <h3>this website</h3>
                     </a>
                     <p id="here">you are here</p>
@@ -250,7 +250,8 @@
 
                 <style>
 .monitor {
-    display: grid;
+    {# display: grid; #}
+    display: none;
     grid-template-columns: repeat(4, auto);
     grid-template-rows: 2fr 1fr;
 
@@ -322,31 +323,50 @@
             <section id="contact">
                 <h3>Contact</h3>
                 <div style="display: flex;">
-                    <a class="external" href="mailto:harper.iro@gmail.com">
-                        <img class="icon96" src="/img/email-favicon.ico">
-                        <p>Mail</p>
+                    <a class="big" href="mailto:harper.iro@gmail.com">
+                        <img class="favicon" src="/img/email-favicon.ico">
+                        <span>Mail</span>
                     </a>
-                    <a class="external" href="https://bsky.app/profile/vulpineonline.com">
-                        <img class="icon96" src="/img/bluesky-favicon.png">
-                        <p>Bluesky</p>
+                    <a class="big" href="https://bsky.app/profile/vulpineonline.com">
+                        <img class="favicon" src="/img/bluesky-favicon.png">
+                        <span>Bluesky</span>
                     </a>
-                    <a class="external" href="https://www.linkedin.com/in/vulpineonline/">
-                        <img class="icon96" src="/img/linkedin-favicon.ico">
-                        <p>LinkedIn</p>
+                    <a class="big" href="https://www.linkedin.com/in/vulpineonline/">
+                        <img class="favicon" src="/img/linkedin-favicon.ico">
+                        <span>LinkedIn</span>
                     </a>
-                    <a style="display: none" class="external" href="/downloads/HarperFox_CV26.pdf/">
-                        <img class="icon96" src="/img/rtf32.png">
-                        <p>CV.pdf</p>
+                    <a style="display: none" class="big" href="/downloads/HarperFox_CV26.pdf/">
+                        <img class="favicon" src="/img/rtf32.png">
+                        <span>CV.pdf</span>
                     </a>
                 </div>
                 <details>
                     <summary>more</summary>
                     <ul>
-                        {# <li>{{ navlink("mailto:[REDACTED]", "[REDACTED]", "img/email-favicon.ico") }}</li> #}
-                        <li><a href="https://github.com/harpyfox"><img class="favicon" src="img/github-favicon.ico"><span>GitHub</span></a></li>
-                        <li><a href="https://x.com/vulpineonline"><img class="favicon" src="img/twitter-favicon.png"><span>Twitter</span></a></li>
-                        <li><a href="https://tinyfox.neocities.org/"><img class="favicon" src="img/neocities-favicon.ico"><span>Neocities</span></a></li>
-                        <li><a href="https://harpyfox.itch.io/"><img class="favicon" src="img/itch-favicon.ico"><span>itch.io</span></a></li>
+                        <li>
+                            <a href="https://github.com/harpyfox">
+                                <img class="favicon inverted" src="/img/github-favicon.ico">
+                                <span>GitHub</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://x.com/vulpineonline">
+                                <img class="favicon" src="img/twitter-favicon.png">
+                                <span>Twitter</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://tinyfox.neocities.org/">
+                                <img class="favicon" src="img/neocities-favicon.ico">
+                                <span>Neocities</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://harpyfox.itch.io/">
+                                <img class="favicon" src="img/itch-favicon.ico">
+                                <span>itch.io</span>
+                            </a>
+                        </li>
                     </ul>
                 </details>
                 
